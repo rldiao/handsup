@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-state = {
+  state = {
     data: null
   };
 
@@ -31,7 +31,7 @@ state = {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        // Render the newly fetched data inside of this.state.data 
+        {/*  Render the newly fetched data inside of this.state.data  */}
         <p className="App-intro">{this.state.data}</p>
       </div>
     );

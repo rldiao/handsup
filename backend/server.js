@@ -1,10 +1,11 @@
-// Server setting
+// ───  Settings  ─────────────────────────────────────────────────────────────────
+
 const express = require('express');
 const MongoClient = require('mongoose');
 const app = express();
 const uri = require('./config/keys').mongoURI
 
-// MongoDB settings
+// ───  Database  ─────────────────────────────────────────────────────────────────
 
 MongoClient
   .connect(uri, {useNewUrlParser: true})
@@ -23,6 +24,7 @@ app.get('/express_backend', (req, res) => {
 });
 
 // ─── RUN SERVER ─────────────────────────────────────────────────────────────────
+
 const port = process.env.PORT || 5000;
 
 // console.log that your server is up and running
