@@ -1,0 +1,23 @@
+{
+  "name": "info30005",
+  "version": "1.0.0",
+  "description": "Web Info Tech",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rdiaostudent/info30005.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rdiaostudent/info30005/issues"
+  },
+  "homepage": "https://github.com/rdiaostudent/info30005#readme",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
+}
