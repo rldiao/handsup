@@ -5,6 +5,16 @@ const MongoClient = require('mongoose');
 const app = express();
 const uri = require('./config/keys').mongoURI
 
+// TEST - START
+var Schema = MongoClient.Schema;
+
+var TestModelSchema = new Schema({
+    name: String,
+})
+
+var TestModel = MongoClient.model('TestModel', TestModelSchema)
+// TEST - END
+
 // ───  Database  ─────────────────────────────────────────────────────────────────
 
 MongoClient
