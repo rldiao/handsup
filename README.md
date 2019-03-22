@@ -1,6 +1,6 @@
 # Info30005
 Web Info Tech
-*Discription*
+*Description*
 
 ### Set up
 For each package.lock in info30005 & backend & client  
