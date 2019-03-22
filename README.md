@@ -9,3 +9,11 @@ For each package.lock in info30005 & backend & client
 ### Run App Locally
 In info30005 folder  
 `npm start`
+
+### File Structure 
+
+    src
+    ├── assets
+    ├── components
+    |   └── <component-subfolder>
+    ├── page
