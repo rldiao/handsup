@@ -1,0 +1,48 @@
+.Container {
+    display: block;
+}
+
+.FormHeader {
+    text-align: center;
+    font-size: 2rem;
+    margin: 10px;
+}
+
+.FormContainer {
+    margin: 0 auto;
+    width: 500px; 
+}
+
+.Form {
+    border: 1px solid grey;
+    border-radius: 4px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.FormFields {
+    margin: auto;
+    width: 85%;
+}
+
+.FormField {
+    margin: 40px;
+}
+
+.FormFieldLabel {
+    display: block;
+    text-transform: uppercase;
+    font-size: .9em;
+    color: black;
+}
+
+.FormFieldInput {
+    width: 90%;
+    border: 1px solid #445366;
+    font-size: 1em;
+    font-weight: 300;
+    padding: 0.75rem 1rem;
+    margin-top: 10px;
+    border-radius: 4px;
+}
