@@ -3,17 +3,16 @@
 const express = require('express');
 const MongoClient = require('mongoose');
 const app = express();
+const bodyParser = require('body-parser');
 const uri = require('./config/keys').mongoURI
 
-// TEST - START
-var Schema = MongoClient.Schema;
+MongoClient.Promise = global.Promise;
 
-var TestModelSchema = new Schema({
-    name: String,
-})
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
 
-var TestModel = MongoClient.model('TestModel', TestModelSchema)
-// TEST - END
+// parse requests of content-type - application/json
+app.use(bodyParser.json())
 
 // ───  Database  ─────────────────────────────────────────────────────────────────
 
@@ -36,6 +35,9 @@ app.get('/express_backend', (req, res) => {
 // ─── RUN SERVER ─────────────────────────────────────────────────────────────────
 
 const port = process.env.PORT || 5000;
+
+// Require Notes routes - TEST
+require('./routes/note.routes')(app);
 
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
