@@ -30,12 +30,18 @@ exports.createUser = (req, res) => {
 }
 
 exports.loginUser = (req, res) => {
-    // Is this encrypting before sending???
+    // This is not stable:
+    // wtf is User ???
     User.findOne({email: req.body.email}, function(err, user) {
-        if (!user.validPassword(req.body.password)) {
+        if (user == null) {
+            res.sendStatus(400).send({
+                message: "Email not found"
+            })
+        }
+        else if (!user.validPassword(req.body.password)) {
             //password did not match
-            res.send({
-                message: "FAIL",
+            res.status(400).send({
+                message: "Password incorrect",
             });
         } else {
             // password matched. proceed forward

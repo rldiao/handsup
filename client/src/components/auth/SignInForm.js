@@ -5,6 +5,7 @@ export default class SignInForm extends Component {
     state = {
         email: '',
         password: '',
+        error: '',
     };
 
     handleChange = e => {
@@ -27,15 +28,23 @@ export default class SignInForm extends Component {
               password: this.state.password,
             }),
             headers: {"Content-Type": "application/json"}
-          })
-          .then(function(response){
-            return response.json()
-          }).then(function(body){
-            console.log(body);
-          });
+        })
+        .then(function(response){
+            console.log(response)
+            if(response.status == '400') {
+                console.log("Incorrect account details")
+            }
+            else {
+                console.log("Successful login")
+            }
+        }).catch(function(error) {
+            console.log('There has been a problem with your fetch operation: ', 
+            error.message);
+        });
     }
 
     render() {
+
     return (
         <div className="Container">
             <div className="FormHeader">Login</div>
