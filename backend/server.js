@@ -3,12 +3,14 @@ const database = require('./database');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv').config();
 
-// parse requests of content-type - application/x-www-form-urlencoded
+const withAuth = require('./middleware/cookie')
+
 app.use(bodyParser.urlencoded({ extended: true }))
-
-// parse requests of content-type - application/json
 app.use(bodyParser.json())
+app.use(cookieParser());
 
 // ───  Database  ─────────────────────────────────────────────────────────────────
 
@@ -18,9 +20,16 @@ require('./routes/user.routes')(app);
 
 // ───   ROUTES   ─────────────────────────────────────────────────────────────────
 
-// Hello
 app.get('/express_backend', (req, res) => {
     res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+});
+
+app.get('/api/secret', withAuth, function(req, res) {
+    res.send('The password is potato');
+});
+
+app.get('/checkToken', withAuth, function(req, res) {
+    res.sendStatus(200);
 });
 
 // ─── RUN SERVER ─────────────────────────────────────────────────────────────────

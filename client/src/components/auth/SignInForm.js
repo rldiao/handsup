@@ -38,7 +38,7 @@ export default class SignInForm extends Component {
     render() {
     return (
         <div className="Container">
-            <div className="FormHeader">Sign In</div>
+            <div className="FormHeader">Login</div>
             <div className="Form">
                 <form 
                     className="FormFields"

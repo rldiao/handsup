@@ -46,3 +46,8 @@
     margin-top: 10px;
     border-radius: 4px;
 }
+
+.ErrorMsg {
+    color: red;
+    margin-top: 10px;
+}
