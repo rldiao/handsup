@@ -1,8 +1,9 @@
-// https://stackoverflow.com/questions/43092071/how-should-i-store-salts-and-passwords-in-mongodb
-
 const mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
-const uniqueValidator = require('mongoose-unique-validator')
+const crypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const uniqueValidator = require('mongoose-unique-validator');
+
+const sessionTime = 60;
 
 const userSchema = mongoose.Schema({
     name: String,
@@ -19,21 +20,35 @@ const userSchema = mongoose.Schema({
 });
 
 // hash the password
-userSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+userSchema.methods.setPassword = function(password) {
+    // TODO: improve password hashing?
+    this.password = crypt.hashSync(password, crypt.genSaltSync(8), null);
 };
 
 // checking if password is valid
-userSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password
-        , function(err, same) {
-        if (err) {
-            callback(err);
-        } else {
-            callback(err, same);
-        }
-    });
+userSchema.methods.validatePassword = function(password) {
+    return crypt.compareSync(password, this.password);
 };
+
+userSchema.methods.generateToken = function() {
+    const today = new Date();
+    const expirationDate = new Date(today);
+    expirationDate.setDate(today.getDate() + sessionTime);
+
+    return jwt.sign({
+        email: this.email,
+        id: this._id,
+        exp: parseInt(expirationDate.getTime() / 1000, 10),
+    }, process.env.TOKEN_STR);
+}
+
+userSchema.methods.toAuthJSON = function() {
+    return {
+        _id: this.id,
+        email: this.email,
+        token: this.generateToken(),
+    }
+}
 
 userSchema.plugin(uniqueValidator)
 

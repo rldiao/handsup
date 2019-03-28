@@ -1,6 +1,5 @@
-var User = require('../models/user.model.js');
-const jwt = require('jsonwebtoken');
-const secret = process.env.TOKEN_STR
+const passport = require('passport');
+const Users = require('../models/user.model');
 
 
 /* TODO
@@ -9,49 +8,92 @@ const secret = process.env.TOKEN_STR
  */
 
 exports.createUser = (req, res) => {
-    var new_user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
-    });
+    // Doesn't save user yet
+    const { body: { user } } = req;
+    if(!user.email) {
+        return res.status(422).json({
+        errors: {
+            email: 'is required',
+        },
+        });
+    }
+
+    if(!user.password) {
+        return res.status(422).json({
+        errors: {
+            password: 'is required',
+        },
+        });
+    }
     
-    new_user.password = new_user.generateHash(new_user.password);
+    const newUser = new Users(user);
+
+    newUser.setPassword(user.password);
+
     // .save() stores the model into db
-    new_user.save()
-    .then(data => {
-        res.send({
-            message: "Successfully created new user"
+    newUser.save()
+    .then(() => res.json({ user: newUser.toAuthJSON() }))
+    .catch((err) => {
+        console.log(err);
+        res.send({error: "email registered"})
+    });
+};
+
+exports.loginUser = (req, res, next) => {
+    const { body: { user } } = req;
+
+    if(!user.email) {
+        return res.status(422).json({
+        errors: {
+            email: 'is required',
+        },
         });
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "ERROR: Sign up error!"
+    }
+
+    if(!user.password) {
+        return res.status(422).json({
+        errors: {
+            password: 'is required',
+        },
         });
+    }
+
+    return passport.authenticate('local', { session: false }, (err, passportUser, info) => {
+        if(err) {
+            return next(err);
+        }
+        if(passportUser) {
+            const user = passportUser;
+            user.token = passportUser.generateToken();
+            return res.status(200)
+            // .cookie('token', user.token, {httpOnly: true, secure: true});
+            .json({ user: user.toAuthJSON() }); // DELETE this later for security
+        }
+        return res.send(400);
+    })(req, res, next);
+}
+
+exports.currentUser = (req, res, next) => {
+    const { payload: { id } } = req;
+    
+    return Users.findById(id)
+      .then((user) => {
+        if(!user) {
+          return res.sendStatus(400);
+        }
+  
+        return res.json({ user: user.toAuthJSON() });
     });
 }
 
-exports.loginUser = (req, res) => {
-    // This is not stable:
-    // wtf is User ???
-    User.findOne({email: req.body.email}, function(err, user) {
-        if (user == null) {
-            res.sendStatus(400).send({
-                message: "Email not found"
-            })
-        }
-        else if (!user.validPassword(req.body.password)) {
-            //password did not match
-            res.status(400).send({
-                message: "Password incorrect",
-            });
+exports.logoutUser = (req, res) => {
+    req.logout();
+    req.session.destroy((err) => {
+        if (!err) {
+            return res.status(200).clearCookie('connect.sid', {path: '/'}).json({status: "Success"});
         } else {
-            // password matched. proceed forward
-            const email = user.email
-            const payload = { email }
-            const token = jwt.sign(payload, secret, {
-                expiresIn: '1h'
-            });
-                res.cookie('token', token, { httpOnly: true })
-                .sendStatus(200);
+            // handle error case...
+            return res.sendStatus(401);
         }
     })
 }

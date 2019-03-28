@@ -1,6 +1,6 @@
 // https://learnetto.com/blog/how-to-do-simple-form-validation-in-reactjs
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 export default class SignUpForm extends Component {
     state = {
@@ -11,12 +11,13 @@ export default class SignUpForm extends Component {
         formErrors: {name: '', email: '', password: ''},
         emailValid: false,
         passwordValid: false,
-        formValid: false
+        formValid: false,
+        redirect: false,
     };
 
     validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
-        let nameValid = (this.state.name != '');
+        let nameValid = (this.state.name !== '');
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
       
@@ -49,7 +50,7 @@ export default class SignUpForm extends Component {
           this.state.emailValid 
           && this.state.passwordValid 
           && this.state.hasAgreed
-          && (this.state.name != '')
+          && (this.state.name !== '')
         });
     }
 
@@ -65,19 +66,24 @@ export default class SignUpForm extends Component {
       });
     }
 
+    // Handle Email already registered
     onSignUpAPI = async e => {
       e.preventDefault()
+      let that = this;
       fetch('/signup',{
           method: 'POST',
           body: JSON.stringify({
-            email: this.state.email,
-            password: this.state.password,
-            name: this.state.name
-          }),
+            user: {
+                email: this.state.email,
+                password: this.state.password,
+                name: this.state.name,
+            },
+        }),
           headers: {"Content-Type": "application/json"}
         })
         .then(function(response){
           return response.json()
+          that.setState({ redirect: true });
         }).then(function(body){
           console.log(body);
         });
@@ -88,14 +94,18 @@ export default class SignUpForm extends Component {
       let emailError;
       let passwordError;
 
-      if(this.state.formErrors.name != '') {
+      if(this.state.formErrors.name !== '') {
         nameError = <div className="ErrorMsg">{this.state.formErrors.name}</div>
       }
-      if(this.state.formErrors.email != '') {
+      if(this.state.formErrors.email !== '') {
           emailError = <div className="ErrorMsg">Email {this.state.formErrors.email}</div>
       }
-      if(this.state.formErrors.password != '') {
+      if(this.state.formErrors.password !== '') {
           passwordError = <div className="ErrorMsg">Password {this.state.formErrors.password}</div>
+      }
+
+      if(this.state.redirect === true) {
+        return <Redirect to='/' />
       }
       
       return (

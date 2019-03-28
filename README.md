@@ -17,3 +17,7 @@ In info30005 folder
     ├── components
     |   └── <component-subfolder>
     ├── page
+
+### Resources used
+
+https://hptechblogs.com/using-json-web-token-react/

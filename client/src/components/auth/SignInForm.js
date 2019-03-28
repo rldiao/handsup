@@ -1,12 +1,24 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import AuthService from './AuthService';
 
 export default class SignInForm extends Component {
-    state = {
-        email: '',
-        password: '',
-        error: '',
-    };
+    constructor() {
+        super()
+        this.Auth = new AuthService();
+        this.state = {
+            email: '',
+            password: '',
+            error: '',
+            redirect: false,
+        };
+    }
+
+    componentWillMount = () => {
+        if(this.Auth.loggedIn()) {
+            this.setState({redirect: true})
+        }
+    }
 
     handleChange = e => {
         let target = e.target;
@@ -20,23 +32,10 @@ export default class SignInForm extends Component {
 
     onLogin = e => {
         e.preventDefault()
-
-        fetch('/login',{
-            method: 'POST',
-            body: JSON.stringify({
-              email: this.state.email,
-              password: this.state.password,
-            }),
-            headers: {"Content-Type": "application/json"}
-        })
-        .then(function(response){
-            console.log(response)
-            if(response.status == '400') {
-                console.log("Incorrect account details")
-            }
-            else {
-                console.log("Successful login")
-            }
+        let that = this;
+        this.Auth.login(this.state.email, this.state.password)
+        .then(res => {
+            that.setState({redirect: true})
         }).catch(function(error) {
             console.log('There has been a problem with your fetch operation: ', 
             error.message);
@@ -44,6 +43,9 @@ export default class SignInForm extends Component {
     }
 
     render() {
+        if(this.state.redirect === true) {
+            return <Redirect to='/'/>
+        }
 
     return (
         <div className="Container">
