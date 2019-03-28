@@ -69,7 +69,7 @@ exports.loginUser = (req, res, next) => {
             // .cookie('token', user.token, {httpOnly: true, secure: true});
             .json({ user: user.toAuthJSON() }); // DELETE this later for security
         }
-        return res.send(400);
+        return res.sendStatus(400);
     })(req, res, next);
 }
 

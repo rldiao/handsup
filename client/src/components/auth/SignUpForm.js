@@ -82,7 +82,7 @@ export default class SignUpForm extends Component {
           headers: {"Content-Type": "application/json"}
         })
         .then(function(response){
-          return response.json()
+          response.json()
           that.setState({ redirect: true });
         }).then(function(body){
           console.log(body);
