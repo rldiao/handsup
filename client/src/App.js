@@ -14,7 +14,7 @@ import SignupPage from './pages/login/SignupPage'
 
 // TEST - START
 const checkAuth = () => {
-  const token = Cookies.get('token');
+  const token = localStorage.getItem('id_token');
   if (!token) {
     return false;
   }
