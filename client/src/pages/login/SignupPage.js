@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 
 import SignUpForm from '../../components/auth/SignUpForm'
-
-import './loginPage.css'
+import styles from './formPage.module.css'
 
 export default class LoginPage extends Component {
 
   render() {
     return (
-      <div className="Container">
-          <div className="FormContainer">
+      <div className={styles.container}>
+          <div className={styles.formContainer}>
             <SignUpForm/>
           </div>
       </div>

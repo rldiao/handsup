@@ -1,6 +1,12 @@
 // https://learnetto.com/blog/how-to-do-simple-form-validation-in-reactjs
+
+// TODO: Login user right after sign up 
+
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
+
+import styles from './form.module.css'
 
 export default class SignUpForm extends Component {
     state = {
@@ -109,18 +115,17 @@ export default class SignUpForm extends Component {
       }
       
       return (
-        <div className="Container">
-          <div className="FormHeader">Sign Up</div>
-          <div className="Form">
+        <div className={styles.container}>
+          <div className={styles.formHeader}>Sign Up</div>
             <form 
-              className="FormFields" 
+              className={styles.formFields} 
               method="post"
               onSubmit={this.onSignUpAPI}
             >
-              <div className="FormField">
-                <label className="FormFieldLabel">Full Name</label>
+              <div className={styles.formField}>
+                <label className={styles.formFieldLabel}>Full Name</label>
                 <input 
-                  className="FormFieldInput" 
+                  className={styles.formFieldInput} 
                   id="name" 
                   type="text"
                   name="name"
@@ -129,10 +134,10 @@ export default class SignUpForm extends Component {
                 />
                 {nameError}
               </div>
-                <div className="FormField">
-                <label className="FormFieldLabel">Email</label>
+                <div className={styles.formField}>
+                <label className={styles.formFieldLabel}>Email</label>
                 <input 
-                  className="FormFieldInput" 
+                  className={styles.formFieldInput} 
                   id="email" 
                   type="email"
                   name="email"
@@ -140,10 +145,10 @@ export default class SignUpForm extends Component {
                 />
                 {emailError}
               </div>
-              <div className="FormField">
-                <label className="FormFieldLabel">Password</label>
+              <div className={styles.formField}>
+                <label className={styles.formFieldLabel}>Password</label>
                 <input 
-                  className="FormFieldInput" 
+                  className={styles.formFieldInput} 
                   id="password" 
                   type="password"
                   name="password"
@@ -151,21 +156,21 @@ export default class SignUpForm extends Component {
                 />
                 {passwordError}
               </div>
-              <div className="FormField">
-              <label className="FormFieldCheckboxLabel">
-                  <input className="FormFieldCheckbox" type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree all statements in <a href="" className="FormField__TermsLink">terms of service</a>
+              <div className={styles.formField}>
+              <label className={styles.formFieldCheckBoxLabel}>
+                  <input className={styles.formFieldCheckBox} type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree all statements in <a href="" className="FormField__TermsLink">terms of service</a>
               </label>
               </div>
-              <div className="FormField">
-                  <button 
-                      className="FormFieldButton"
+              <div className={styles.formField}>
+                  <Button 
+                      className={styles.formFieldButton}
                       disabled={!this.state.formValid}
+                      variant="contained"
                       >
-                      Sign Up</button> 
-                  <Link to="/login" className="FormFieldLink">I'm already member</Link>
+                      Sign Up</Button> 
+                  <Link to="/login" className={styles.formFieldLink}>I'm already member</Link>
               </div>
             </form>
-          </div>
         </div>
       )
     }

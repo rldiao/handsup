@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import AuthService from './AuthService';
+import Button from '@material-ui/core/Button'
+
+import styles from './form.module.css'
 
 export default class SignInForm extends Component {
     constructor() {
@@ -48,39 +51,43 @@ export default class SignInForm extends Component {
         }
 
     return (
-        <div className="Container">
-            <div className="FormHeader">Login</div>
-            <div className="Form">
-                <form 
-                    className="FormFields"
-                    onSubmit={this.onLogin}
-                >
-                    <div className="FormField">
-                    <label className="FormFieldLabel">Email</label>
-                    <input 
-                        className="FormFieldInput" 
-                        id="email" 
-                        type="email"
-                        name="email"
-                        onChange={this.handleChange}
-                    />
-                    </div>
-                    <div className="FormField">
-                    <label className="FormFieldLabel">Password</label>
-                    <input 
-                        className="FormFieldInput" 
-                        id="password" 
-                        type="password"
-                        name="password"
-                        onChange={this.handleChange}
-                    />
-                    </div>
-                    <div className="FormField">
-                        <button className="FormFieldButton">Sign In</button> 
-                        <Link to="/signup" className="FormFieldLink">Sign Up</Link>
-                    </div>
-                </form>
-            </div>
+        <div className={styles.container}>
+            <div className={styles.formHeader}>Login</div>
+            <form 
+                className={styles.formFields}
+                onSubmit={this.onLogin}
+            >
+                <div className={styles.formField}>
+                <label className={styles.formFields}>Email</label>
+                <input 
+                    className={styles.formFieldInput} 
+                    id="email" 
+                    type="email"
+                    name="email"
+                    onChange={this.handleChange}
+                />
+                </div>
+                <div className={styles.formField}>
+                <label className={styles.formFields}>Password</label>
+                <input 
+                    className={styles.formFieldInput} 
+                    id="password" 
+                    type="password"
+                    name="password"
+                    onChange={this.handleChange}
+                />
+                </div>
+                <div className={styles.formField}>
+                    <Button 
+                        variant="contained" 
+                        className={styles.formFieldButton}
+                        onClick={this.onLogin}
+                        >
+                        Sign In
+                    </Button> 
+                    <Link to="/signup" className={styles.formFieldLink}>Sign Up</Link>
+                </div>
+            </form>
         </div>
         )
     }
