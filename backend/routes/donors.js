@@ -5,6 +5,12 @@ const router = express.Router();
 
 router.get("/", controller.getProfile);
 
+router.get("/find/:username", controller.getOneProfile);
+
+router.post("/new", controller.createProfile);
+
 router.put("/update/:username", controller.updateProfile);
+
+router.delete("/delete/:username", controller.deleteProfile);
 
 module.exports = router;

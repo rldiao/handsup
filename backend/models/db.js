@@ -19,4 +19,4 @@ mongoose.connect(dbURI, options).then(
 
 require("./donors");
 
-//DB=mongodb+srv://lausk97:qwe123@cluster0-mkuyp.mongodb.net/test?retryWrites=true nodemon app
+//DB=mongodb+srv://lausk97:qwe123@cluster0-mkuyp.mongodb.net/test?retryWrites=true npm start
