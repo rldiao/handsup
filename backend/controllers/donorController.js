@@ -1,14 +1,32 @@
 const mongoose = require("mongoose");
 const Donor = mongoose.model("donors");
 
-const updateProfile = function(req, res) {
-    const donor = new Donor({
-        "name": req.body.name,
-        "password": req.body.password,
-        "email": req.body.email,
-        "dob": req.body.dob,
-        "profile-pic": req.body['profile-pic']
-    })
-    Donor.update({})
+const getProfile = function(req, res) {
+  Donor.find((err, donor) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.send(donor);
+    }
+  });
 };
 
+const updateProfile = function(req, res) {
+  Donor.findOneAndUpdate(
+    { username: req.params.username },
+    req.body,
+    { new: true },
+    (err, donor) => {
+      if (err) {
+        res.sendStatus(500);
+      } else {
+        res.send(donor);
+      }
+    }
+  );
+};
+
+module.exports = {
+  getProfile,
+  updateProfile
+};
