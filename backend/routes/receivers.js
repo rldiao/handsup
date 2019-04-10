@@ -6,9 +6,9 @@ router.get("/", receiverController.getReceivers);
 
 router.get("/:id", receiverController.getOneReceiver);
 
-router.post("/update/:id", receiverController.updateOneReceiver);
+router.put("/update/:id", receiverController.updateOneReceiver);
 
-router.put("/new", receiverController.addOneReceiver);
+router.post("/new", receiverController.addOneReceiver);
 
 router.delete("/delete/:id", receiverController.deleteOneReceiver);
 

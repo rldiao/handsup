@@ -5,7 +5,7 @@ const dbURI = process.env.DB || "NOPE";
 
 const options = {
   useNewUrlParser: true,
-  dbName: "handsUpDB"
+  dbName: "test"
 };
 
 mongoose.connect(dbURI, options).then(
@@ -20,7 +20,4 @@ mongoose.connect(dbURI, options).then(
 require("./donors");
 require("./receivers");
 
-
-
-
-//DB=mongodb+srv://admin:qwe123@cluster0-fn3va.mongodb.net/handsUpDB?retryWrites=true npm start
+//DB=mongodb+srv://lausk97:qwe123@cluster0-mkuyp.mongodb.net/test?retryWrites=true npm start
