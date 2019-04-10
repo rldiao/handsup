@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
-const receiverSchema = mongoose.schema({
+const receiverSchema = mongoose.Schema({
+    "id": String,
     "name": String,
-    "account-number": Number,
-    "age": Number
+    "account-number": String,
+    "age": String
 }
 );
 

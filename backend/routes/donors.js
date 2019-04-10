@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", controller.getProfile);
 
-router.get("/find/:username", controller.getOneProfile);
+router.get("/:username", controller.getOneProfile);
 
 router.post("/new", controller.createProfile);
 

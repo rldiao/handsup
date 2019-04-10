@@ -10,8 +10,10 @@ require("./models/db.js");
 
 // ───   ROUTES   ─────────────────────────────────────────────────────────────────
 const donorRouter = require("./routes/donors");
+const receiverRouter = require("./routes/receivers");
 
 app.use("/donors", donorRouter);
+app.use("/receivers", receiverRouter);
 
 app.get("/express_backend", (req, res) => {
   res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
