@@ -3,15 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  state = {
-    data: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
 
   componentDidMount() {
-      // Call our fetch function below once the component mounts
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
+      this.connecToServer();
+  }
+
+  connecToServer = () => {
+    fetch('/');
   }
     // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
   callBackendAPI = async () => {
