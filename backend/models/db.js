@@ -19,5 +19,6 @@ mongoose.connect(dbURI, options).then(
 
 require("./donors");
 require("./receivers");
+require("./donations");
 
-//DB=mongodb+srv://lausk97:qwe123@cluster0-mkuyp.mongodb.net/test?retryWrites=true npm start
+//DB=mongodb+srv://admin:qwe123@cluster0-fn3va.mongodb.net/handsUpDB?retryWrites=true npm start
