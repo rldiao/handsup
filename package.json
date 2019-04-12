@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "client-install": "npm install --prefix client",
-    "start": "cd backend && node server.js",
-    "server": "\"cd backend && nodemon server.js\"",
+    "backend-install": "npm install --prefix backend",
+    "start": "npm start --prefix backend",
+    "server": "npm run server --prefix backend",
     "client": "npm start --prefix client",
     "dev": "concurrently \"cd backend && npm start\" \"cd client && npm start\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client && npm install --prefix backend"
   },
   "repository": {
     "type": "git",

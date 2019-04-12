@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 //copy from CONNECT (MongoDB Atlas)
-const dbURI = process.env.DB || "NOPE";
+const dbURI = "mongodb+srv://admin:qwe123@cluster0-fn3va.mongodb.net/handsUpDB?retryWrites=true";
 
 const options = {
   useNewUrlParser: true,
