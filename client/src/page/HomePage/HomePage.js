@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import HomeMainImage from "./HomeMainImage";
-import HomeCoreValue from "./HomeCoreValue";
+// import HomeCoreValue from "./HomeCoreValue";
 
 const HomePage = () => {
   return (

@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import HomePage from "./page/HomePage/HomePage";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
   componentDidMount() {
-      this.connecToServer();
+    this.connecToServer();
   }
 
   connecToServer = () => {
-    fetch('/');
-  }
+    fetch("/");
+  };
   // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
   callBackendAPI = async () => {
     const response = await fetch("/express_backend");
