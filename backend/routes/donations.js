@@ -8,6 +8,6 @@ router.get('/id', donationController.getOneDonation);
 
 router.post('/new', donationController.createDonation);
 
-// We assume the donations info can't be deleted or altered
+// We assume the donations info can't be deleted or altered(updated)
 
 module.exports = router;

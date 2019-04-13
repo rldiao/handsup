@@ -41,6 +41,7 @@ const addOneReceiver = function (req, res) {
 const updateOneReceiver = function (req, res) {
     Receiver.findOneAndUpdate(
         {id: req.params.id},
+        req.body,
         {new: true},
         (err, receiver) => {
             if (err) {

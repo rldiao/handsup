@@ -1,4 +1,7 @@
-const mongoose = require("mongoose");
+// Schema for our donations collection
+
+const mongoose = require('mongoose');
+
 const donationsSchema = mongoose.Schema({
     id: {
         type: String,
@@ -12,7 +15,7 @@ const donationsSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    "transaction-date": {
+    'transaction-date': {
         type: String,
         required: true
     },
@@ -21,4 +24,5 @@ const donationsSchema = mongoose.Schema({
         required: true
     }
 });
-mongoose.model("donations", donationsSchema);
+
+mongoose.model('donations', donationsSchema);

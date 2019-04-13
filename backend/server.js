@@ -6,7 +6,7 @@ const path = require('path');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Database setup
+// Mongo database setup
 require('./models/db.js');
 require('dotenv').config();
 
@@ -26,7 +26,7 @@ app.get('/express_backend', (req, res) => {
 // Static file declaration
 app.use(express.static(path.join(__dirname, '..' ,'/client/build')));
 
-//production mode
+// Production mode
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..' ,'/client/build')));
   //
@@ -34,7 +34,7 @@ if(process.env.NODE_ENV === 'production') {
     res.sendfile(path.join(__dirname = 'client/build/index.html'));
   })
 }
-//build mode
+// Build mode
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname,'..','/client/public/index.html'));
 })
@@ -43,5 +43,5 @@ app.get('*', (req, res) => {
 // ─── RUN SERVER ─────────────────────────────────────────────────────────────────
 
 const port = process.env.PORT || 5000;
-// console.log that your server is up and running
+// Console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));

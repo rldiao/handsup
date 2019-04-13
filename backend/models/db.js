@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//copy from CONNECT (MongoDB Atlas)
+// Copy from CONNECT (MongoDB Atlas)
 const dbURI = 'mongodb+srv://admin:qwe123@cluster0-fn3va.mongodb.net/handsUpDB?retryWrites=true';
 
 const options = {
@@ -21,4 +21,4 @@ require('./donors');
 require('./receivers');
 require('./donations');
 
-//DB=mongodb+srv://admin:qwe123@cluster0-fn3va.mongodb.net/handsUpDB?retryWrites=true npm start
+// DB=mongodb+srv://admin:qwe123@cluster0-fn3va.mongodb.net/handsUpDB?retryWrites=true npm start
