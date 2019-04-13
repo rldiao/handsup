@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/rdiaostudent/info30005#readme",
   "dependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "jslint": "^0.12.1"
   }
 }
