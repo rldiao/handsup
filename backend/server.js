@@ -1,42 +1,47 @@
-// ───  Settings  ─────────────────────────────────────────────────────────────────
-
+//Set up express
 const express = require('express');
-const MongoClient = require('mongoose');
 const app = express();
-const uri = require('./config/keys').mongoURI
+const bodyParser = require('body-parser');
+const path = require('path');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// TEST - START
-var Schema = MongoClient.Schema;
-
-var TestModelSchema = new Schema({
-    name: String,
-})
-
-var TestModel = MongoClient.model('TestModel', TestModelSchema)
-// TEST - END
-
-// ───  Database  ─────────────────────────────────────────────────────────────────
-
-MongoClient
-  .connect(uri, {useNewUrlParser: true})
-  .then(() => {
-    console.log('MongoDB Connected');
-  })
-  .catch(err => {
-    console.log(err);
-    console.log('\x1b[31m\x1b[1m MongoDB Not Connected');
-});
+// Database setup
+require('./models/db.js');
+require('dotenv').config();
 
 // ───   ROUTES   ─────────────────────────────────────────────────────────────────
+const donorRouter = require('./routes/donors');
+const receiverRouter = require('./routes/receivers');
+const donationRouter = require('./routes/donations');
+
+app.use('/donors', donorRouter);
+app.use('/receivers', receiverRouter);
+app.use('/donations', donationRouter);
 
 app.get('/express_backend', (req, res) => {
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
+
+// Static file declaration
+app.use(express.static(path.join(__dirname, '..' ,'/client/build')));
+
+//production mode
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..' ,'/client/build')));
+  //
+  app.get('*', (req, res) => {
+    res.sendfile(path.join(__dirname = 'client/build/index.html'));
+  })
+}
+//build mode
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname,'..','/client/public/index.html'));
+})
+
 
 // ─── RUN SERVER ─────────────────────────────────────────────────────────────────
 
 const port = process.env.PORT || 5000;
-
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
