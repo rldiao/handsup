@@ -1,12 +1,6 @@
 const passport = require('passport');
 const Users = require('../models/user.model');
 
-
-/* TODO
- * Validate that email is unique
- * Validate that password is strong
- */
-
 exports.createUser = (req, res) => {
     const { body: { user } } = req;
     if(!user.email) {
