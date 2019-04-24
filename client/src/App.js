@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import decode from 'jwt-decode'
-import Cookies from 'js-cookie'
 
 import styles from './App.module.css'
 import NavBar from './components/navigation/NavBar'
