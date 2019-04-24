@@ -1,52 +1,66 @@
 // ───  Settings  ─────────────────────────────────────────────────────────────────
-const express = require('express');
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const mongoose = require('mongoose');
-const errorHandler = require('errorhandler');
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const mongoose = require("mongoose");
+const path = require("path");
+const errorHandler = require("errorhandler");
 
-require('dotenv').config();
+require("dotenv").config();
 
-const auth = require('./middleware/auth.js');
+const auth = require("./middleware/auth.js");
 
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
 
 // APP CONFIG
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({ secret: process.env.TOKEN_STR , 
-    cookie: { maxAge: 60000 }, 
-    resave: false, 
+app.use(
+  session({
+    secret: "mysecretsshhh",
+    cookie: { maxAge: 60000 },
+    resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
-}))
-
-
-// ───  Database  ─────────────────────────────────────────────────────────────────
-
-require('./database');
-require('./models/user.model');
-require('./config/passport');
-
-require('./routes/user.routes')(app);
-
+  })
+);
 
 // ───   ROUTES   ─────────────────────────────────────────────────────────────────
+// const donorRouter = require("./routes/donors.routes");
+const doneeRouter = require("./routes/donee.routes");
+const donationRouter = require("./routes/donation.routes");
 
-app.get('/express_backend', (req, res) => {
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+// app.use("/donors", donorRouter);
+app.use("/donee", doneeRouter);
+app.use("/donation", donationRouter);
+
+require("./database");
+require("./models/user.model");
+require("./config/passport");
+require("./routes/user.routes")(app);
+
+app.get("/express_backend", (req, res) => {
+  res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
 });
 
-app.get('/api/secret', auth, function(req, res) {
-    res.send('The password is potato');
-});
+// Static file declaration
+app.use(express.static(path.join(__dirname, "..", "/client/build")));
 
-app.get('/checkToken', auth, function(req, res) {
-    res.sendStatus(200);
+// Production mode
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "..", "/client/build")));
+  //
+  app.get("*", (req, res) => {
+    res.sendfile(path.join((__dirname = "client/build/index.html")));
+  });
+}
+// Build mode
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "/client/public/index.html"));
 });
 
 // ─── RUN SERVER ─────────────────────────────────────────────────────────────────

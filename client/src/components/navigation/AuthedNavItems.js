@@ -1,6 +1,6 @@
-import React from 'react'
-import styles from './NavBar.module.css'
-import { Link } from 'react-router-dom'
+import React from "react";
+import styles from "./NavBar.module.css";
+import { Link } from "react-router-dom";
 
 export default function AuthedNavItems() {
   return (
@@ -12,5 +12,5 @@ export default function AuthedNavItems() {
         <div className={styles.navButtonItem}>BTN-2</div>
       </Link>
     </div>
-  )
+  );
 }
