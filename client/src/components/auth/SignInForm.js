@@ -48,7 +48,7 @@ export default class SignInForm extends Component {
     render() {
         if(this.state.redirect === true) {
             return <Redirect to='/'/>
-        }
+    }
 
     return (
         <div className={styles.container}>
