@@ -1,6 +1,6 @@
 # Info30005
 Team name: DaWebBois  
-Web Info Tech
+Web Info Tech  
 *Discription*
 
 ### Set up
