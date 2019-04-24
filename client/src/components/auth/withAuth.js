@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import AuthService from './AuthService';
+import React, { Component } from "react";
+import AuthService from "./AuthService";
 
 // This is a high order component
 // Learn more here: https://facebook.github.io/react/docs/higher-order-components.html
@@ -10,37 +10,34 @@ export default function withAuth(AuthComponent) {
     constructor() {
       super();
       this.state = {
-        user: null,
-      }
+        user: null
+      };
     }
 
     componentWillMount() {
       if (!Auth.loggedIn()) {
-        this.props.history.replace('/login');
-      }
-      else {
+        this.props.history.replace("/login");
+      } else {
         try {
           const profile = Auth.getProfile();
           this.setState({
             user: profile
-          })
-        }
-        catch(err) {
+          });
+        } catch (err) {
           Auth.logout();
-          this.props.history.replace('/login');
-        } 
+          this.props.history.replace("/login");
+        }
       }
     }
 
     render() {
-      if(this.state.user) {
+      if (this.state.user) {
         return (
           <AuthComponent history={this.props.history} user={this.state.user} />
-        )
-      }
-      else {
+        );
+      } else {
         return null;
       }
     }
-  }
+  };
 }

@@ -1,55 +1,63 @@
-const mongoose = require('mongoose');
-const crypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const uniqueValidator = require('mongoose-unique-validator');
+const mongoose = require("mongoose");
+const crypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const uniqueValidator = require("mongoose-unique-validator");
 
 const sessionTime = 60;
 
 const userSchema = mongoose.Schema({
-    name: String,
-    email: { 
-        type: String, 
-        trim: true, 
-        index: true, 
-        unique: true, 
-    },
-    password: {
-        type: String, 
-        require: true 
-    },
+  name: String,
+  email: {
+    type: String,
+    trim: true,
+    index: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    require: true
+  },
+  "profile-pic": String,
+  savedDoneesID: [String],
+  donationsID: [String],
+  location: String,
+  bankAccountToken: String
 });
 
 // hash the password
 userSchema.methods.setPassword = function(password) {
-    // TODO: improve password hashing?
-    this.password = crypt.hashSync(password, crypt.genSaltSync(8), null);
+  // TODO: improve password hashing?
+  this.password = crypt.hashSync(password, crypt.genSaltSync(8), null);
 };
 
 // checking if password is valid
 userSchema.methods.validatePassword = function(password) {
-    return crypt.compareSync(password, this.password);
+  return crypt.compareSync(password, this.password);
 };
 
 userSchema.methods.generateToken = function() {
-    const today = new Date();
-    const expirationDate = new Date(today);
-    expirationDate.setDate(today.getDate() + sessionTime);
+  const today = new Date();
+  const expirationDate = new Date(today);
+  expirationDate.setDate(today.getDate() + sessionTime);
 
-    return jwt.sign({
-        email: this.email,
-        id: this._id,
-        exp: parseInt(expirationDate.getTime() / 1000, 10),
-    }, process.env.TOKEN_STR);
-}
+  return jwt.sign(
+    {
+      email: this.email,
+      id: this._id,
+      exp: parseInt(expirationDate.getTime() / 1000, 10)
+    },
+    process.env.TOKEN_STR
+  );
+};
 
 userSchema.methods.toAuthJSON = function() {
-    return {
-        _id: this.id,
-        email: this.email,
-        token: this.generateToken(),
-    }
-}
+  return {
+    _id: this.id,
+    email: this.email,
+    token: this.generateToken()
+  };
+};
 
-userSchema.plugin(uniqueValidator)
+userSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);
