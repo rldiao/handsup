@@ -51,13 +51,17 @@ class App extends Component {
       // .then(res => this.setState({ isAuth: res.isAuth}))
       .catch(err => console.log(err));
   }
-    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+
+  connecToServer = () => {
+    fetch("/");
+  };
+  // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
   callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
+    const response = await fetch("/express_backend");
     const body = await response.json();
 
     if (response.status !== 200) {
-      throw Error(body.message) 
+      throw Error(body.message);
     }
     return body;
   }

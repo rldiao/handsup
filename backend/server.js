@@ -25,28 +25,39 @@ app.use(session({ secret: process.env.TOKEN_STR ,
     cookie: { secure: true }
 }))
 
+// ───   ROUTES   ─────────────────────────────────────────────────────────────────
+const donorRouter = require('./routes/donors');
+const receiverRouter = require('./routes/receivers');
+const donationRouter = require('./routes/donations');
 
-// ───  Database  ─────────────────────────────────────────────────────────────────
+app.use('/donors', donorRouter);
+app.use('/receivers', receiverRouter);
+app.use('/donations', donationRouter);
 
 require('./database');
 require('./models/user.model');
 require('./config/passport');
-
 require('./routes/user.routes')(app);
 
-// ───   ROUTES   ─────────────────────────────────────────────────────────────────
-
 app.get('/express_backend', (req, res) => {
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
-app.get('/api/secret', auth, function(req, res) {
-    res.send('The password is potato');
-});
+// Static file declaration
+app.use(express.static(path.join(__dirname, '..' ,'/client/build')));
 
-app.get('/checkToken', auth, function(req, res) {
-    res.sendStatus(200);
-});
+// Production mode
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..' ,'/client/build')));
+  //
+  app.get('*', (req, res) => {
+    res.sendfile(path.join(__dirname = 'client/build/index.html'));
+  })
+}
+// Build mode
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname,'..','/client/public/index.html'));
+})
 
 // ─── RUN SERVER ─────────────────────────────────────────────────────────────────
 
