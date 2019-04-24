@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Donation = mongoose.model("donations");
+const mongoose = require('mongoose');
+const Donation = mongoose.model('donations');
 
 const createDonation = function(req, res) {
     const newDonation = new Donation(req.body);

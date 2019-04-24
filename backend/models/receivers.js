@@ -1,9 +1,12 @@
+// Schema for our receivers collection
+
 const mongoose = require('mongoose');
+
 const receiverSchema = mongoose.Schema({
-    'id': String,
-    'name': String,
+    id: String,
+    name: String,
     'account-number': String,
-    'age': String
+    age: String
 }
 );
 
