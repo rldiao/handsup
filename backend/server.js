@@ -34,7 +34,6 @@ require('./config/passport');
 
 require('./routes/user.routes')(app);
 
-
 // ───   ROUTES   ─────────────────────────────────────────────────────────────────
 
 app.get('/express_backend', (req, res) => {
