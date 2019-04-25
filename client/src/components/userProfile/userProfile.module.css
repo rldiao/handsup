@@ -1,0 +1,98 @@
+.profileContainer {
+    background-color: #F5FFF9;
+    width: available;
+    margin: 3px;
+    padding: 3px;
+
+}
+
+.editProfileButton {
+    color: #41521F;
+    border-color: #41521F;
+    position:absolute;
+    margin-top: 3px;
+    margin-right: 5px;
+    padding: 25px;
+    top:0;
+    right:0;
+}
+
+
+.profileImage {
+    padding: 10px;
+    border-radius: 50%;
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+.userName {
+    font-size: 16px;
+    font-family: Raleway, serif;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.savedDoneesContainer {
+    padding-left: 80px;
+
+
+}
+.savedDoneesHeader {
+    font-size: 20px;
+    font-family: Raleway, serif;
+    font-weight: bolder;
+    margin-left: -15px;
+
+}
+
+.cardContainer {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    align-content: flex-end;
+    justify-content: center;
+
+}
+
+.doneePicture {
+    width: 160px;
+    height: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+
+}
+
+.progress {
+    width:200px;
+    height:10px;
+    border:1px solid #707070;
+    position:relative;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.progress:after {
+    content:'\A';
+    position:absolute;
+    background:#74BF89;
+    top:0; bottom:0;
+    left:0;
+    width:50%; /* Specify the width.. */
+}
+
+.doneeLocation {
+    display: flex;
+    padding-top: 5px;
+}
+
+.locationIcon {
+    width: 15px;
+    height: 15px;
+    margin-right: 4px;
+}
