@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent"
 import Typography from '@material-ui/core/Typography';
-// import axios from 'axios';
+import Axios from 'axios';
 
 const donees = [
     {name: "Pikachu",
@@ -49,14 +49,27 @@ const donees = [
 export default class SavedDonees extends Component {
     constructor() {
         super();
+        this.state = {
+            user: null
+        }
     }
+
+    // componentDidMount() {
+    //     Axios.get()
+    //         .then(res => {
+    //             this.setState({user: res.data})
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         })
+    // }
 
 
     render() {
         const cardContent = donees.map(donee => {
-            const width = donee.funded/donee.monthlyDonationLimit;
+            const progressWidth = (donee.funded/donee.monthlyDonationLimit)*100;
             const progressStyle = {
-               }
+               };
 
             return <Card className={styles.doneesCard}
                          style={{

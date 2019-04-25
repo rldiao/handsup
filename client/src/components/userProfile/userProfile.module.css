@@ -6,17 +6,6 @@
 
 }
 
-.editProfileButton {
-    color: #41521F;
-    border-color: #41521F;
-    position:absolute;
-    margin-top: 3px;
-    margin-right: 5px;
-    padding: 25px;
-    top:0;
-    right:0;
-}
-
 
 .profileImage {
     padding: 10px;

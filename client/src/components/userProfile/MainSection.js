@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import Button from "@material-ui/core/Button";
 import styles from "./userProfile.module.css";
-// import Axios from 'axios';
+import Axios from 'axios';
+import {Link} from 'react-router-dom';
 
 const user = {
     name: "Zachary Ho",
@@ -9,59 +9,32 @@ const user = {
 };
 
 export default class MainSection extends Component {
-    constructor() {
-        super();
-        // this.state = {
-        //     profileImage: "",
-        //     name: "",
-        //     savedDonees: [],
-        //     error: ""
-        // }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            user: null
+        }
 
     }
 
     // componentDidMount() {
-    //     this.getUser();
-    //
+    //     Axios.get()
+    //         .then(res => {
+    //             this.setState({user: res.data})
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         })
     // }
 
-    // async getUser() {
-    //     try {
-    //         let res = await Axios.get("/:email");
-    //         console.log("response", res);
-    //
-    //         let user = res.user;
-    //         this.setState({
-    //             profileImage: user.profilePic,
-    //             name: user.name,
-    //             savedDonees: user.savedDoneesID,
-    //             error: ""});
-    //     } catch (e) {
-    //         this.setState({error: `BRUTAL FAILURE: ${e}`});
-    //     }
-    // }
+
+
 
     render() {
-        // if (error.length) {
-        //     return (
-        //         <div>{this.state.error}</div>
-        //     )
-        // }
+
         return (
             <div className={styles.profileContainer}>
-                <div className={styles.editProfileButton}>
-                    <Button variant="outlined"
-                            herf=""
-                            style={{
-                                fontSize: "10px",
-                                backgroundColor: "#FFFFFF",
-                                border: "0.5px solid #41521F",
-                                color: "#41521F",
-                                padding: "5px 20px 5px 20px",
-                            }}>
-                        Edit Profile
-                    </Button>
-                </div>
                 <img className={styles.profileImage}
                      alt="MyProfile"
                      src={user.profilePicture}/>

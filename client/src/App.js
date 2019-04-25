@@ -5,6 +5,7 @@ import decode from "jwt-decode";
 import styles from "./App.module.css";
 import NavBar from "./components/navigation/NavBar";
 import UserProfilePage from "./pages/userProfile/userProfilePage";
+import ProfileSettingPage from "./pages/userProfileSettings/profileSettingPage";
 
 import HomePage from "./pages/home/HomePage";
 import ErrorPage from "./pages/error/ErrorPage";
@@ -80,7 +81,8 @@ class App extends Component {
           {/*</Switch>*/}
         {/*</div>*/}
         <div>
-          <UserProfilePage/>
+          {/*<UserProfilePage/>*/}
+          <ProfileSettingPage/>
         </div>
 
       </div>

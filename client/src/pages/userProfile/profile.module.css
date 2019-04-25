@@ -1,0 +1,17 @@
+.button {
+    background-color: #F5FFF9;
+    width: available;
+    margin: 3px;
+    padding: 3px;
+}
+
+.editProfileButton {
+    color: #41521F;
+    border-color: #41521F;
+    position:absolute;
+    margin-top: 3px;
+    margin-right: 5px;
+    padding: 25px;
+    top:0;
+    right:0;
+}
