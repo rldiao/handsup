@@ -25,6 +25,7 @@
   "homepage": "https://github.com/rdiaostudent/info30005#readme",
   "dependencies": {
     "concurrently": "^4.1.0",
-    "jslint": "^0.12.1"
+    "jslint": "^0.12.1",
+    "react-resize-image": "^1.0.4"
   }
 }

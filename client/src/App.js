@@ -4,6 +4,7 @@ import decode from "jwt-decode";
 
 import styles from "./App.module.css";
 import NavBar from "./components/navigation/NavBar";
+import Footer from "./components/navigation/Footer";
 
 import HomePage from "./pages/home/HomePage";
 import ErrorPage from "./pages/error/ErrorPage";
@@ -68,7 +69,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.pagecontainer}>
         <NavBar />
         <div className={styles.content}>
           <Switch>
@@ -77,6 +78,9 @@ class App extends Component {
             <Route path="/signup" component={SignupPage} />
             <Route component={ErrorPage} />
           </Switch>
+        </div>
+        <div className={styles.footer}>
+          <Footer />
         </div>
       </div>
     );
