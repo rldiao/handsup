@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import AuthService from "./AuthService";
+import AuthService from "../../services/AuthService";
 import Button from "@material-ui/core/Button";
 
 import styles from "./form.module.css";
@@ -8,7 +8,6 @@ import styles from "./form.module.css";
 export default class SignInForm extends Component {
   constructor() {
     super();
-    this.Auth = new AuthService();
     this.state = {
       email: "",
       password: "",
@@ -18,7 +17,7 @@ export default class SignInForm extends Component {
   }
 
   componentWillMount = () => {
-    if (this.Auth.loggedIn()) {
+    if (AuthService.loggedIn()) {
       this.setState({ redirect: true });
     }
   };
@@ -36,7 +35,7 @@ export default class SignInForm extends Component {
   onLogin = e => {
     e.preventDefault();
     let that = this;
-    this.Auth.login(this.state.email, this.state.password)
+    AuthService.login(this.state.email, this.state.password)
       .then(res => {
         that.setState({ redirect: true });
       })

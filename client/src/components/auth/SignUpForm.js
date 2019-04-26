@@ -7,6 +7,7 @@ import { Link, Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
 import styles from "./form.module.css";
+import AuthService from "../../services/AuthService";
 
 export default class SignUpForm extends Component {
   state = {
@@ -79,26 +80,19 @@ export default class SignUpForm extends Component {
   };
 
   // Handle Email already registered
-  onSignUpAPI = async e => {
+  handleSubmit = async e => {
     e.preventDefault();
     let that = this;
-    fetch("/signup", {
-      method: "POST",
-      body: JSON.stringify({
-        user: {
-          email: this.state.email,
-          password: this.state.password,
-          name: this.state.name
-        }
-      }),
-      headers: { "Content-Type": "application/json" }
-    })
-      .then(function(response) {
-        response.json();
+
+    AuthService.signup(this.state.name, this.state.email, this.state.password)
+      .then(res => {
         that.setState({ redirect: true });
       })
-      .then(function(body) {
-        console.log(body);
+      .catch(function(error) {
+        console.log(
+          "There has been a problem with your signup: ",
+          error.message
+        );
       });
   };
 
@@ -133,7 +127,7 @@ export default class SignUpForm extends Component {
         <form
           className={styles.formFields}
           method="post"
-          onSubmit={this.onSignUpAPI}
+          onSubmit={this.handleSubmit}
         >
           <div className={styles.formField}>
             <label className={styles.formFieldLabel}>Full Name</label>
@@ -179,7 +173,10 @@ export default class SignUpForm extends Component {
                 onChange={this.handleChange}
               />{" "}
               I agree all statements in{" "}
-              <a href="#" className="FormField__TermsLink">
+              <a
+                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                className="FormField__TermsLink"
+              >
                 terms of service
               </a>
             </label>

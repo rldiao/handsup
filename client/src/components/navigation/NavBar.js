@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AuthService from "../auth/AuthService";
+import AuthService from "../../services/AuthService";
 
 import styles from "./NavBar.module.css";
 import UnauthedNavItems from "./UnauthedNavItems";
@@ -8,14 +8,13 @@ import AuthedNavItems from "./AuthedNavItems";
 export default class NavBar extends Component {
   constructor() {
     super();
-    this.Auth = new AuthService();
     this.state = {
       loggedIn: false
     };
   }
 
   componentWillMount() {
-    this.setState({ loggedIn: this.Auth.loggedIn() });
+    this.setState({ loggedIn: AuthService.loggedIn() });
   }
 
   render() {
