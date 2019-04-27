@@ -4,6 +4,7 @@ import decode from "jwt-decode";
 
 import styles from "./App.module.css";
 import NavBar from "./components/navigation/NavBar";
+import UserSettingPage from "./pages/userProfileSettings/userSettingsPage";
 
 import HomePage from "./pages/home/HomePage";
 import ErrorPage from "./pages/error/ErrorPage";
@@ -68,16 +69,18 @@ class App extends Component {
 
   render() {
     return (
+      // <div>
+      //   <NavBar />
+      //   <div className={styles.content}>
+      //     <Switch>
+      //       <PrivateRoute path="/" exact component={HomePage} />
+      //       <Route path="/login" component={LoginPage} />
+      //       <Route path="/signup" component={SignupPage} />
+      //       <Route component={ErrorPage} />
+      //     </Switch>
+      //   </div>
       <div>
-        <NavBar />
-        <div className={styles.content}>
-          <Switch>
-            <PrivateRoute path="/" exact component={HomePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/signup" component={SignupPage} />
-            <Route component={ErrorPage} />
-          </Switch>
-        </div>
+        <UserSettingPage />
       </div>
     );
   }
