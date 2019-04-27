@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-import styles from "./setting.module.css";
+import styles from "./profileSettings.module.css";
 import { styles as custom } from "./userProfileSettings.style";
 
 const donor = {
@@ -42,40 +42,50 @@ class EditProfileTab extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={styles.accountContainer}>
+      <div className={styles.settingsContainer}>
+        <h2>Your Profile</h2>
         <form onSubmit={this.handleSubmit}>
-          <h3>Full Name</h3>
-          <input
-            type="text"
-            name="name"
-            onFocus={this.handleFocus}
-            value={this.state.name}
-            onChange={this.handleChange}
-            className={styles.input}
-          />
+          <div className={styles.formCell}>
+            <label className={styles.subheading}>Full Name</label>
+            <input
+              type="text"
+              name="name"
+              onFocus={this.handleFocus}
+              value={this.state.name}
+              onChange={this.handleChange}
+              className={styles.input}
+            />
+          </div>
         </form>
-        <h3>Profile Picture</h3>
-        <div>
+        <div className={styles.formCell}>
+          <label className={styles.subheading}>Profile Picture</label>
           <img
             className={styles.donorImg}
             alt="Donor's Profile Picture"
             src={donor.profilepic}
           />
-          <input
-            accept="image/*"
-            className={styles.display}
-            id="contained-button-file"
-            type="file"
-          />
-          <label htmlFor="contained-button-file">
-            <Button component="span" style={custom.uploadBtn}>
-              Upload Image
-            </Button>
-          </label>
+          <div className={styles.uploadBtnContainer}>
+            <input
+              accept="image/*"
+              className={styles.display}
+              id="contained-button-file"
+              type="file"
+            />
+            <label htmlFor="contained-button-file">
+              <Button
+                variant="outlined"
+                component="span"
+                size="small"
+                style={custom.uploadBtn}
+              >
+                Upload Image
+              </Button>
+            </label>
+          </div>
         </div>
         <div>
           <Button style={custom.saveBtn}>Save Settings</Button>
-          <Button style={custom.viewProfileBtn}>View Profile</Button>
+          {/* <Button style={custom.viewProfileBtn}>View Profile</Button> */}
         </div>
       </div>
     );

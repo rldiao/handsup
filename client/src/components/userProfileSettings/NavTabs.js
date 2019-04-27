@@ -11,14 +11,10 @@ import AccountTab from "./AccountTab";
 import EditProfileTab from "./EditProfileTab";
 import PaymentForm from "./PaymentForm";
 
-import styles from "./setting.module.css";
+import styles from "./profileSettings.module.css";
 
 function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
+  return <Typography component="div">{props.children}</Typography>;
 }
 
 TabContainer.propTypes = {
@@ -46,38 +42,33 @@ class NavTabs extends Component {
 
     return (
       <NoSsr>
-        <div>
-          <Paper position="static">
-            <Tabs
-              indicatorColor="primary"
-              value={value}
-              onChange={this.handleChange}
-              classes={{ root: styles.navtab }}
-            >
-              <Tab label="Account" style={{ textTransform: "initial" }} />
-              <Tab label="Edit Profile" style={{ textTransform: "initial" }} />
-              <Tab
-                label="Payment Methods"
-                style={{ textTransform: "initial" }}
-              />
-            </Tabs>
-          </Paper>
-          {value === 0 && (
-            <TabContainer>
-              <AccountTab />
-            </TabContainer>
-          )}
-          {value === 1 && (
-            <TabContainer>
-              <EditProfileTab />
-            </TabContainer>
-          )}
-          {value === 2 && (
-            <TabContainer>
-              <PaymentForm />
-            </TabContainer>
-          )}
-        </div>
+        <Paper position="static">
+          <Tabs
+            indicatorColor="primary"
+            value={value}
+            onChange={this.handleChange}
+            classes={{ root: styles.navtab }}
+          >
+            <Tab label="Account" style={{ textTransform: "initial" }} />
+            <Tab label="Edit Profile" style={{ textTransform: "initial" }} />
+            <Tab label="Payment Methods" style={{ textTransform: "initial" }} />
+          </Tabs>
+        </Paper>
+        {value === 0 && (
+          <TabContainer>
+            <AccountTab />
+          </TabContainer>
+        )}
+        {value === 1 && (
+          <TabContainer>
+            <EditProfileTab />
+          </TabContainer>
+        )}
+        {value === 2 && (
+          <TabContainer>
+            <PaymentForm />
+          </TabContainer>
+        )}
       </NoSsr>
     );
   }

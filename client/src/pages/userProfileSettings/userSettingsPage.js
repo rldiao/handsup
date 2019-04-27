@@ -4,10 +4,6 @@ import styles from "./userSetting.module.css";
 
 export default class userSettingsPage extends Component {
   render() {
-    return (
-      <div>
-        <MainSetting />
-      </div>
-    );
+    return <MainSetting />;
   }
 }

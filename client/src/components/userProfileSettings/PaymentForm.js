@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import styles from "./profileSettings.module.css";
 
 export default class PaymentForm extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
-      <div className={styles.paymentContainer}>
+      <div className={styles.settingsContainer}>
         <h2>Payment Options</h2>
         <div className={styles.form}>
           <label htmlFor="Card number">Card number:</label>

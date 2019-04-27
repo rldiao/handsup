@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
-import styles from "./setting.module.css";
+import styles from "./profileSettings.module.css";
 import NavTabs from "./NavTabs";
 
 export default class MainSetting extends Component {
@@ -23,7 +23,7 @@ export default class MainSetting extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         {/* <div className={styles.background} /> */}
         <p className={styles.settingTitle}>Settings</p>
         {/* <div>
@@ -32,7 +32,7 @@ export default class MainSetting extends Component {
         <div>
           <NavTabs />
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
