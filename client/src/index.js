@@ -10,11 +10,11 @@ import App from "./App";
 import store from "./store";
 
 ReactDOM.render(
-  <Router history={history}>
-    <Provider store={store}>
+  <Provider store={store}>
+    <Router history={history}>
       <App />
-    </Provider>
-  </Router>,
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 

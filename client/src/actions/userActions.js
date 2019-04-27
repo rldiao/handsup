@@ -1,4 +1,5 @@
 import { userConstants } from "../constants/userConstants";
+import { stateConstants } from "../constants/stateConstants";
 
 import AuthService from "../services/AuthService";
 import { history } from "../helper/history";
@@ -6,7 +7,13 @@ import { history } from "../helper/history";
 export const login = (email, password) => dispatch => {
   AuthService.login(email, password)
     .then(res => {
-      dispatch({ type: userConstants.USER_VERIFIED, payload: res.user });
+      dispatch({
+        type: userConstants.USER_VERIFIED,
+        payload: {
+          state: stateConstants.AUTH,
+          user: res.user
+        }
+      });
       history.push("/");
     })
     .catch(function(error) {
@@ -19,7 +26,13 @@ export const login = (email, password) => dispatch => {
 
 export const logout = () => dispatch => {
   AuthService.logout();
-  dispatch({ type: userConstants.USER_UNVERIFIED });
+  dispatch({
+    type: userConstants.USER_UNVERIFIED,
+    payload: {
+      state: stateConstants.UNAUTH,
+      user: null
+    }
+  });
   history.push("/login");
 };
 
