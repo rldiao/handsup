@@ -1,0 +1,27 @@
+/* .navButton {
+  display: flex;
+  font-family: open-sans, sans-serif;
+  flex: 1 1;
+  padding: 0 1rem;
+  color: #171717;
+} */
+
+/* .navButton {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  height: inherit;
+} */
+
+.navButtonLink {
+  /* text-decoration: none;
+  color: #171717;
+  font-size: 1rem; */
+  padding: 0 0.5rem;
+}
+
+.avatar {
+  margin: 0.625rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}

@@ -1,26 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-// import styles from "./NavBarNew.module.css";
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/core/Menu';
+import React, { Component } from "react";
+import Button from "./Button";
+import ProfileButton from "./ProfileButton";
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-};
+import logo from "../../assets/img/logo_slogan.png";
+import profilePicture from "../../assets/img/profilepic.jpg";
+import styles from "./NavBarNew.module.css";
 
 class NavBarNew extends Component {
   constructor() {
@@ -35,29 +19,39 @@ class NavBarNew extends Component {
   //   this.setState({ loggedIn: this.Auth.loggedIn() });
   // }
 
-  render () {
-    const { classes } = this.props;
+  render() {
+    // let navButtons;
+    // // console.log(this.state.loggedIn)
+    // if (this.state.loggedIn) {
+    //   navButtons = <AuthedNavItems />;
+    // } else {
+    //   navButtons = <UnauthedNavItems />;
+    // }
 
     return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              News
-            </Typography>
-            <Button color="inherit">Login</Button>
-          </Toolbar>
-        </AppBar>
+      <div className={styles.container}>
+        <div className={styles.logo}>
+          <img class={styles.image} src={logo} alt="Logo" />
+        </div>
+        <div className={styles.spacer} />
+        <div className={styles.navItems}>
+          <Button link="/" text="About Us" />
+          <Button link="/" text="Discover" />
+          <Button link="/" text="Contact Us" />
+          <ProfileButton
+            link="/"
+            username="Zachary Ho"
+            source={profilePicture}
+          />
+          {/* {navButtons} */}
+        </div>
       </div>
     );
   }
 }
 
-NavBarNew.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// NavBarNew.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
-export default withStyles(styles)(NavBarNew);
+export default NavBarNew;

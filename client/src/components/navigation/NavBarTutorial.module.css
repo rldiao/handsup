@@ -1,0 +1,44 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5rem;
+  background: #3080ff;
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+}
+
+.logo {
+  height: 100%;
+  margin-left: 1rem;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.navBarItems a {
+  color: white;
+  text-decoration: none;
+}
+.navBarItems ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navBarItems li {
+  padding: 0 0.5rem;
+}
+
+.navBarItem:hover,
+.navBarItem:active {
+  color: orange;
+}

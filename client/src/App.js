@@ -5,6 +5,9 @@ import decode from "jwt-decode";
 import styles from "./App.module.css";
 import NavBar from "./components/navigation/NavBar";
 import NavBarNew from "./components/navigation/NavBarNew";
+import NavBarTutorial from "./components/navigation/NavBarTutorial";
+import SideDrawer from "./components/navigation/SideDrawer/SideDrawer";
+import Backdrop from "./components/navigation/Backdrop/Backdrop";
 import Footer from "./components/navigation/Footer";
 
 import HomePage from "./pages/home/HomePage";
@@ -43,7 +46,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 class App extends Component {
   state = {
     data: null,
-    isAuth: false
+    isAuth: false,
+    sideDrawerOpen: false
   };
 
   componentDidMount() {
@@ -68,11 +72,33 @@ class App extends Component {
     return body;
   };
 
+  drawerToggleClickHandler = () => {
+    this.setState(prevState => {
+      return { sideDrawerOpen: !prevState.sideDrawerOpen };
+    });
+  };
+
+  backdropClickHandler = () => {
+    this.setState({ sideDrawerOpen: false });
+  };
+
   render() {
+    // let sideDrawer;
+    let backdrop;
+
+    if (this.state.sideDrawerOpen) {
+      // sideDrawer = <SideDrawer />;
+      backdrop = <Backdrop click={this.backdropClickHandler} />;
+    }
     return (
       <div className={styles.pagecontainer}>
-        <NavBarNew />
+        {/* <NavBarNew /> */}
         {/* <NavBar /> */}
+        <NavBarTutorial drawerClickHandler={this.drawerToggleClickHandler} />
+        <SideDrawer show={this.state.sideDrawerOpen} />
+        {/* <Backdrop /> */}
+        {/* {sideDrawer} */}
+        {backdrop}
         <div className={styles.content}>
           <Switch>
             <PrivateRoute path="/" exact component={HomePage} />
@@ -81,9 +107,9 @@ class App extends Component {
             <Route component={ErrorPage} />
           </Switch>
         </div>
-        <div className={styles.footer}>
+        {/* <div className={styles.footer}>
           <Footer />
-        </div>
+        </div> */}
       </div>
     );
   }
