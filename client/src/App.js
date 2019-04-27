@@ -4,6 +4,7 @@ import decode from "jwt-decode";
 
 import styles from "./App.module.css";
 import NavBar from "./components/navigation/NavBar";
+import NavBarNew from "./components/navigation/NavBarNew";
 import Footer from "./components/navigation/Footer";
 
 import HomePage from "./pages/home/HomePage";
@@ -70,7 +71,8 @@ class App extends Component {
   render() {
     return (
       <div className={styles.pagecontainer}>
-        <NavBar />
+        <NavBarNew />
+        {/* <NavBar /> */}
         <div className={styles.content}>
           <Switch>
             <PrivateRoute path="/" exact component={HomePage} />

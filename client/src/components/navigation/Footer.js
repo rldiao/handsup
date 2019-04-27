@@ -2,10 +2,8 @@ import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
 import React, { Component } from 'react'
-import ResizeImage from 'react-resize-image'
 
-import logo from '../../assets/img/logo_slogan.png';
-
+import logo from '../../assets/img/FooterLogo.png';
 
 const styles = theme => ({
   root: {
@@ -17,10 +15,27 @@ const styles = theme => ({
   subFooter: {
     backgroundColor: 'rgba(0, 0, 0, 0.1)'
   },
-  footerText: {
+  subFooterText: {
+    fontSize: '10px',
+    padding: '5px',
+    margin: '5px'
+  },
+  subHeader: {
+    marginTop: '20px',
+    color: '#41521F',
+    padding: '5px',
+    fontSize:'1rem'
+  },
+  linkText: {
     color: '#171717',
     padding: '5px',
-    fontSize:'16px'
+    fontSize: '0.85rem'
+  },
+  image: {
+    marginTop:'20px',
+  },
+  copyrightText: {
+    marginRight:'10px',
   }
 });
 
@@ -34,27 +49,24 @@ class Footer extends Component {
           <Grid item xs={1}>
           </Grid>
           <Grid item xs={4}>
-            <ResizeImage
-              src={logo}
-              alt="Logo"
-              options={{ width: 50 }}
-            />           
-            {/* <Typography className={classes.footerText}>Hands Up1</Typography>
-            <Typography className={classes.footerText}>CONNECT. GIVE. LOVE.</Typography> */}
+              <img className={classes.image}
+                src={logo}
+                alt="Logo"
+              /> 
           </Grid>
           <Grid item xs={2}>
-            <Typography className={classes.footerText}>About</Typography>
-            <Typography className={classes.footerText}>Our story</Typography>
-            <Typography className={classes.footerText}>The founders</Typography>
+            <Typography className={classes.subHeader} >About</Typography>
+            <Typography className={classes.linkText}>Our story</Typography>
+            <Typography className={classes.linkText}>The founders</Typography>
           </Grid>
           <Grid item xs={2}>
-            <Typography className={classes.footerText}>Discover</Typography>
-            <Typography className={classes.footerText}>Our donees</Typography> 
-            <Typography className={classes.footerText}>Volunteer</Typography>
+            <Typography className={classes.subHeader}>Discover</Typography>
+            <Typography className={classes.linkText}>Our donees</Typography> 
+            <Typography className={classes.linkText}>Volunteer</Typography>
           </Grid>
           <Grid item xs={2}>
-            <Typography className={classes.footerText}>Contact</Typography>
-            <Typography className={classes.footerText}>Email Us</Typography>
+            <Typography className={classes.subHeader}>Contact</Typography>
+            <Typography className={classes.linkText}>Email Us</Typography>
           </Grid>
           <Grid item xs={1}>
           </Grid>
@@ -64,16 +76,16 @@ class Footer extends Component {
           </Grid>
           <Grid container direction="row" item xs={11}>
             <Grid item>
-              <Typography className={classes.footerText}>Copyright 2019, DaWebBois.</Typography>
+              <Typography className={`${classes.subFooterText} ${classes.copyrightText}`}>Copyright 2019, DaWebBois.</Typography>
             </Grid>
             <Grid item>
-              <Typography className={classes.footerText}>Terms</Typography>
+              <Typography className={classes.subFooterText}>Terms</Typography>
             </Grid>
             <Grid item>
-              <Typography className={classes.footerText}>Privacy</Typography>
+              <Typography className={classes.subFooterText}>Privacy</Typography>
             </Grid>
             <Grid item>
-              <Typography className={classes.footerText}>Legal</Typography>
+              <Typography className={classes.subFooterText}>Legal</Typography>
             </Grid>
           </Grid>
         </Grid>
