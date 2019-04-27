@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
 import React, { Component } from 'react'
 
-import logo from '../../assets/img/FooterLogo.png';
+import logo from '../../assets/img/logo_slogan.png';
 
 const styles = theme => ({
   root: {
@@ -16,23 +16,28 @@ const styles = theme => ({
     backgroundColor: 'rgba(0, 0, 0, 0.1)'
   },
   subFooterText: {
-    fontSize: '10px',
-    padding: '5px',
-    margin: '5px'
+    fontSize: '0.625rem',
+    padding: '0.3rem',
+    margin: '0.3rem'
   },
   subHeader: {
-    marginTop: '20px',
+    marginTop: '1.25rem',
     color: '#41521F',
-    padding: '5px',
+    paddingBottom: '0.5rem',
     fontSize:'1rem'
   },
   linkText: {
     color: '#171717',
-    padding: '5px',
+    paddingBottom: '0.3rem',
+    paddingTop: '0.3rem',
     fontSize: '0.85rem'
   },
   image: {
-    marginTop:'20px',
+    // marginTop:'1rem',
+    marginTop:'0.5rem',
+    marginBottom: '0.5rem',
+    // length: '100px',
+    width: '15rem'
   },
   copyrightText: {
     marginRight:'10px',
