@@ -3,8 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import decode from "jwt-decode";
 
 import styles from "./App.module.css";
-import NavBar from "./components/navigation/NavBar";
-import NavBarNew from "./components/navigation/NavBarNew";
 import NavBarTutorial from "./components/navigation/NavBarTutorial";
 import SideDrawer from "./components/navigation/SideDrawer/SideDrawer";
 import Backdrop from "./components/navigation/Backdrop/Backdrop";

@@ -52,13 +52,7 @@ class NavBarTutorial extends Component {
     return (
       <header className={styles.header}>
         <nav className={styles.navBar}>
-          <div>
-            <DrawerToggleButton click={this.props.drawerClickHandler} />
-          </div>
-          <div className={styles.logo}>
-            {/* <img src={logo} alt="Logo" /> */}
-            <a href="/">THE LOGO</a>
-          </div>
+          <img src={logo} alt="Logo" className={styles.logo} />
           <div className={styles.spacer} />
           <div className={styles.navBarItems}>
             <ul>
@@ -75,6 +69,9 @@ class NavBarTutorial extends Component {
               <Button link="/" text="Discover" />
               <Button link="/" text="Contact Us" /> */}
             </ul>
+          </div>
+          <div>
+            <DrawerToggleButton click={this.props.drawerClickHandler} />
           </div>
         </nav>
       </header>
