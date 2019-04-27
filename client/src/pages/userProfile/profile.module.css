@@ -1,9 +1,9 @@
-.button {
-    background-color: #F5FFF9;
-    width: available;
-    margin: 3px;
-    padding: 3px;
+.userProfileContainer {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
 }
+
 
 .editProfileButton {
     color: #41521F;
@@ -11,7 +11,13 @@
     position:absolute;
     margin-top: 3px;
     margin-right: 5px;
-    padding: 25px;
-    top:0;
-    right:0;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    right: auto;
+}
+
+@media screen and (max-width: 420px) {
+    .userProfileContainer{
+        width: 450px;
+    }
 }

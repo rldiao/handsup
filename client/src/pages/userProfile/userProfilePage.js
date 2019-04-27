@@ -19,7 +19,7 @@ class userProfilePage extends Component {
 
     render() {
         return (
-            <div>
+            <div className={styles.userProfileContainer}>
                 <div className={styles.editProfileButton}>
                     <Button variant="outlined"
                             onClick={this.routeChange}

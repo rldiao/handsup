@@ -6,8 +6,8 @@ import Button from "@material-ui/core/Button";
 import styles from "./form.module.css";
 
 export default class LoginPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: "",
       password: "",

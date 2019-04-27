@@ -1,8 +1,11 @@
 .profileContainer {
     background-color: #F5FFF9;
-    width: available;
+    display: block;
+    width: 100%;
     margin: 3px;
     padding: 3px;
+    background-size: contain;
+
 
 }
 

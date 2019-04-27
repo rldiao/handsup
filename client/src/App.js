@@ -50,7 +50,6 @@ class App extends Component {
     // Call our fetch function below once the component mounts
     this.callBackendAPI()
       .then(res => this.setState({ data: res.express }))
-      // .then(res => this.setState({ isAuth: res.isAuth}))
       .catch(err => console.log(err));
   }
 
@@ -71,17 +70,17 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/*<NavBar />*/}
-        {/*<div className={styles.content}>*/}
-          {/*<Switch>*/}
-            {/*<PrivateRoute path="/" exact component={HomePage} />*/}
-            {/*<Route path="/login" component={LoginPage} />*/}
-            {/*<Route path="/signup" component={SignupPage} />*/}
-            {/*<Route component={ErrorPage} />*/}
-          {/*</Switch>*/}
-        {/*</div>*/}
+        <NavBar />
+        <div className={styles.content}>
+          <Switch>
+            <PrivateRoute path="/a" exact component={HomePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" component={SignupPage} />
+            <PrivateRoute path="/" component={UserProfilePage} />
+            <Route component={ErrorPage} />
+          </Switch>
+        </div>
         <div>
-          <UserProfilePage/>
           {/*<ProfileSettingPage/>*/}
         </div>
 

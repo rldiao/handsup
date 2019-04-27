@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import styles from "./userProfile.module.css";
 import Axios from 'axios';
-import {Link} from 'react-router-dom';
+import AuthService from "../../services/AuthService";
 
 const user = {
-    name: "Zachary Ho",
+    name: "Loading...",
     profilePicture: "https://www.w3schools.com/howto/img_avatar.png"
 };
 
@@ -13,33 +13,46 @@ export default class MainSection extends Component {
         super(props);
 
         this.state = {
+            loading: true,
             user: null
         }
-
     }
 
-    // componentDidMount() {
-    //     Axios.get()
-    //         .then(res => {
-    //             this.setState({user: res.data})
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         })
-    // }
+    componentDidMount() {
+        this.getUser();
+    }
 
-
-
+    async getUser() {
+        const profile = AuthService.getProfile();
+        try {
+            const res = await Axios.get("/" + profile.email);
+            const data = res.data;
+            this.setState({loading: false,
+                user: data});
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     render() {
+        let name;
+        let pic;
+        if(!this.state.loading) {
+            name = this.state.user.name;
+            pic = this.state.user.profilePic;
+        }
+        else {
+            name = "Loading...";
+            pic = "https://www.w3schools.com/howto/img_avatar.png";
+        }
 
         return (
             <div className={styles.profileContainer}>
                 <img className={styles.profileImage}
                      alt="MyProfile"
-                     src={user.profilePicture}/>
+                     src={pic}/>
                 <p className={styles.userName}>
-                    {user.name}
+                    {name}
                 </p>
             </div>
         );
