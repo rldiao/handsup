@@ -81,8 +81,8 @@ class App extends Component {
           {/*</Switch>*/}
         {/*</div>*/}
         <div>
-          {/*<UserProfilePage/>*/}
-          <ProfileSettingPage/>
+          <UserProfilePage/>
+          {/*<ProfileSettingPage/>*/}
         </div>
 
       </div>
