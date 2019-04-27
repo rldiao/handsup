@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-// import Cookies from 'js-cookie';
-import AuthService from "../../components/auth/AuthService";
+import AuthService from "../../services/AuthService";
 import withAuth from "../../components/auth/withAuth";
-const Auth = new AuthService();
 
 class HomePage extends Component {
   componentDidMount() {
@@ -21,7 +18,7 @@ class HomePage extends Component {
   onLogout = e => {
     e.preventDefault();
     console.log("logout");
-    Auth.logout();
+    AuthService.logout();
     this.props.history.replace("/login");
   };
 
