@@ -1,5 +1,5 @@
 .toggleButton {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-around;
   top: 0;
@@ -11,14 +11,22 @@
   cursor: pointer;
   padding: 0;
   box-sizing: border-box;
+  color: black;
+}
+
+.toggleButtonAvatar {
+  display: flex;
+}
+
+.toggleButtonLine {
+  display: flex;
+  width: 30px;
+  height: 2px;
+  background: #171717;
 }
 
 .toggleButton:focus {
   outline: none;
-}
-
-.toggleButtonLine {
-  display: none;
 }
 
 .avatar {
@@ -35,10 +43,7 @@
     display: none;
   }
 
-  .toggleButtonLine {
+  .toggleButton {
     display: flex;
-    width: 30px;
-    height: 2px;
-    background: #171717;
   }
 }

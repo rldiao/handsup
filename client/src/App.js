@@ -90,12 +90,8 @@ class App extends Component {
     }
     return (
       <div className={styles.pagecontainer}>
-        {/* <NavBarNew /> */}
-        {/* <NavBar /> */}
         <NavBarTutorial drawerClickHandler={this.drawerToggleClickHandler} />
         <SideDrawer show={this.state.sideDrawerOpen} />
-        {/* <Backdrop /> */}
-        {/* {sideDrawer} */}
         {backdrop}
         <div className={styles.content}>
           <Switch>

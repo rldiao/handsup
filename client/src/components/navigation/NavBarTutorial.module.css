@@ -1,5 +1,5 @@
 .header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -45,11 +45,17 @@
 
 .navBarItem:hover,
 .navBarItem:active {
-  color: orange;
+  color: #41521f;
 }
 
 .drawerToggleButton {
   margin-left: auto;
+}
+
+.navBarItem:hover,
+.navBarItem:active {
+  border-bottom: 2px solid #37433c;
+  padding-bottom: 1px;
 }
 
 @media screen and (max-width: 800px) {

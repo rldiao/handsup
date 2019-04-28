@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./CallToAction.module.css";
+import { Link } from "react-router-dom";
 
 class CallToAction extends Component {
   render() {
@@ -7,14 +8,14 @@ class CallToAction extends Component {
       <div className={styles.callToActionLoggedOut}>
         <ul>
           <li>
-            <a href="/" className={styles.callToActionLogInButton}>
+            <Link to="/login" className={styles.callToActionLogInButton}>
               Login
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" className={styles.callToActionSignUpButton}>
+            <Link to="/signup" className={styles.callToActionSignUpButton}>
               Sign Up
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

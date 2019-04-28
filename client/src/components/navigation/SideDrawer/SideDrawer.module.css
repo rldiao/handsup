@@ -59,14 +59,18 @@
   align-items: flex-end;
 }
 
-.sideDrawer a {
+.sideDrawer a,
+.sideDrawer div {
   color: #521751;
   text-decoration: none;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .sideDrawer a:hover,
-.sideDrawer a:active {
+.sideDrawer a:active,
+.sideDrawer div:hover,
+.sideDrawer div:active {
   color: #fa923f;
 }
 

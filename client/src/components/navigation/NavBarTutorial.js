@@ -1,32 +1,19 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import logo from "../../assets/img/logo_slogan.png";
 import DrawerToggleButton from "./SideDrawer/DrawerToggleButton";
 import styles from "./NavBarTutorial.module.css";
 import CallToAction from "./CallToAction";
+import { stateConstants } from "../../constants/stateConstants";
+import { Link } from "react-router-dom";
 
 class NavBarTutorial extends Component {
-  constructor() {
-    super();
-    // this.Auth = new AuthService();
-    this.state = {
-      loggedIn: false
-    };
-  }
-
-  // componentWillMount() {
-  //   this.setState({ loggedIn: this.Auth.loggedIn() });
-  // }
-
   render() {
     let callToActionDiv;
+    let loggedIn = this.props.authState === stateConstants.AUTH;
 
-    let loggedIn = 1;
-
-    if (
-      !loggedIn
-      // User is logged in
-    ) {
+    if (!loggedIn) {
       callToActionDiv = <CallToAction />;
     }
 
@@ -38,13 +25,19 @@ class NavBarTutorial extends Component {
           <div className={styles.navBarItems}>
             <ul>
               <li>
-                <a href="/">About Us</a>
+                <Link href="/" className={styles.navBarItem}>
+                  About Us
+                </Link>
               </li>
               <li>
-                <a href="/">Discover</a>
+                <Link href="/" className={styles.navBarItem}>
+                  Discover
+                </Link>
               </li>
               <li>
-                <a href="/">Contact Us</a>
+                <Link href="/" className={styles.navBarItem}>
+                  Contact Us
+                </Link>
               </li>
             </ul>
           </div>
@@ -58,8 +51,10 @@ class NavBarTutorial extends Component {
   }
 }
 
-// NavBarNew.propTypes = {
-//   classes: PropTypes.object.isRequired
-// };
+const mapStateToProps = state => {
+  return {
+    authState: state.auth.state
+  };
+};
 
-export default NavBarTutorial;
+export default connect(mapStateToProps)(NavBarTutorial);

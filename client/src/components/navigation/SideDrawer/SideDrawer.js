@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import styles from "./SideDrawer.module.css";
+import { stateConstants } from "../../../constants/stateConstants";
+import { Link } from "react-router-dom";
+import { logout } from "../../../actions/userActions";
 
 const classNames = require("classnames");
 
@@ -9,17 +13,16 @@ const sideDrawer = props => {
     drawerClasses = classNames(styles.open, styles.sideDrawer);
   }
 
+  const handleLogout = () => {
+    this.props.logout();
+  };
+
   let accountActionButtons;
+  let loggedIn = props.authState === stateConstants.AUTH;
 
-  let loggedIn = 1;
-
-  if (
-    loggedIn
-    // User is logged in
-  ) {
+  if (loggedIn) {
     accountActionButtons = (
       <div className={classNames(styles.accountButtons)}>
-        {/* {navBarButtons} */}
         <ul>
           <li>
             <a href="/">Profile</a>
@@ -28,7 +31,7 @@ const sideDrawer = props => {
             <a href="/">Settings</a>
           </li>
           <li>
-            <a href="/">Log Out</a>
+            <div onClick={props.logout}>Log Out</div>
           </li>
         </ul>
       </div>
@@ -38,10 +41,10 @@ const sideDrawer = props => {
       <div className={classNames(styles.accountButtons)}>
         <ul>
           <li>
-            <a href="/">Login</a>
+            <Link to="/login">Login</Link>
           </li>
           <li>
-            <a href="/">Sign Up</a>
+            <Link to="/signup">Sign Up</Link>
           </li>
         </ul>
       </div>
@@ -69,4 +72,13 @@ const sideDrawer = props => {
   );
 };
 
-export default sideDrawer;
+const mapStateToProps = state => {
+  return {
+    authState: state.auth.state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(sideDrawer);
