@@ -4,18 +4,20 @@
   left: 0;
   width: 100%;
   height: 3.5rem;
-  background: #fefefe;
 }
 
 .navBar {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
   padding: 0 3.5rem;
   border-bottom: 0.5px solid #17171770;
+  background: #fefefe;
 }
 
 .logo {
+  display: flex;
   height: 100%;
 }
 
@@ -41,4 +43,22 @@
 .navBarItem:hover,
 .navBarItem:active {
   color: orange;
+}
+
+.drawerToggleButton {
+  margin-left: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .spacer {
+    display: none;
+  }
+
+  .navBarItems {
+    display: none;
+  }
+
+  .logo {
+    justify-self: center;
+  }
 }

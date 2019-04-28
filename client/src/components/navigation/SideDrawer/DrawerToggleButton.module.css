@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  top: 0;
+  right: 0;
   height: 24px;
   width: 30px;
   background: transparent;
@@ -16,7 +18,26 @@
 }
 
 .toggleButtonLine {
-  width: 30px;
-  height: 2px;
-  background: #171717;
+  display: none;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  /* div:has(.avatar) {
+    display: none;
+  } */
+  .avatar {
+    display: none !important;
+  }
+
+  .toggleButtonLine {
+    display: flex;
+    width: 30px;
+    height: 2px;
+    background: #171717;
+  }
 }

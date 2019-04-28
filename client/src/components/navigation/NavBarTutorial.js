@@ -70,7 +70,7 @@ class NavBarTutorial extends Component {
               <Button link="/" text="Contact Us" /> */}
             </ul>
           </div>
-          <div>
+          <div className={styles.drawerToggleButton}>
             <DrawerToggleButton click={this.props.drawerClickHandler} />
           </div>
         </nav>
