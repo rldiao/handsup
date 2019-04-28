@@ -15,21 +15,23 @@ export default class ChangePassword extends Component {
     };
   }
 
+  handlePasswordClick = () => {
+    alert("Saved Password");
+  };
+
   handleChange = e => {
     this.setState({ name: e.target.value });
   };
 
   render() {
     return (
-      <div className={styles.settingsContainer}>
-        <div className={styles.formCell}>
-          <label className={styles.subheading}>Old Password</label>
-          <input
-            name="oldPw"
-            className={styles.input}
-            onChange={this.handleChange}
-          />
-        </div>
+      <div className={styles.formContainer}>
+        <label className={styles.subheading}>Old Password</label>
+        <input
+          name="oldPw"
+          className={styles.input}
+          onChange={this.handleChange}
+        />
         <div className={styles.formCell}>
           <label className={styles.subheading}>New Password</label>
           <input
@@ -47,7 +49,9 @@ export default class ChangePassword extends Component {
           />
         </div>
         <div className={styles.formCell}>
-          <Button style={custom.changePwBtn}>Change Password</Button>
+          <Button onClick={this.handlePasswordClick} style={custom.submitBtn}>
+            Change Password
+          </Button>
         </div>
       </div>
     );

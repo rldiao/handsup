@@ -15,21 +15,20 @@
   margin: 15px 10px 5px 0;
 }
 
-.form input {
+/* .form input {
   vertical-align: middle;
   margin: 5px 10px 5px 0;
   padding: 10px;
   background-color: #fff;
   border: 1px solid #ddd;
-}
+} */
 
-.form button {
+.formCell button {
   padding: 10px 20px;
   background-color: #41521f;
   border: 1px solid #41521f;
   color: white;
   cursor: pointer;
-  margin-top: 30px;
 }
 
 .uploadBtnContainer {
@@ -52,7 +51,7 @@
   font-family: raleway, sans-serif;
   font-weight: 800;
   font-style: normal;
-  margin: 5% 0 5% 10%;
+  padding: 5% 0 2.5% 0;
 }
 
 .navtab {
@@ -85,7 +84,7 @@
 }
 
 .input {
-  padding: 1% 5% 1% 1%;
+  padding: 1% 10rem 1% 1%;
   text-align: left;
 }
 
@@ -102,7 +101,6 @@
 
 .subheading {
   display: flex;
-  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 5px;
   font-family: open-sans, sans-serif;
@@ -117,19 +115,4 @@
 
 .display {
   display: none;
-}
-
-.dropDownBtn {
-  height: 3rem;
-  width: 100%;
-  font-weight: 600;
-  font-size: 1.5rem;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.dropDownBtn span {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
 }

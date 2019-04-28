@@ -12,18 +12,19 @@ export const styles = {
     textTransform: "initial"
   },
 
-  changePwBtn: {
+  submitBtn: {
     backgroundColor: "#324516",
     color: "white",
     textTransform: "initial",
     marginBottom: "2.5%",
     display: "flex"
-  }
+  },
 
-  // viewProfileBtn: {
-  //   margin: "2.5% 0 0 2.5%",
-  //   color: "#324516",
-  //   textTransform: "initial",
-  //   borderRadius: "10px"
-  // }
+  dropDownBtn: {
+    height: "3rem",
+    paddingLeft: "0",
+    marginBottom: "2.5%",
+    width: "25%",
+    border: "2px solid black"
+  }
 };

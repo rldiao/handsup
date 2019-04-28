@@ -2,17 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Axios from "axios";
-import AuthService from "../../services/AuthService";
+// import Axios from "axios";
+// import AuthService from "../../services/AuthService";
 
 import styles from "./profileSettings.module.css";
 import { styles as custom } from "./userProfileSettings.style";
-
-const donor = {
-  fullname: "Zachary Ho",
-  profilePic:
-    "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2602&q=80"
-};
 
 class EditProfileTab extends Component {
   constructor(props) {
@@ -70,9 +64,7 @@ class EditProfileTab extends Component {
             <input
               type="text"
               name="name"
-              //   onFocus={this.handleFocus}
               value={this.state.name}
-              //   onChange={this.handleChange}
               className={styles.input}
             />
           </div>
@@ -106,7 +98,6 @@ class EditProfileTab extends Component {
         </div>
         <div>
           <Button style={custom.saveBtn}>Save Settings</Button>
-          {/* <Button style={custom.viewProfileBtn}>View Profile</Button> */}
         </div>
       </div>
     );
