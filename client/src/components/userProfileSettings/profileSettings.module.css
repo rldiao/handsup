@@ -1,43 +1,110 @@
-.paymentContainer {
-    margin: 30px;
+.settingsContainer {
+  margin-top: 3%;
+  padding: 0% 10%;
 }
 
 .form {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-
+  font-weight: 500;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 25px 0;
 }
 
 .form label {
-    margin: 5px 10px 5px 0;
+  margin: 15px 10px 5px 0;
 }
 
-.form input {
-    vertical-align: middle;
-    margin: 5px 10px 5px 0;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+.formCell button {
+  padding: 10px 20px;
+  background-color: #41521f;
+  border: 1px solid #41521f;
+  color: white;
+  cursor: pointer;
 }
 
-.form button {
-    padding: 10px 20px;
-    background-color: #41521F;
-    border: 1px solid #41521F;
-    color: white;
-    cursor: pointer;
-    margin-top: 30px;
+.uploadBtnContainer {
+  display: flex;
 }
 
 @media (max-width: 3000px) {
-    .form input {
-        margin: 10px 0;
-    }
+  .form input {
+    margin: 10px 0;
+  }
 
-    .form {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .form {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
+.settingTitle {
+  font-size: 3.5vw;
+  font-family: raleway, sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  padding: 5% 0 2.5% 0;
+}
+
+.navtab {
+  background-color: white;
+  color: black;
+  padding: 0 10%;
+  box-shadow: none;
+  font-weight: 900;
+}
+
+.indicator {
+  width: 1%;
+}
+
+.clicked {
+  width: 10%;
+  font-size: 20px;
+  font-family: open-sans, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.account {
+  font-weight: 900;
+}
+
+.formCell {
+  display: block;
+  margin-top: 2rem;
+}
+
+.input {
+  padding: 1% 10rem 1% 1%;
+  text-align: left;
+}
+
+.content {
+  display: block;
+  font-size: 1rem;
+}
+
+.heading {
+  font-family: raleway, sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.subheading {
+  display: flex;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-family: open-sans, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.donorImg {
+  width: 20%;
+  height: 15%;
+}
+
+.display {
+  display: none;
+}

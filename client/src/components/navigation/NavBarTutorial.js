@@ -20,7 +20,12 @@ class NavBarTutorial extends Component {
     return (
       <header className={styles.header}>
         <nav className={styles.navBar}>
-          <img src={logo} alt="Logo" className={styles.logo} />
+          <img
+            onClick={this.handleImageClick}
+            src={logo}
+            alt="Logo"
+            className={styles.logo}
+          />
           <div className={styles.spacer} />
           <div className={styles.navBarItems}>
             <ul>
