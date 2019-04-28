@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  "profile-pic": String,
+  profilePic: String,
   savedDoneesID: [String],
   donationsID: [String],
   location: String,

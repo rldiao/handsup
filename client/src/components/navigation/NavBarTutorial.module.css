@@ -14,6 +14,7 @@
   padding: 0 3.5rem;
   border-bottom: 0.5px solid #17171770;
   background: #fefefe;
+  z-index: 99;
 }
 
 .logo {

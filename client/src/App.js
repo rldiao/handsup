@@ -12,8 +12,9 @@ import HomePage from "./pages/home/HomePage";
 import ErrorPage from "./pages/error/ErrorPage";
 import LoginPage from "./pages/login/LoginPage";
 import SignupPage from "./pages/login/SignupPage";
+import DiscoverPage from "./pages/discover/DiscoverPage";
+import UserProfilePage from "./pages/userProfile/userProfilePage";
 
-// TEST - START
 const checkAuth = () => {
   const token = localStorage.getItem("id_token");
   if (!token) {
@@ -39,7 +40,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     }
   />
 );
-// TEST - END
 
 class App extends Component {
   state = {
@@ -81,11 +81,9 @@ class App extends Component {
   };
 
   render() {
-    // let sideDrawer;
     let backdrop;
 
     if (this.state.sideDrawerOpen) {
-      // sideDrawer = <SideDrawer />;
       backdrop = <Backdrop click={this.backdropClickHandler} />;
     }
     return (
@@ -96,6 +94,8 @@ class App extends Component {
         <div className={styles.content}>
           <Switch>
             <PrivateRoute path="/" exact component={HomePage} />
+            <PrivateRoute path="/discover" component={DiscoverPage} />
+            <PrivateRoute path="/userProfile" component={UserProfilePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignupPage} />
             <Route component={ErrorPage} />

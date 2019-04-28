@@ -1,9 +1,9 @@
-import { userConstants } from "../constants";
+import { userConstants, stateConstants } from "../constants";
 import AuthService from "../services/AuthService";
 
 const initialAuthState = AuthService.loggedIn()
-  ? userConstants.USER_VERIFIED
-  : userConstants.USER_UNVERIFIED;
+  ? stateConstants.AUTH
+  : stateConstants.UNAUTH;
 
 const initialState = { state: initialAuthState };
 

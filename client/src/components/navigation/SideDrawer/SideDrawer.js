@@ -25,10 +25,10 @@ const sideDrawer = props => {
       <div className={classNames(styles.accountButtons)}>
         <ul>
           <li>
-            <a href="/">Profile</a>
+            <Link to="/userProfile">Profile</Link>
           </li>
           <li>
-            <a href="/">Settings</a>
+            <Link to="/settings">Settings</Link>
           </li>
           <li>
             <div onClick={props.logout}>Log Out</div>
@@ -60,7 +60,7 @@ const sideDrawer = props => {
             <a href="/">About Us</a>
           </li>
           <li>
-            <a href="/">Discover</a>
+            <Link to="/discover">Discover</Link>
           </li>
           <li>
             <a href="/">Contact Us</a>

@@ -25,17 +25,17 @@ class NavBarTutorial extends Component {
           <div className={styles.navBarItems}>
             <ul>
               <li>
-                <Link href="/" className={styles.navBarItem}>
+                <Link to="/about" className={styles.navBarItem}>
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/" className={styles.navBarItem}>
+                <Link to="/discover" className={styles.navBarItem}>
                   Discover
                 </Link>
               </li>
               <li>
-                <Link href="/" className={styles.navBarItem}>
+                <Link to="/contacts" className={styles.navBarItem}>
                   Contact Us
                 </Link>
               </li>
