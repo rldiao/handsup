@@ -5,30 +5,38 @@ export default class PaymentForm extends Component {
   render() {
     return (
       <div className={styles.settingsContainer}>
-        <h2>Payment Options</h2>
+        <h2 className={styles.heading}>Payment Options</h2>
         <div className={styles.form}>
-          <label htmlFor="Card number">Card number:</label>
+          <label htmlFor="Card Number" className={styles.subheading}>
+            Card Number:
+          </label>
           <input
-            type="Card number"
-            id="Card number"
-            placeholder="Card number"
-            name="Card number"
+            type="Card Number"
+            id="Card Number"
+            placeholder="Card Number"
+            name="Card Number"
           />
-          <label htmlFor="Cardholder name">Cardholder name:</label>
+          <label htmlFor="Cardholder Name" className={styles.subheading}>
+            Cardholder Name:
+          </label>
           <input
             type="Cardholder Name"
             id="Cardholder Name"
             placeholder="Cardholder Name"
             name="Cardholder Name"
           />
-          <label htmlFor="Expiration">Expiration:</label>
+          <label htmlFor="Expiration" className={styles.subheading}>
+            Expiration:
+          </label>
           <input
             type="Expiration"
             id="Expiration"
             placeholder="MM/YY"
             name="Expiration"
           />
-          <label htmlFor="Security Code">Security Code:</label>
+          <label htmlFor="Security Code" className={styles.subheading}>
+            Security Code:
+          </label>
           <input
             type="Security Code"
             id="Security Code"

@@ -69,20 +69,21 @@ class App extends Component {
 
   render() {
     return (
-      // <div>
-      //   <NavBar />
-      //   <div className={styles.content}>
-      //     <Switch>
-      //       <PrivateRoute path="/" exact component={HomePage} />
-      //       <Route path="/login" component={LoginPage} />
-      //       <Route path="/signup" component={SignupPage} />
-      //       <Route component={ErrorPage} />
-      //     </Switch>
-      //   </div>
-      // </div>
       <div>
-        <UserSettingPage />
+        <NavBar />
+        <div className={styles.content}>
+          <Switch>
+            {/* <PrivateRoute path="/" exact component={HomePage} /> */}
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" component={SignupPage} />
+            {/* <Route component={ErrorPage} /> */}
+            <PrivateRoute path="/" component={UserSettingPage} />
+          </Switch>
+        </div>
       </div>
+      // <div>
+      //   <UserSettingPage />
+      // </div>
     );
   }
 }

@@ -1,17 +1,23 @@
 export const styles = {
-  uploadBtn: {
-    size: "small",
-    textTransform: "initial"
-    // border: "1px solid black"
-    // borderRadius: "10px"
-  },
+  // uploadBtn: {
+  //   textTransform: "initial"
+  //   // border: "1px solid black"
+  //   // borderRadius: "10px"
+  // },
 
   saveBtn: {
-    marginTop: "2.5%",
+    margin: "2.5% 0",
     color: "white",
     backgroundColor: "#324516",
+    textTransform: "initial"
+  },
+
+  changePwBtn: {
+    backgroundColor: "#324516",
+    color: "white",
     textTransform: "initial",
-    borderRadius: "10px"
+    marginBottom: "2.5%",
+    display: "flex"
   }
 
   // viewProfileBtn: {

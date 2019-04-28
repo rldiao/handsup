@@ -24,11 +24,7 @@ export default class MainSetting extends Component {
   render() {
     return (
       <Fragment>
-        {/* <div className={styles.background} /> */}
-        <p className={styles.settingTitle}>Settings</p>
-        {/* <div>
-          <Button onChange={this.handleChange}>Account</Button>
-        </div> */}
+        <div className={styles.settingTitle}>Settings</div>
         <div>
           <NavTabs />
         </div>

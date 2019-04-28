@@ -1,17 +1,5 @@
 const mongoose = require("mongoose");
-const Donor = mongoose.model("donors");
-
-const createProfile = function(req, res) {
-  const newDonor = new Donor(req.body);
-
-  newDonor.save((err, newDonor) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.send(newDonor);
-    }
-  });
-};
+const Donor = require("../models/user.model");
 
 const getProfile = function(req, res) {
   Donor.find((err, donor) => {
@@ -59,7 +47,6 @@ const deleteProfile = function(req, res) {
 };
 
 module.exports = {
-  createProfile,
   getProfile,
   getOneProfile,
   updateProfile,

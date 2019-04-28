@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import Axios from "axios";
+import AuthService from "../../services/AuthService";
 
 import styles from "./profileSettings.module.css";
 import { styles as custom } from "./userProfileSettings.style";
 
 const donor = {
   fullname: "Zachary Ho",
-  profilepic:
+  profilePic:
     "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2602&q=80"
 };
 
@@ -17,71 +19,90 @@ class EditProfileTab extends Component {
     super(props);
 
     this.state = {
-      name: ""
+      name: "",
+      profilePic: null
     };
   }
 
-  componentWillMount = () => {
-    this.setState({ name: donor.fullname });
-  };
+  //   componentWillMount = () => {
+  //     this.setState({ name: donor.fullname });
+  //   };
 
-  handleChange = e => {
-    this.setState({ name: e.target.value });
-  };
+  //   handleChange = event => {
+  //     this.setState({
+  //       name: event.target.value
+  //     });
+  //   };
 
-  handleSubmit = () => {
-    // call express backend
-    // axios("/user")
-  };
+  //   handleImg = event => {
+  //     if (event.target.files[0]) {
+  //       this.setState({ profilePic: URL.createObjectURL(event.target.files[0]) });
+  //     }
 
-  handleFocus = () => {
-    this.value = this.value;
-  };
+  //     this.setState({
+  //       profilePic: URL.createObjectURL(event.target.files[0])
+  //     });
+  //   };
+
+  //   handleSubmit = () => {
+  //     profile = AuthService.getProfile();
+  //     try {
+  //       Axios.get(
+  //         "/" + profile.email,)
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   };
+
+  //   handleFocus = () => {
+  //     this.value = this.value;
+  //   };
 
   render() {
     const { classes } = this.props;
 
     return (
       <div className={styles.settingsContainer}>
-        <h2>Your Profile</h2>
+        <h2 className={styles.heading}>Your Profile</h2>
         <form onSubmit={this.handleSubmit}>
           <div className={styles.formCell}>
             <label className={styles.subheading}>Full Name</label>
             <input
               type="text"
               name="name"
-              onFocus={this.handleFocus}
+              //   onFocus={this.handleFocus}
               value={this.state.name}
-              onChange={this.handleChange}
+              //   onChange={this.handleChange}
               className={styles.input}
             />
           </div>
         </form>
         <div className={styles.formCell}>
           <label className={styles.subheading}>Profile Picture</label>
-          <img
+          <img className={styles.donorImg} src={donor.profilePic} alt=" " />
+          {/* <img
             className={styles.donorImg}
-            alt="Donor's Profile Picture"
-            src={donor.profilepic}
-          />
-          <div className={styles.uploadBtnContainer}>
+            alt=" "
+            src={this.state.profilePic}
+          /> */}
+          {/* <div className={styles.uploadBtnContainer}>
             <input
               accept="image/*"
-              className={styles.display}
+              //   className={styles.display}
               id="contained-button-file"
               type="file"
-            />
-            <label htmlFor="contained-button-file">
+              onChange={this.handleImg}
+            /> */}
+          {/* <label htmlFor="contained-button-file">
               <Button
                 variant="outlined"
                 component="span"
-                size="small"
                 style={custom.uploadBtn}
               >
                 Upload Image
               </Button>
-            </label>
-          </div>
+            </label> */}
+          {/* </div> */}
         </div>
         <div>
           <Button style={custom.saveBtn}>Save Settings</Button>

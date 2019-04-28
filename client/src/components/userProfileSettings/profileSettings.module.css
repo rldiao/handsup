@@ -75,14 +75,6 @@
   font-style: normal;
 }
 
-.notClicked {
-  width: 10%;
-  font-size: 20px;
-  font-family: open-sans, sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
 .account {
   font-weight: 900;
 }
@@ -97,11 +89,25 @@
   text-align: left;
 }
 
+.content {
+  display: block;
+  font-size: 1rem;
+}
+
+.heading {
+  font-family: raleway, sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
 .subheading {
   display: flex;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 5px;
+  font-family: open-sans, sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .donorImg {
@@ -111,4 +117,19 @@
 
 .display {
   display: none;
+}
+
+.dropDownBtn {
+  height: 3rem;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.dropDownBtn span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
