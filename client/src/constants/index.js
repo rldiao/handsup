@@ -1,2 +1,2 @@
-export { const as stateConstants } from "./stateConstants";
-export { const as userConstants } from "./userConstants";
+export { stateConstants } from "./stateConstants";
+export { userConstants } from "./userConstants";

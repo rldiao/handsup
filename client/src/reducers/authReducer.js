@@ -1,24 +1,18 @@
-import { userConstants } from "../constants/userConstants";
+import { userConstants } from "../constants";
+import AuthService from "../services/AuthService";
 
-const initialState = {};
+const initialAuthState = AuthService.loggedIn()
+  ? userConstants.USER_VERIFIED
+  : userConstants.USER_UNVERIFIED;
+
+const initialState = { state: initialAuthState };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case userConstants.USER_VERIFIED:
       return action.payload;
-    // {
-    //   ...state,
-    //   state: action.payload.state,
-    //   user: action.payload.user
-    // };
     case userConstants.USER_UNVERIFIED:
       return action.payload;
-    // {
-    //   // ...state,
-    //   state: action.payload.state,
-    //   // TODO: can redux accept null?
-    //   user: action.payload.user
-    // };
     default:
       return state;
   }
