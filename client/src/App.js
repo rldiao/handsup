@@ -11,6 +11,7 @@ import HomePage from "./pages/home/HomePage";
 import ErrorPage from "./pages/error/ErrorPage";
 import LoginPage from "./pages/login/LoginPage";
 import SignupPage from "./pages/login/SignupPage";
+import DiscoverPage from "./pages/discover/DiscoverPage";
 
 // TEST - START
 const checkAuth = () => {
@@ -76,14 +77,10 @@ class App extends Component {
             <PrivateRoute path="/a" exact component={HomePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignupPage} />
-            <PrivateRoute path="/" component={UserProfilePage} />
+            <PrivateRoute path="/" component={DiscoverPage} />
             <Route component={ErrorPage} />
           </Switch>
         </div>
-        <div>
-          {/*<ProfileSettingPage/>*/}
-        </div>
-
       </div>
     );
   }

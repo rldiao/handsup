@@ -1,17 +1,5 @@
 const mongoose = require("mongoose");
-const Donor = mongoose.model("donors");
-
-const createProfile = function(req, res) {
-  const newDonor = new Donor(req.body);
-
-  newDonor.save((err, newDonor) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.send(newDonor);
-    }
-  });
-};
+const Donor = require("../models/user.model");
 
 const getProfile = function(req, res) {
   Donor.find((err, donor) => {
@@ -24,7 +12,7 @@ const getProfile = function(req, res) {
 };
 
 const getOneProfile = function(req, res) {
-  Donor.findOne({ username: req.params.username }, (err, donor) => {
+  Donor.findOne({ email: req.params.email }, (err, donor) => {
     if (err) {
       res.sendStatus(500);
     } else {
@@ -35,7 +23,7 @@ const getOneProfile = function(req, res) {
 
 const updateProfile = function(req, res) {
   Donor.findOneAndUpdate(
-    { username: req.params.username },
+    { email: req.params.email },
     req.body,
     { new: true },
     (err, donor) => {
@@ -49,7 +37,7 @@ const updateProfile = function(req, res) {
 };
 
 const deleteProfile = function(req, res) {
-  Donor.findOneAndDelete({ username: req.params.username }, (err, donor) => {
+  Donor.findOneAndDelete({ email: req.params.email }, (err, donor) => {
     if (err) {
       res.sendStatus(500);
     } else {
@@ -59,7 +47,6 @@ const deleteProfile = function(req, res) {
 };
 
 module.exports = {
-  createProfile,
   getProfile,
   getOneProfile,
   updateProfile,

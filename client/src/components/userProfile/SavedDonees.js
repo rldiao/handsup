@@ -1,11 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import styles from "./userProfile.module.css";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent"
-import Typography from '@material-ui/core/Typography';
 import AuthService from "../../services/AuthService";
-
+import DoneeCard from "./DoneeCard";
 import Axios from 'axios';
 
 export default class SavedDonees extends Component {
@@ -13,9 +9,9 @@ export default class SavedDonees extends Component {
         super();
         this.state = {
             user: null,
-            donees: []
+            donees: [],
+            savedDonees: []
         };
-        this.handleDoneeClick = this.handleDoneeClick.bind(this);
     }
 
     componentDidMount() {
@@ -23,6 +19,7 @@ export default class SavedDonees extends Component {
         Axios.get("/"+ profile.email)
             .then(res => {
                 this.setState({user: res.data});
+                this.setState({ savedDonees: this.state.user.savedDoneesID});
                 this.state.user.savedDoneesID.map(doneeID => {
                     Axios.get("/donee/"+doneeID)
                         .then(res => {
@@ -31,66 +28,45 @@ export default class SavedDonees extends Component {
                             this.setState( {donees: temp} );
                         })
                 });
-                console.log(this.state.donees);
             })
             .catch(e => {
                 console.log(e);
             })
     }
 
-    handleDoneeClick() {
 
-    }
+    handleDoneeClick = (event) =>  {
+        console.log(event);
+    };
+
+    handleRemoveClick = (state) => {
+        this.state.donees.forEach((value, index) => {
+            if(value._id === state.id) {
+                this.state.donees.splice(index,1);
+            }
+        });
+        this.state.user.savedDoneesID.forEach((id, index) => {
+            if(id === state.id) {
+                this.state.user.savedDoneesID.splice(index, 1);
+            }
+        });
+        console.log(this.state.user.savedDoneesID);
+        Axios.put("/update/" + this.state.user.email, this.state.user)
+            .then(res => {
+                console.log(res.data);
+            });
+        this.forceUpdate();
+    };
 
     render() {
         const cardContent = this.state.donees.map(donee => {
             const progressWidth = (donee.funded/donee.monthlyDonationLimit)*100;
 
-            return <Card className={styles.doneesCard}
-                         style={{
-                             width: "300px",
-                             height: "410px",
-                             marginRight: "70px",
-                             marginBottom: "30px"
-                         }}>
-                <img className={styles.doneePicture}
-                     alt="Donee's Picture"
-                     src={donee.profilePicture}/>
-                <CardContent>
-                    <CardActionArea onClick={this.handleDoneeClick()}>
-                        <Typography gutterBottom variant="h6"
-                                    component="h3">
-                            {donee.name}
-                        </Typography>
-                    </CardActionArea>
-                    <Typography component="p"
-                    style={{height: "80px"}}>
-                        {donee.bio}
-                    </Typography>
-                    <div className={styles.progress}>
-                    </div>
-
-                    <Typography variant="body2">
-                        ${donee.funded} funded of ${donee.monthlyDonationLimit}
-                    </Typography>
-                    <Typography variant="subheading">
-                        Until {donee.monthlyRenewalDate}
-                    </Typography>
-                    <div className={styles.doneeLocation}>
-                        <img className={styles.locationIcon}
-                             alt="Location Icon"
-                             src="http://dawimmigration.com/wp-content/uploads/2015/01/location-24-256.png"/>
-                        <Typography component="p">
-                            {donee.location}
-                        </Typography>
-                    </div>
-
-                </CardContent>
-            </Card>;
+            return <DoneeCard key={donee._id} id={donee._id} donee={donee} handleDoneeClick={this.handleDoneeClick} handleButtonClick={this.handleRemoveClick} btnText="Remove"/>;
         });
 
         return (
-            <div className={styles.savedDoneesContainer}>
+            <Fragment>
                 <div>
                     <p className={styles.savedDoneesHeader}>
                         Saved Donees
@@ -99,7 +75,7 @@ export default class SavedDonees extends Component {
                 <div className={styles.cardContainer}>
                     {cardContent}
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }

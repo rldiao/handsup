@@ -4,6 +4,7 @@ import SavedDonees from "../../components/userProfile/SavedDonees";
 import styles from "./profile.module.css";
 import Button from "@material-ui/core/Button";
 import { withRouter } from 'react-router-dom';
+import {profileStyles} from "./profileStyles";
 
 
 class userProfilePage extends Component {
@@ -23,13 +24,7 @@ class userProfilePage extends Component {
                 <div className={styles.editProfileButton}>
                     <Button variant="outlined"
                             onClick={this.routeChange}
-                            style={{
-                                fontSize: "10px",
-                                backgroundColor: "#FFFFFF",
-                                border: "0.5px solid #41521F",
-                                color: "#41521F",
-                                padding: "5px 20px 5px 20px",
-                            }}>
+                            style={profileStyles.editProfileButton}>
                         Edit Profile
                     </Button>
                 </div>

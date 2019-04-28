@@ -3,10 +3,6 @@ import styles from "./userProfile.module.css";
 import Axios from 'axios';
 import AuthService from "../../services/AuthService";
 
-const user = {
-    name: "Loading...",
-    profilePicture: "https://www.w3schools.com/howto/img_avatar.png"
-};
 
 export default class MainSection extends Component {
     constructor(props) {
