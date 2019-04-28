@@ -9,7 +9,9 @@ const store = createStore(
   inititalState,
   compose(
     applyMiddleware(...middleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    window.__REDUX_DEVTOOLS_EXTENSION__
+      ? window.__REDUX_DEVTOOLS_EXTENSION__()
+      : f => f
   )
 );
 export default store;

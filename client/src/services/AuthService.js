@@ -76,6 +76,10 @@ function getProfile() {
   return decode(getToken());
 }
 
+// function getUserObject() {
+//   return
+// }
+
 function _fetch(url, options) {
   const headers = {
     Accept: "application/json",
