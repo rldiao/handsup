@@ -22,7 +22,6 @@ function login(email, password) {
     })
   }).then(res => {
     setToken(res.user.token); // Setting the token in localStorage
-    // console.log(getToken());
     return Promise.resolve(res);
   });
 }
@@ -76,6 +75,10 @@ function logout() {
 function getProfile() {
   return decode(getToken());
 }
+
+// function getUserObject() {
+//   return
+// }
 
 function _fetch(url, options) {
   const headers = {

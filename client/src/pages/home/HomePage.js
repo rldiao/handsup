@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import AuthService from "../../services/AuthService";
 import withAuth from "../../components/auth/withAuth";
+import { logout } from "../../actions/userActions";
+import { connect } from "react-redux";
 
 class HomePage extends Component {
   componentDidMount() {
@@ -18,8 +19,8 @@ class HomePage extends Component {
   onLogout = e => {
     e.preventDefault();
     console.log("logout");
-    AuthService.logout();
-    this.props.history.replace("/login");
+
+    this.props.logout();
   };
 
   render() {
@@ -34,4 +35,9 @@ class HomePage extends Component {
   }
 }
 
-export default withAuth(HomePage);
+export default withAuth(
+  connect(
+    null,
+    { logout }
+  )(HomePage)
+);
