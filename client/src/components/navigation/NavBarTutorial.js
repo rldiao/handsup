@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Button from "./Button";
-import ProfileButton from "./ProfileButton";
 
 import logo from "../../assets/img/logo_slogan.png";
 import DrawerToggleButton from "./SideDrawer/DrawerToggleButton";
-import profilePicture from "../../assets/img/profilepic.jpg";
 import styles from "./NavBarTutorial.module.css";
+import CallToAction from "./CallToAction";
 
 class NavBarTutorial extends Component {
   constructor() {
@@ -21,33 +19,16 @@ class NavBarTutorial extends Component {
   // }
 
   render() {
-    // let navButtons;
-    // // console.log(this.state.loggedIn)
-    // if (this.state.loggedIn) {
-    //   navButtons = <AuthedNavItems />;
-    // } else {
-    //   navButtons = <UnauthedNavItems />;
-    // }
+    let callToActionDiv;
 
-    // return (
-    //   <div className={styles.container}>
-    //     <div className={styles.logo}>
-    //       <img class={styles.image} src={logo} alt="Logo" />
-    //     </div>
-    //     <div className={styles.spacer} />
-    //     <div className={styles.navItems}>
-    //       <Button link="/" text="About Us" />
-    //       <Button link="/" text="Discover" />
-    //       <Button link="/" text="Contact Us" />
-    //       <ProfileButton
-    //         link="/"
-    //         username="Zachary Ho"
-    //         source={profilePicture}
-    //       />
-    //       {/* {navButtons} */}
-    //     </div>
-    //   </div>
-    // );
+    let loggedIn = 1;
+
+    if (
+      !loggedIn
+      // User is logged in
+    ) {
+      callToActionDiv = <CallToAction />;
+    }
 
     return (
       <header className={styles.header}>
@@ -65,11 +46,9 @@ class NavBarTutorial extends Component {
               <li>
                 <a href="/">Contact Us</a>
               </li>
-              {/* <Button link="/" text="About Us" />
-              <Button link="/" text="Discover" />
-              <Button link="/" text="Contact Us" /> */}
             </ul>
           </div>
+          {callToActionDiv}
           <div className={styles.drawerToggleButton}>
             <DrawerToggleButton click={this.props.drawerClickHandler} />
           </div>

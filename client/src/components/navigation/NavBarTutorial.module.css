@@ -29,15 +29,18 @@
   color: #171717;
   text-decoration: none;
 }
+
 .navBarItems ul {
   list-style: none;
   margin: 0;
-  padding: 0 3rem;
+  padding: 0 0 0 3rem;
   display: flex;
+  white-space: nowrap;
 }
 
 .navBarItems li {
   padding: 0 2rem;
+  display: inline-block;
 }
 
 .navBarItem:hover,
@@ -55,6 +58,10 @@
   }
 
   .navBarItems {
+    display: none;
+  }
+
+  .callToAction {
     display: none;
   }
 

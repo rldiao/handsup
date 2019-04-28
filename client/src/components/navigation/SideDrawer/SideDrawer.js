@@ -9,30 +9,15 @@ const sideDrawer = props => {
     drawerClasses = classNames(styles.open, styles.sideDrawer);
   }
 
-  // var w = Math.max(
-  //   document.documentElement.clientWidth,
-  //   window.innerWidth || 0
-  // );
+  let accountActionButtons;
 
-  // let navBarButtons;
-  // if (w <= 800) {
-  //   navBarButtons = (
-  //     <ul>
-  //       <li>
-  //         <a href="/">About Us</a>
-  //       </li>
-  //       <li>
-  //         <a href="/">Discover</a>
-  //       </li>
-  //       <li>
-  //         <a href="/">Contact Us</a>
-  //       </li>
-  //     </ul>
-  //   );
-  // }
+  let loggedIn = 1;
 
-  return (
-    <nav className={drawerClasses}>
+  if (
+    loggedIn
+    // User is logged in
+  ) {
+    accountActionButtons = (
       <div className={classNames(styles.accountButtons)}>
         {/* {navBarButtons} */}
         <ul>
@@ -47,6 +32,25 @@ const sideDrawer = props => {
           </li>
         </ul>
       </div>
+    );
+  } else {
+    accountActionButtons = (
+      <div className={classNames(styles.accountButtons)}>
+        <ul>
+          <li>
+            <a href="/">Login</a>
+          </li>
+          <li>
+            <a href="/">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+
+  return (
+    <nav className={drawerClasses}>
+      {accountActionButtons}
       <div className={classNames(styles.navBarButtons)}>
         <ul>
           <li>
@@ -60,6 +64,7 @@ const sideDrawer = props => {
           </li>
         </ul>
       </div>
+      }}
     </nav>
   );
 };

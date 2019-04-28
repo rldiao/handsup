@@ -1,0 +1,36 @@
+.callToActionLoggedOut ul {
+  list-style: none;
+  display: flex;
+  white-space: nowrap;
+}
+
+li {
+  display: inline-block;
+}
+
+.callToActionLoggedOut a {
+  text-decoration: none;
+}
+
+.callToActionLogInButton {
+  color: #171717;
+}
+
+.callToActionSignUpButton {
+  min-width: 2rem;
+  padding: 0.3rem 1rem;
+  border: 2px solid #41521f;
+  border-radius: 7px;
+  background: #41521f;
+  color: #fefefe;
+}
+
+li {
+  padding: 0 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .callToActionLoggedOut {
+    display: none;
+  }
+}
