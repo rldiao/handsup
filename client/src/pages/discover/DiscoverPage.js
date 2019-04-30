@@ -13,7 +13,7 @@ export default class DiscoverPage extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getUser();
         Axios.get("/donee/")
             .then(res => {
@@ -64,7 +64,7 @@ export default class DiscoverPage extends Component {
     }
 
     isDoneeSaved = donee => {
-        return this.state.use !== null && this.state.user.savedDoneesID !=null && this.state.user.savedDoneesID.indexOf(donee._id, 0) !== -1;
+        return this.state.user !== null && this.state.user.savedDoneesID !=null && this.state.user.savedDoneesID.indexOf(donee._id, 0) !== -1;
     };
 
     render() {
