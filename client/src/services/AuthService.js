@@ -11,7 +11,7 @@ const AuthService = {
   getProfile
 };
 
-function login(email, password) {
+async function login(email, password) {
   return _fetch("/login", {
     method: "POST",
     body: JSON.stringify({
@@ -20,13 +20,17 @@ function login(email, password) {
         password
       }
     })
-  }).then(res => {
-    setToken(res.user.token); // Setting the token in localStorage
-    return Promise.resolve(res);
-  });
+  })
+    .then(res => {
+      setToken(res.user.token); // Setting the token in localStorage
+      return Promise.resolve(res);
+    })
+    .catch(res => {
+      return Promise.reject(res);
+    });
 }
 
-function signup(name, email, password) {
+async function signup(name, email, password) {
   return _fetch("/signup", {
     method: "POST",
     body: JSON.stringify({
@@ -37,9 +41,13 @@ function signup(name, email, password) {
       }
     }),
     headers: { "Content-Type": "application/json" }
-  }).then(res => {
-    return Promise.resolve(res);
-  });
+  })
+    .then(res => {
+      return Promise.resolve(res);
+    })
+    .catch(res => {
+      return Promise.reject(res);
+    });
 }
 
 function loggedIn() {
@@ -80,7 +88,7 @@ function getProfile() {
 //   return
 // }
 
-function _fetch(url, options) {
+async function _fetch(url, options) {
   const headers = {
     Accept: "application/json",
     "Content-Type": "application/json"

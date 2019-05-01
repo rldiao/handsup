@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import decode from "jwt-decode";
+import Axios from "axios";
 
 import styles from "./App.module.css";
 import NavBarTutorial from "./components/navigation/NavBarTutorial";
@@ -14,6 +15,7 @@ import SignupPage from "./pages/login/SignupPage";
 import DiscoverPage from "./pages/discover/DiscoverPage";
 import UserProfilePage from "./pages/userProfile/userProfilePage";
 import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
+import AuthService from "./services/AuthService";
 
 const checkAuth = () => {
   const token = localStorage.getItem("id_token");
@@ -44,11 +46,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 class App extends Component {
   state = {
     data: null,
-    isAuth: false,
     sideDrawerOpen: false
   };
 
   componentDidMount() {
+    // TODO: Figure this sh*t out
+    Axios.defaults.headers.common["Authorization"] = AuthService.getToken();
     // Call our fetch function below once the component mounts
     this.callBackendAPI()
       .then(res => this.setState({ data: res.express }))

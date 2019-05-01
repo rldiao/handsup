@@ -13,7 +13,7 @@ export default function withAuth(AuthComponent) {
       };
     }
 
-    componentWillMount() {
+    componentDidMount() {
       if (!AuthService.loggedIn()) {
         this.props.history.replace("/login");
       } else {
