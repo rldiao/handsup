@@ -1,15 +1,4 @@
-const mongoose = require("mongoose");
 const Donor = require("../models/user.model");
-
-const getProfile = function(req, res) {
-  Donor.find((err, donor) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.send(donor);
-    }
-  });
-};
 
 const getOneProfile = function(req, res) {
   Donor.findOne({ email: req.params.email }, (err, donor) => {
@@ -46,9 +35,24 @@ const deleteProfile = function(req, res) {
   });
 };
 
+const updatePassword = function(req, res) {
+  Donor.findOneAndUpdate(
+    { email: req.params.email },
+    req.body.password,
+    null,
+    (err, donor) => {
+      if (err) {
+        res.sendStatus(500);
+      } else {
+        res.send(200);
+      }
+    }
+  );
+};
+
 module.exports = {
-  getProfile,
   getOneProfile,
   updateProfile,
-  deleteProfile
+  deleteProfile,
+  updatePassword
 };

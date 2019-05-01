@@ -14,7 +14,7 @@ module.exports = app => {
 
   app.get("/:email", update.getOneProfile);
 
-  app.put("/update/:email", update.updateProfile);
+  app.put("/update/:email", [auth.withAuth, update.updateProfile]);
 
   //   app.delete("/delete/:email", users.deleteProfile);
 };
