@@ -1,4 +1,5 @@
 const Donor = require("../models/user.model");
+const crypt = require("bcrypt");
 
 const getOneProfile = function(req, res) {
   Donor.findOne({ email: req.params.email }, (err, donor) => {
@@ -19,7 +20,7 @@ const updateProfile = function(req, res) {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.send(donor);
+        res.sendStatus(200);
       }
     }
   );
@@ -36,15 +37,17 @@ const deleteProfile = function(req, res) {
 };
 
 const updatePassword = function(req, res) {
+  // TODO: try find better design using donor.setpassword
+  let newPassword = crypt.hashSync(req.body.password, crypt.genSaltSync(8));
   Donor.findOneAndUpdate(
     { email: req.params.email },
-    req.body.password,
-    null,
+    { password: newPassword },
+    { new: true },
     (err, donor) => {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.send(200);
+        res.sendStatus(200);
       }
     }
   );

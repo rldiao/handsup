@@ -82,7 +82,6 @@ exports.loginUser = (req, res, next) => {
   )(req, res, next);
 };
 
-// NOTE: this is not in use
 exports.logoutUser = (req, res) => {
   req.logout();
   req.session.destroy(err => {
