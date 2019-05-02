@@ -11,7 +11,11 @@ class Database {
   _connect() {
     MongoClient.Promise = global.Promise;
 
-    MongoClient.connect(uri, { useNewUrlParser: true })
+    MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useCreateIndex: true
+    })
       .then(() => {
         console.log("MongoDB Connected");
       })
