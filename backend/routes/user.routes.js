@@ -1,18 +1,21 @@
-module.exports = app => {
-  const users = require("../controllers/user.controller.js");
-  const update = require("../controllers/userUpdate.controller.js");
-  const auth = require("../middleware/auth.js");
+const express = require("express");
+const users = require("../controllers/user.controller.js");
+const update = require("../controllers/userUpdate.controller.js");
+const auth = require("../middleware/auth.js");
+const router = express.Router();
 
-  app.post("/signup", users.createUser);
+router.post("/signup", users.createUser);
 
-  app.post("/login", users.loginUser);
+router.post("/login", users.loginUser);
 
-  app.get("/logout", users.logoutUser);
+router.get("/logout", users.logoutUser);
 
-  // app.get("/", users.getProfile);
+// app.get("/", users.getProfile);
 
-  app.get("/:email", update.getOneProfile);
+router.get("/:email", [auth.withAuth, update.getOneProfile]);
 
-  // TODO: change this part
-  app.put("/update/:email", [auth.withAuth, update.updateProfile]);
-};
+router.put("/update/:email", [auth.withAuth, update.updateProfile]);
+
+router.put("/change_password/:email", [auth.withAuth, update.updatePassword]);
+
+module.exports = router;
