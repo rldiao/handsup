@@ -26,11 +26,14 @@ const userSchema = mongoose.Schema({
 
 // hash the password
 userSchema.methods.setPassword = function(password) {
-  this.password = crypt.hashSync(password, crypt.genSaltSync(8), null);
+  // TODO: move this into a service
+  this.password = crypt.hashSync(password, crypt.genSaltSync(8));
 };
 
 // checking if password is valid
 userSchema.methods.validatePassword = function(password) {
+  // TODO: remove
+  // console.log(password, this.password);
   return crypt.compareSync(password, this.password);
 };
 

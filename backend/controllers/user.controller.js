@@ -61,6 +61,9 @@ exports.loginUser = (req, res, next) => {
     "local",
     { session: false },
     (err, passportUser, info) => {
+      // TODO: Remove
+      // console.log("Passport user: " + passportUser);
+
       if (err) {
         return next(err);
       }
@@ -74,11 +77,12 @@ exports.loginUser = (req, res, next) => {
             .json({ user: user.toAuthJSON() })
         ); // DELETE this later for security
       }
-      return res.sendStatus(400);
+      return res.sendStatus(401);
     }
   )(req, res, next);
 };
 
+// NOTE: this is not in use
 exports.logoutUser = (req, res) => {
   req.logout();
   req.session.destroy(err => {
