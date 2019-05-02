@@ -12,7 +12,7 @@ const AuthService = {
 };
 
 async function login(email, password) {
-  return _fetch("/login", {
+  return _fetch("/user/login", {
     method: "POST",
     body: JSON.stringify({
       user: {
@@ -31,7 +31,7 @@ async function login(email, password) {
 }
 
 async function signup(name, email, password) {
-  return _fetch("/signup", {
+  return _fetch("/user/signup", {
     method: "POST",
     body: JSON.stringify({
       user: {

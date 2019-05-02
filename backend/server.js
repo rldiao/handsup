@@ -33,15 +33,14 @@ app.use(
 // const donorRouter = require("./routes/donors.routes");
 const doneeRouter = require("./routes/donee.routes");
 const donationRouter = require("./routes/donation.routes");
+const userRoute = require("./routes/user.routes");
 
-// app.use("/donors", donorRouter);
 app.use("/donee", doneeRouter);
 app.use("/donation", donationRouter);
+app.use("/user", userRoute);
 
 require("./database");
-require("./models/user.model");
 require("./config/passport");
-require("./routes/user.routes")(app);
 
 app.get("/express_backend", (req, res) => {
   res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });

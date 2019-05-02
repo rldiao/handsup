@@ -38,13 +38,7 @@ export default class DiscoverPage extends Component {
       if (this.state.user.savedDoneesID.indexOf(state.id, 0) === -1) {
         this.state.user.savedDoneesID.push(state.id);
         this.setState({ user: this.state.user });
-        console.log(this.state.user);
-
-        Axios.put("update/" + this.state.user.email, this.state.user).then(
-          res => {
-            console.log(res.data);
-          }
-        );
+        Axios.put("/user/update/" + this.state.user.email, this.state.user);
       }
     }
   };
@@ -52,7 +46,7 @@ export default class DiscoverPage extends Component {
   async getUser() {
     const profile = AuthService.getProfile();
     try {
-      const res = await Axios.get("/" + profile.email);
+      const res = await Axios.get("/user/" + profile.email);
       const data = res.data;
       this.setState({ loading: false, user: data });
     } catch (e) {

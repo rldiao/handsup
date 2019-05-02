@@ -21,7 +21,7 @@ export default class MainSection extends Component {
   async getUser() {
     const profile = AuthService.getProfile();
     try {
-      const res = await Axios.get("/" + profile.email);
+      const res = await Axios.get("/user/" + profile.email);
       const data = res.data;
       this.setState({ loading: false, user: data });
     } catch (e) {
