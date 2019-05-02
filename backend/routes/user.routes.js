@@ -9,12 +9,10 @@ module.exports = app => {
 
   app.get("/logout", users.logoutUser);
 
-  // TODO: Authenticate access
   // app.get("/", users.getProfile);
 
   app.get("/:email", update.getOneProfile);
 
+  // TODO: change this part
   app.put("/update/:email", [auth.withAuth, update.updateProfile]);
-
-  //   app.delete("/delete/:email", users.deleteProfile);
 };
