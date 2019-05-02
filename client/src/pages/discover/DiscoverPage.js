@@ -64,7 +64,7 @@ export default class DiscoverPage extends Component {
 
   render() {
     const cardContent = this.state.donees.map(donee => {
-      const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
+      // const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
       return (
         <DoneeCard
           key={donee._id}

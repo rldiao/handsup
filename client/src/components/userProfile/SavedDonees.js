@@ -20,7 +20,7 @@ export default class SavedDonees extends Component {
       .then(res => {
         this.setState({ user: res.data });
         this.setState({ savedDonees: this.state.user.savedDoneesID });
-        this.state.user.savedDoneesID.map(doneeID => {
+        this.state.user.savedDoneesID.forEach(doneeID => {
           Axios.get("/donee/" + doneeID).then(res => {
             let temp = this.state.donees;
             temp.push(res.data);
@@ -54,7 +54,7 @@ export default class SavedDonees extends Component {
 
   render() {
     const cardContent = this.state.donees.map(donee => {
-      const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
+      //   const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
 
       return (
         <DoneeCard
