@@ -1,0 +1,28 @@
+.pageContainer {
+  min-height: calc(100vh - 3.5rem);
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 80%;
+  height: inherit;
+}
+
+.content > h1 {
+  padding: 1rem;
+}
+
+.content > .table {
+  width: 100%;
+}
+
+.tableContainer {
+  display: grid;
+}
+
+.tableItem {
+  border: 1px solid black;
+  height: 50px;
+}

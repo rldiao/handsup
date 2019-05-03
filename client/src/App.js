@@ -14,6 +14,7 @@ import SignupPage from "./pages/login/SignupPage";
 import DiscoverPage from "./pages/discover/DiscoverPage";
 import UserProfilePage from "./pages/userProfile/userProfilePage";
 import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
+import AdminPage from "./pages/admin/AdminPage";
 
 const checkAuth = () => {
   const token = localStorage.getItem("id_token");
@@ -52,7 +53,6 @@ class App extends Component {
     // Call our fetch function below once the component mounts
     this.callBackendAPI()
       .then(res => this.setState({ data: res.express }))
-      // .then(res => this.setState({ isAuth: res.isAuth}))
       .catch(err => console.log(err));
   }
 
@@ -99,6 +99,7 @@ class App extends Component {
             <PrivateRoute path="/settings" component={UserSettingsPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignupPage} />
+            <Route path="/admin" component={AdminPage} />
             <Route component={ErrorPage} />
           </Switch>
         </div>

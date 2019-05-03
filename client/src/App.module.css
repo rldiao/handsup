@@ -1,5 +1,5 @@
 .content {
-  padding-bottom: 2.5rem;
+  /* padding-bottom: 2.5rem; */
 }
 .pagecontainer {
   position: relative;
@@ -12,4 +12,3 @@
   width: 100%;
   height: 2.5rem; /* Footer height */
 }
-
