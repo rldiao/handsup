@@ -17,10 +17,7 @@ export const login = (email, password) => dispatch => {
       history.push("/");
     })
     .catch(function(error) {
-      console.log(
-        "There has been a problem with your fetch operation: ",
-        error.message
-      );
+      console.log(error.message);
     });
 };
 
