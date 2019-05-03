@@ -40,7 +40,7 @@ export default class MainSection extends Component {
       pic = "https://www.w3schools.com/howto/img_avatar.png";
     }
 
-    // TODO: For submittable 7
+    // NOTE: For submittable 7
     pic = zachProfilePic;
 
     return (

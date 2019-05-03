@@ -1,7 +1,4 @@
 // https://learnetto.com/blog/how-to-do-simple-form-validation-in-reactjs
-
-// TODO: Login user right after sign up
-
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";

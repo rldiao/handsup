@@ -32,8 +32,6 @@ userSchema.methods.setPassword = function(password) {
 
 // checking if password is valid
 userSchema.methods.validatePassword = function(password) {
-  // TODO: remove
-  // console.log(password, this.password);
   return crypt.compareSync(password, this.password);
 };
 

@@ -49,14 +49,15 @@ app.get("/express_backend", (req, res) => {
 // Static file declaration
 app.use(express.static(path.join(__dirname, "..", "/client/build")));
 
-// Production mode
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "..", "/client/build")));
-  //
-  app.get("*", (req, res) => {
-    res.sendfile(path.join((__dirname = "client/build/index.html")));
-  });
-}
+// Production mode NOTE: pretty sure i dont need this
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "..", "/client/build")));
+//   //
+//   app.get("*", (req, res) => {
+//     res.sendfile(path.join((__dirname, "..", "client/build/index.html")));
+//   });
+// }
+
 // Build mode
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/client/public/index.html"));

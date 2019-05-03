@@ -4,6 +4,7 @@ import AuthService from "../../services/AuthService";
 // This is a high order component
 // Learn more here: https://facebook.github.io/react/docs/higher-order-components.html
 
+// This component is deprecated
 export default function withAuth(AuthComponent) {
   return class AuthWrapped extends Component {
     constructor() {

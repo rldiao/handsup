@@ -15,7 +15,8 @@ class LoginPage extends Component {
       email: "",
       password: "",
       error: "",
-      redirect: false
+      redirect: false,
+      declinedSubmission: false
     };
   }
 

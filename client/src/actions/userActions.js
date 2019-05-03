@@ -35,5 +35,3 @@ export const logout = () => dispatch => {
   });
   history.push("/login");
 };
-
-// function signup(user) {}

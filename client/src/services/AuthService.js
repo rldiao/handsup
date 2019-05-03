@@ -84,19 +84,15 @@ function getProfile() {
   return decode(getToken());
 }
 
-// function getUserObject() {
-//   return
-// }
-
 async function _fetch(url, options) {
   const headers = {
     Accept: "application/json",
     "Content-Type": "application/json"
   };
 
-  if (loggedIn()) {
-    headers["Authorization"] = getToken();
-  }
+  // if (loggedIn()) {
+  //   headers["Authorization"] = getToken();
+  // }
 
   return fetch(url, {
     headers,
