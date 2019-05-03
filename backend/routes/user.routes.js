@@ -1,20 +1,23 @@
-module.exports = app => {
-  const users = require("../controllers/user.controller.js");
-  const update = require("../controllers/userUpdate.controller.js");
-  const auth = require("../middleware/auth.js");
+const express = require("express");
+const users = require("../controllers/user.controller.js");
+const update = require("../controllers/userUpdate.controller.js");
+const auth = require("../middleware/auth.js");
+const router = express.Router();
 
-  app.post("/signup", users.createUser);
+router.post("/signup", users.createUser);
 
-  app.post("/login", users.loginUser);
+router.post("/login", users.loginUser);
 
-  app.get("/logout", users.logoutUser);
+router.get("/logout", users.logoutUser);
 
-  // TODO: Authenticate access
-  // app.get("/", users.getProfile);
+router.get("/", (req, res) => {
+  res.send(req.headers);
+});
 
-  app.get("/:email", update.getOneProfile);
+router.get("/:email", [auth.withAuth, update.getOneProfile]);
 
-  app.put("/update/:email", update.updateProfile);
+router.put("/update/:email", [auth.withAuth, update.updateProfile]);
 
-  //   app.delete("/delete/:email", users.deleteProfile);
-};
+router.put("/change_password/:email", [auth.withAuth, update.updatePassword]);
+
+module.exports = router;

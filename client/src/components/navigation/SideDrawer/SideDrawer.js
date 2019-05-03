@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import styles from "./SideDrawer.module.css";
 import { stateConstants } from "../../../constants/stateConstants";
@@ -12,10 +12,6 @@ const sideDrawer = props => {
   if (props.show) {
     drawerClasses = classNames(styles.open, styles.sideDrawer);
   }
-
-  const handleLogout = () => {
-    this.props.logout();
-  };
 
   let accountActionButtons;
   let loggedIn = props.authState === stateConstants.AUTH;

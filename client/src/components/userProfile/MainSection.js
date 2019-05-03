@@ -21,7 +21,7 @@ export default class MainSection extends Component {
   async getUser() {
     const profile = AuthService.getProfile();
     try {
-      const res = await Axios.get("/" + profile.email);
+      const res = await Axios.get("/user/" + profile.email);
       const data = res.data;
       this.setState({ loading: false, user: data });
     } catch (e) {
@@ -40,7 +40,7 @@ export default class MainSection extends Component {
       pic = "https://www.w3schools.com/howto/img_avatar.png";
     }
 
-    // TODO: For submittable 7
+    // NOTE: For submittable 7
     pic = zachProfilePic;
 
     return (
