@@ -57,13 +57,13 @@ const sideDrawer = props => {
       <div className={classNames(styles.navBarButtons)}>
         <ul>
           <li>
-            <a href="/">About Us</a>
+            <a href="/about">About Us</a>
           </li>
           <li>
             <Link to="/discover">Discover</Link>
           </li>
           <li>
-            <a href="/">Contact Us</a>
+            <a href="/contact">Contact Us</a>
           </li>
         </ul>
       </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Axios from "axios";
 
 import styles from "./adminPage.module.css";
 import {
@@ -12,17 +13,33 @@ import {
   Paper
 } from "@material-ui/core";
 
-const donees = [
-  { _id: "1", name: "Steven Roger", payment: "140", nextPayment: "2/1/12" },
-  { _id: "2", name: "Tony Stark", payment: "120", nextPayment: "3/2/14" },
-  { _id: "3", name: "Thor", payment: "130", nextPayment: "2/4/13" }
-];
-
 export default class AdminPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      donees: []
+    };
+  }
+
+  componentDidMount() {
+    Axios.get("/donee").then(res => {
+      this.setState({ donees: res.data });
+    });
+  }
+
+  // TODO: Remove the console.logs
   handleRemove = () => {
     if (window.confirm("Are you sure you want to remove row(s)?")) {
       // Remove selected rows
+      console.log("You deleted some donees!");
+    } else {
+      console.log("You cancelled!");
     }
+  };
+
+  handleAdd = () => {
+    console.log("Added donee!");
   };
 
   render() {
@@ -30,7 +47,7 @@ export default class AdminPage extends Component {
       <div className={styles.pageContainer}>
         <div className={styles.content}>
           <h1>Donees</h1>
-          <Button>Add</Button>
+          <Button onClick={this.handleAdd}>Add</Button>
           <Button onClick={this.handleRemove}>Remove</Button>
           <Paper style={{ overflowX: "auto" }}>
             <Table>
@@ -45,14 +62,14 @@ export default class AdminPage extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {donees.map(donee => (
+                {this.state.donees.map(donee => (
                   <TableRow key={donee._id}>
                     <TableCell>
                       <Checkbox />
                     </TableCell>
                     <TableCell>{donee.name}</TableCell>
-                    <TableCell>${donee.payment}</TableCell>
-                    <TableCell>{donee.nextPayment}</TableCell>
+                    <TableCell>${donee.funded}</TableCell>
+                    <TableCell>{donee.monthlyRenewalDate}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

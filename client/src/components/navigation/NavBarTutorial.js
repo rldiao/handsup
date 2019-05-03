@@ -40,7 +40,7 @@ class NavBarTutorial extends Component {
                 </Link>
               </li>
               <li>
-                <Link to="/contacts" className={styles.navBarItem}>
+                <Link to="/contact" className={styles.navBarItem}>
                   Contact Us
                 </Link>
               </li>
