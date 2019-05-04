@@ -10,9 +10,9 @@ router.post("/login", users.loginUser);
 
 router.get("/logout", users.logoutUser);
 
-router.get("/", (req, res) => {
-  res.send(req.headers);
-});
+// router.get("/", (req, res) => {
+//   res.send(req.headers);
+// });
 
 router.get("/:email", [auth.withAuth, update.getOneProfile]);
 

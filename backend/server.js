@@ -6,11 +6,8 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const path = require("path");
-const errorHandler = require("errorhandler");
 
 require("dotenv").config();
-
-const auth = require("./middleware/auth.js");
 
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
