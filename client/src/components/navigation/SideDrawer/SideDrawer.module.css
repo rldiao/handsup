@@ -1,0 +1,90 @@
+.sideDrawer {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start; */
+  height: 100%;
+  background: white;
+  box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  align-items: center;
+  top: 0;
+  right: 0;
+  width: 70%;
+  max-width: 350px;
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-out;
+}
+
+.open {
+  transform: translateX(0);
+  transition: transform 0.3s ease-out;
+}
+
+/* .sideDrawerTop {
+  background-color: pink;
+  height: 50%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.sideDrawerBottom {
+  height: 50%;
+  height: 50%;
+  display: flex;
+  align-items: flex-start;
+} */
+
+.accountButtons {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  border-bottom: 0.5px solid #17171780;
+}
+
+.navBarButtons {
+  display: none;
+}
+
+.sideDrawer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.sideDrawer li {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.sideDrawer a,
+.sideDrawer div {
+  color: #521751;
+  text-decoration: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.sideDrawer a:hover,
+.sideDrawer a:active,
+.sideDrawer div:hover,
+.sideDrawer div:active {
+  color: #fa923f;
+}
+
+@media screen and (max-width: 800px) {
+  .accountButtons {
+    height: 50%;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: left;
+  }
+
+  .navBarButtons {
+    height: 50%;
+    display: flex;
+    align-items: flex-start;
+  }
+}

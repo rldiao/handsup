@@ -1,0 +1,4 @@
+export const userConstants = {
+  USER_VERIFIED: "USER_VERIFIED",
+  USER_UNVERIFIED: "USER_UNVERIFIED"
+};

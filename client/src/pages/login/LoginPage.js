@@ -1,18 +1,22 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import AuthService from "../../services/AuthService";
+import { connect } from "react-redux";
+import { login } from "../../actions/userActions";
+
 import Button from "@material-ui/core/Button";
 
 import styles from "./form.module.css";
 
-export default class LoginPage extends Component {
-  constructor() {
-    super();
+class LoginPage extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       email: "",
       password: "",
       error: "",
-      redirect: false
+      redirect: false,
+      declinedSubmission: false
     };
   }
 
@@ -34,17 +38,7 @@ export default class LoginPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let that = this;
-    AuthService.login(this.state.email, this.state.password)
-      .then(res => {
-        that.setState({ redirect: true });
-      })
-      .catch(function(error) {
-        console.log(
-          "There has been a problem with your fetch operation: ",
-          error.message
-        );
-      });
+    this.props.login(this.state.email, this.state.password);
   };
 
   render() {
@@ -95,3 +89,8 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+export default connect(
+  null,
+  { login }
+)(LoginPage);

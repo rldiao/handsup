@@ -22,6 +22,7 @@ export const styles = {
 
   hideDropDownPasswordBtn: {
     height: "3rem",
+<<<<<<< HEAD
     width: "100%",
     textAlign: "left",
     paddingLeft: "3rem",
@@ -57,5 +58,11 @@ export const styles = {
     fontFamily: ["open-sans", "sans-serif"],
     fontWeight: "700",
     fontStyle: "normal"
+=======
+    paddingLeft: "0",
+    marginBottom: "2.5%",
+    width: "200px",
+    border: "2px solid black"
+>>>>>>> page/admin
   }
 };

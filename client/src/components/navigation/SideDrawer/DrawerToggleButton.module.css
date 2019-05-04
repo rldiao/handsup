@@ -1,0 +1,49 @@
+.toggleButton {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  top: 0;
+  right: 0;
+  height: 24px;
+  width: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+}
+
+.toggleButtonAvatar {
+  display: flex;
+}
+
+.toggleButtonLine {
+  display: flex;
+  width: 30px;
+  height: 2px;
+  background: #171717;
+}
+
+.toggleButton:focus {
+  outline: none;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  /* margin-left: 1rem; */
+}
+
+@media screen and (max-width: 800px) {
+  /* div:has(.avatar) {
+    display: none;
+  } */
+  .avatar {
+    display: none;
+  }
+
+  .toggleButton {
+    display: flex;
+  }
+}

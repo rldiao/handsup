@@ -1,18 +1,8 @@
-const mongoose = require("mongoose");
 const Donor = require("../models/user.model");
-
-const getProfile = function(req, res) {
-  Donor.find((err, donor) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.send(donor);
-    }
-  });
-};
+const crypt = require("bcrypt");
 
 const getOneProfile = function(req, res) {
-  Donor.findOne({ username: req.params.username }, (err, donor) => {
+  Donor.findOne({ email: req.params.email }, (err, donor) => {
     if (err) {
       res.sendStatus(500);
     } else {
@@ -23,21 +13,21 @@ const getOneProfile = function(req, res) {
 
 const updateProfile = function(req, res) {
   Donor.findOneAndUpdate(
-    { username: req.params.username },
+    { email: req.params.email },
     req.body,
     { new: true },
     (err, donor) => {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.send(donor);
+        res.sendStatus(200);
       }
     }
   );
 };
 
 const deleteProfile = function(req, res) {
-  Donor.findOneAndDelete({ username: req.params.username }, (err, donor) => {
+  Donor.findOneAndDelete({ email: req.params.email }, (err, donor) => {
     if (err) {
       res.sendStatus(500);
     } else {
@@ -46,9 +36,26 @@ const deleteProfile = function(req, res) {
   });
 };
 
+const updatePassword = function(req, res) {
+  // TODO: try find better design using donor.setpassword
+  let newPassword = crypt.hashSync(req.body.password, crypt.genSaltSync(8));
+  Donor.findOneAndUpdate(
+    { email: req.params.email },
+    { password: newPassword },
+    { new: true },
+    (err, donor) => {
+      if (err) {
+        res.sendStatus(500);
+      } else {
+        res.sendStatus(200);
+      }
+    }
+  );
+};
+
 module.exports = {
-  getProfile,
   getOneProfile,
   updateProfile,
-  deleteProfile
+  deleteProfile,
+  updatePassword
 };

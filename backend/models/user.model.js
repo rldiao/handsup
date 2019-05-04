@@ -26,8 +26,8 @@ const userSchema = mongoose.Schema({
 
 // hash the password
 userSchema.methods.setPassword = function(password) {
-  // TODO: improve password hashing?
-  this.password = crypt.hashSync(password, crypt.genSaltSync(8), null);
+  // TODO: move this into a service
+  this.password = crypt.hashSync(password, crypt.genSaltSync(8));
 };
 
 // checking if password is valid
