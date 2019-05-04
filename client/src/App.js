@@ -14,7 +14,6 @@ import SignupPage from "./pages/login/SignupPage";
 import DiscoverPage from "./pages/discover/DiscoverPage";
 import UserProfilePage from "./pages/userProfile/userProfilePage";
 import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
-import AdminPage from "./pages/admin/AdminPage";
 import ContactPage from "./pages/contact/ContactPage";
 import AboutPage from "./pages/about/AboutPage";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
@@ -113,7 +112,6 @@ class App extends Component {
               <PrivateRoute path="/settings" component={UserSettingsPage} />
               <Route path="/login" component={LoginPage} />
               <Route path="/signup" component={SignupPage} />
-              <Route path="/admin" component={AdminPage} />
               <Route path="/contact" component={ContactPage} />
               <Route path="/about" component={AboutPage} />
               <Route component={ErrorPage} />
