@@ -20,11 +20,42 @@ export const styles = {
     display: "flex"
   },
 
-  dropDownBtn: {
+  hideDropDownPasswordBtn: {
     height: "3rem",
-    paddingLeft: "0",
-    marginBottom: "2.5%",
-    width: "25%",
-    border: "2px solid black"
+    width: "100%",
+    textAlign: "left",
+    paddingLeft: "3rem",
+    borderTop: "2px solid grey"
+  },
+
+  showDropDownPasswordBtn: {
+    height: "3rem",
+    width: "100%",
+    textAlign: "left",
+    paddingLeft: "3rem",
+    borderTop: "2px solid #009688"
+  },
+
+  hideDropDownPaymentBtn: {
+    height: "3rem",
+    width: "100%",
+    textAlign: "left",
+    paddingLeft: "3rem",
+    borderTop: "2px solid grey",
+    borderBottom: "2px solid grey"
+  },
+
+  showDropDownPaymentBtn: {
+    height: "3rem",
+    width: "100%",
+    textAlign: "left",
+    paddingLeft: "3rem",
+    borderTop: "2px solid #009688"
+  },
+
+  listItemText: {
+    fontFamily: ["open-sans", "sans-serif"],
+    fontWeight: "700",
+    fontStyle: "normal"
   }
 };

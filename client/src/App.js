@@ -4,7 +4,7 @@ import decode from "jwt-decode";
 
 import styles from "./App.module.css";
 import NavBar from "./components/navigation/NavBar";
-import UserSettingPage from "./pages/userProfileSettings/userSettingsPage";
+import UserSettingPage from "./pages/userProfileSettings/UserSettingsPage";
 
 import HomePage from "./pages/home/HomePage";
 import ErrorPage from "./pages/error/ErrorPage";
