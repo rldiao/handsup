@@ -90,6 +90,7 @@ export default class SignupPage extends Component {
           "There has been a problem with your signup: ",
           error.message
         );
+        // TODO: change ui to error invalid email.
       });
   };
 

@@ -16,8 +16,8 @@ export const login = (email, password) => dispatch => {
       });
       history.push("/");
     })
-    .catch(function(error) {
-      console.log(error.message);
+    .catch(err => {
+      console.log(err.message);
     });
 };
 
