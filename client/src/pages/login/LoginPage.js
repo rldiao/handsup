@@ -38,6 +38,7 @@ class LoginPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    // TODO: get this to return a promise or change the redux setting
     this.props.login(this.state.email, this.state.password);
   };
 

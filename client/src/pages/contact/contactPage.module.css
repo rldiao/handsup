@@ -1,0 +1,21 @@
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer {
+  padding: 2rem;
+  min-width: 500px;
+}
+
+.textField {
+  width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .formContainer {
+    min-width: unset;
+    width: 100%;
+  }
+}

@@ -1,3 +1,8 @@
+:root {
+  --main-navbar-height: 3.5rem;
+  --main-primary-color: #41521f;
+}
+
 html {
   height: 100%;
 }

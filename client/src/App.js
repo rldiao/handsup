@@ -15,7 +15,11 @@ import DiscoverPage from "./pages/discover/DiscoverPage";
 import UserProfilePage from "./pages/userProfile/userProfilePage";
 import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
 import AdminPage from "./pages/admin/AdminPage";
+import ContactPage from "./pages/contact/ContactPage";
+import AboutPage from "./pages/about/AboutPage";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 
+// Private Routing
 const checkAuth = () => {
   const token = localStorage.getItem("id_token");
   if (!token) {
@@ -41,6 +45,16 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     }
   />
 );
+
+// Material UI Theme
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: "#41521f" }
+  },
+  typography: {
+    useNextVariants: true
+  }
+});
 
 class App extends Component {
   state = {
@@ -86,26 +100,30 @@ class App extends Component {
       backdrop = <Backdrop click={this.backdropClickHandler} />;
     }
     return (
-      <div className={styles.pagecontainer}>
-        <NavBarTutorial drawerClickHandler={this.drawerToggleClickHandler} />
-        <SideDrawer show={this.state.sideDrawerOpen} />
-        {backdrop}
-        <div className={styles.content}>
-          <Switch>
-            <PrivateRoute path="/" exact component={HomePage} />
-            <PrivateRoute path="/discover" component={DiscoverPage} />
-            <PrivateRoute path="/userProfile" component={UserProfilePage} />
-            <PrivateRoute path="/settings" component={UserSettingsPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/signup" component={SignupPage} />
-            <Route path="/admin" component={AdminPage} />
-            <Route component={ErrorPage} />
-          </Switch>
-        </div>
-        {/* <div className={styles.footer}>
+      <MuiThemeProvider theme={theme}>
+        <div className={styles.pagecontainer}>
+          <NavBarTutorial drawerClickHandler={this.drawerToggleClickHandler} />
+          <SideDrawer show={this.state.sideDrawerOpen} />
+          {backdrop}
+          <div className={styles.content}>
+            <Switch>
+              <PrivateRoute path="/" exact component={HomePage} />
+              <PrivateRoute path="/discover" component={DiscoverPage} />
+              <PrivateRoute path="/userProfile" component={UserProfilePage} />
+              <PrivateRoute path="/settings" component={UserSettingsPage} />
+              <Route path="/login" component={LoginPage} />
+              <Route path="/signup" component={SignupPage} />
+              <Route path="/admin" component={AdminPage} />
+              <Route path="/contact" component={ContactPage} />
+              <Route path="/about" component={AboutPage} />
+              <Route component={ErrorPage} />
+            </Switch>
+          </div>
+          {/* <div className={styles.footer}>
           <Footer />
         </div> */}
-      </div>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
