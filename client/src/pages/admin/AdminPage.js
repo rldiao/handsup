@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import Axios from "axios";
 
+import AdminDoneeProfile from "../../components/admin/AdminDoneeProfile";
+
 import styles from "./adminPage.module.css";
+
 import {
   Button,
   Table,
@@ -44,39 +47,40 @@ export default class AdminPage extends Component {
 
   render() {
     return (
-      <div className={styles.pageContainer}>
-        <div className={styles.content}>
-          <h1>Donees</h1>
-          <Button onClick={this.handleAdd}>Add</Button>
-          <Button onClick={this.handleRemove}>Remove</Button>
-          <Paper style={{ overflowX: "auto" }}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <Checkbox />
-                  </TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Payment</TableCell>
-                  <TableCell>Next Payment</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {this.state.donees.map(donee => (
-                  <TableRow key={donee._id}>
-                    <TableCell>
-                      <Checkbox />
-                    </TableCell>
-                    <TableCell>{donee.name}</TableCell>
-                    <TableCell>${donee.funded}</TableCell>
-                    <TableCell>{donee.monthlyRenewalDate}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Paper>
-        </div>
-      </div>
+      // <div className={styles.pageContainer}>
+      //   <div className={styles.content}>
+      //     <h1>Donees</h1>
+      //     <Button onClick={this.handleAdd}>Add</Button>
+      //     <Button onClick={this.handleRemove}>Remove</Button>
+      //     <Paper style={{ overflowX: "auto" }}>
+      //       <Table>
+      //         <TableHead>
+      //           <TableRow>
+      //             <TableCell>
+      //               <Checkbox />
+      //             </TableCell>
+      //             <TableCell>Name</TableCell>
+      //             <TableCell>Payment</TableCell>
+      //             <TableCell>Next Payment</TableCell>
+      //           </TableRow>
+      //         </TableHead>
+      //         <TableBody>
+      //           {this.state.donees.map(donee => (
+      //             <TableRow key={donee._id}>
+      //               <TableCell>
+      //                 <Checkbox />
+      //               </TableCell>
+      //               <TableCell>{donee.name}</TableCell>
+      //               <TableCell>${donee.funded}</TableCell>
+      //               <TableCell>{donee.monthlyRenewalDate}</TableCell>
+      //             </TableRow>
+      //           ))}
+      //         </TableBody>
+      //       </Table>
+      //     </Paper>
+      //   </div>
+      // </div>
+      <AdminDoneeProfile />
     );
   }
 }

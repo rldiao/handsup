@@ -12,8 +12,8 @@ import ErrorPage from "./pages/error/ErrorPage";
 import LoginPage from "./pages/login/LoginPage";
 import SignupPage from "./pages/login/SignupPage";
 import DiscoverPage from "./pages/discover/DiscoverPage";
-import UserProfilePage from "./pages/userProfile/userProfilePage";
-import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
+import UserProfilePage from "./pages/userProfile/UserProfilePage";
+import UserSettingsPage from "./pages/userProfileSettings/UserSettingsPage";
 import AdminPage from "./pages/admin/AdminPage";
 
 const checkAuth = () => {

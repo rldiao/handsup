@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
 import { profileStyles } from "./profileStyles";
 
-class userProfilePage extends Component {
+class UserProfilePage extends Component {
   constructor() {
     super();
     this.routeChange = this.routeChange.bind(this);
@@ -36,4 +36,4 @@ class userProfilePage extends Component {
   }
 }
 
-export default withRouter(userProfilePage);
+export default withRouter(UserProfilePage);
