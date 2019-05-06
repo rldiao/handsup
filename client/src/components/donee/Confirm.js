@@ -22,7 +22,7 @@ export class Confirm extends Component {
 
   render() {
     const { values, classes, className, ...other } = this.props;
-    console.log(this.props);
+
     return (
       <div>
         <h2>Confirm</h2>

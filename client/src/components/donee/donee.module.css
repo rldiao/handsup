@@ -5,7 +5,6 @@
 }
 
 .grid {
-  margin: 2rem;
   display: grid;
   grid-auto-columns: 400px;
   grid-gap: 1rem;
