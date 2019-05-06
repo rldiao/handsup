@@ -17,6 +17,7 @@ import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
 import ContactPage from "./pages/contact/ContactPage";
 import AboutPage from "./pages/about/AboutPage";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import DoneeForm from "./components/donee/DoneeForm";
 
 // Private Routing
 const checkAuth = () => {
@@ -62,7 +63,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // Call our fetch function below once the component mounts
     this.callBackendAPI()
       .then(res => this.setState({ data: res.express }))
       .catch(err => console.log(err));
@@ -114,6 +114,7 @@ class App extends Component {
               <Route path="/signup" component={SignupPage} />
               <Route path="/contact" component={ContactPage} />
               <Route path="/about" component={AboutPage} />
+              <Route path="/donee" component={DoneeForm} />
               <Route component={ErrorPage} />
             </Switch>
           </div>
