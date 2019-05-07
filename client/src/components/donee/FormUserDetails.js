@@ -28,9 +28,12 @@ export class FormUserDetails extends Component {
           value={values.confirmPassword}
           onChange={handleChange("confirmPassword")}
         />
-        <Button variant="contained" color="primary" onClick={this.props.next}>
-          Next
-        </Button>
+        <div className={styles.gridItemSplit}>
+          <Button onClick={this.props.switchForm}>I'm donating</Button>
+          <Button variant="contained" color="primary" onClick={this.props.next}>
+            Next
+          </Button>
+        </div>
       </Fragment>
     );
   }

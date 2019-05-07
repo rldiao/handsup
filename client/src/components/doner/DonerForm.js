@@ -3,10 +3,12 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
-import styles from "./form.module.css";
+import styles from "./doner.module.css";
 import AuthService from "../../services/AuthService";
 
-export default class SignupPage extends Component {
+// TODO: refactor into material ui components
+
+export default class DonerForm extends Component {
   state = {
     email: "",
     password: "",
@@ -122,7 +124,7 @@ export default class SignupPage extends Component {
     return (
       <div className={styles.formContainer}>
         <div className={styles.container}>
-          <div className={styles.formHeader}>Sign Up</div>
+          <div className={styles.formHeader}>Doner Sign Up</div>
           <form
             className={styles.formFields}
             method="post"
@@ -189,9 +191,7 @@ export default class SignupPage extends Component {
               >
                 Sign Up
               </Button>
-              <Link to="/login" className={styles.formFieldLink}>
-                I'm already member
-              </Link>
+              <Button onClick={this.props.switchForm}>I'm a donee!</Button>
             </div>
           </form>
         </div>

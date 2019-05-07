@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import decode from "jwt-decode";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 
 import styles from "./App.module.css";
 import NavBarTutorial from "./components/navigation/NavBarTutorial";
 import SideDrawer from "./components/navigation/SideDrawer/SideDrawer";
 import Backdrop from "./components/navigation/Backdrop/Backdrop";
-
 import HomePage from "./pages/home/HomePage";
 import ErrorPage from "./pages/error/ErrorPage";
 import LoginPage from "./pages/login/LoginPage";
-import SignupPage from "./pages/login/SignupPage";
+import SignUpPage from "./pages/signup/SignUpPage";
 import DiscoverPage from "./pages/discover/DiscoverPage";
 import UserProfilePage from "./pages/userProfile/userProfilePage";
 import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
 import ContactPage from "./pages/contact/ContactPage";
 import AboutPage from "./pages/about/AboutPage";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import DoneeForm from "./components/donee/DoneeForm";
 
 // Private Routing
 const checkAuth = () => {
@@ -111,10 +109,9 @@ class App extends Component {
               <PrivateRoute path="/userProfile" component={UserProfilePage} />
               <PrivateRoute path="/settings" component={UserSettingsPage} />
               <Route path="/login" component={LoginPage} />
-              <Route path="/signup" component={SignupPage} />
+              <Route path="/signup" component={SignUpPage} />
               <Route path="/contact" component={ContactPage} />
               <Route path="/about" component={AboutPage} />
-              <Route path="/donee" component={DoneeForm} />
               <Route component={ErrorPage} />
             </Switch>
           </div>

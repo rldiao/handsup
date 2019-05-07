@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import FormUserDetails from "./FormUserDetails";
 
 import styles from "./donee.module.css";
@@ -70,6 +70,7 @@ export class DoneeForm extends Component {
             back={this.prevStep}
             values={values}
             handleChange={this.handleChange}
+            switchForm={this.props.switchForm}
           />
         );
         break;
@@ -108,9 +109,9 @@ export class DoneeForm extends Component {
     }
 
     return (
-      <div className={styles.pageContainer}>
+      <Fragment>
         <div className={styles.grid}>{form}</div>
-      </div>
+      </Fragment>
     );
   }
 }

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import AuthService from "../../services/AuthService";
 import { connect } from "react-redux";
 import { login } from "../../actions/userActions";
-
 import Button from "@material-ui/core/Button";
 
 import styles from "./form.module.css";
+import AuthService from "../../services/AuthService";
 
 class LoginPage extends Component {
   constructor(props) {
