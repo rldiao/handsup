@@ -16,6 +16,7 @@ import UserProfilePage from "./pages/userProfile/userProfilePage";
 import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
 import ContactPage from "./pages/contact/ContactPage";
 import AboutPage from "./pages/about/AboutPage";
+import DoneePage from "./pages/doneeProfile/DoneePage";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 
 // Private Routing
@@ -114,6 +115,7 @@ class App extends Component {
               <Route path="/signup" component={SignupPage} />
               <Route path="/contact" component={ContactPage} />
               <Route path="/about" component={AboutPage} />
+              <Route path="/donee" component={DoneePage} />
               <Route component={ErrorPage} />
             </Switch>
           </div>

@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  margin: 4vw;
+}
+
+.titleField {
+  margin: normal;
+  width: 25%;
+}
+
+.postField {
+  margin: normal;
+  width: 50%;
+}
+
+.addIcon {
+  font-size: large;
+}
+
+.postContainer {
+  margin: 4vw 0 3vw 6vw;
+}
+
+.title {
+  display: flex;
+  font-family: open-sans, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.75vw;
+}
+
+.time {
+  font-size: 0.9vw;
+}
+
+.postContent {
+  width: 70%;
+  margin-top: 3vw;
+}
+
+.navtab {
+  margin: 0 5%;
+}
