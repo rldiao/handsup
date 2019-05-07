@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import FormUserDetails from "./FormUserDetails";
 
 import styles from "./donee.module.css";
@@ -8,7 +8,7 @@ import Confirm from "./Confirm";
 
 const genders = ["Male", "Female", "Other"];
 
-export class DoneeForm extends Component {
+export class DoneeSignupForm extends Component {
   state = {
     step: 1,
     email: "",
@@ -109,11 +109,12 @@ export class DoneeForm extends Component {
     }
 
     return (
-      <Fragment>
-        <div className={styles.grid}>{form}</div>
-      </Fragment>
+      <div className={styles.grid}>
+        <h1>Donee Sign Up</h1>
+        {form}
+      </div>
     );
   }
 }
 
-export default DoneeForm;
+export default DoneeSignupForm;

@@ -1,96 +1,40 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { login } from "../../actions/userActions";
-import Button from "@material-ui/core/Button";
+import DonerLoginForm from "../../components/doner/DonerLoginForm";
+import DoneeLoginForm from "../../components/donee/DoneeLoginForm";
 
-import styles from "./form.module.css";
-import AuthService from "../../services/AuthService";
+import styles from "./loginPage.module.css";
 
-class LoginPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      error: "",
-      redirect: false,
-      declinedSubmission: false
-    };
-  }
-
-  componentWillMount = () => {
-    if (AuthService.loggedIn()) {
-      this.setState({ redirect: true });
-    }
+export class LoginPage extends Component {
+  state = {
+    form: 1
   };
 
-  handleChange = e => {
-    let target = e.target;
-    let value = target.type === "checkbox" ? target.checked : target.value;
-    let name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleSubmit = e => {
+  handleSwitch = e => {
     e.preventDefault();
-    // TODO: get this to return a promise or change the redux setting
-    this.props.login(this.state.email, this.state.password);
+    let { form } = this.state;
+    if (form === 1) {
+      this.setState({ form: form + 1 });
+    } else {
+      this.setState({ form: form - 1 });
+    }
   };
 
   render() {
-    if (this.state.redirect === true) {
-      return <Redirect to="/" />;
+    let formComponent;
+    const { form } = this.state;
+    switch (form) {
+      case 1:
+        formComponent = <DonerLoginForm switchForm={this.handleSwitch} />;
+        break;
+      case 2:
+        formComponent = <DoneeLoginForm switchForm={this.handleSwitch} />;
+        break;
+      default:
+        throw new Error("Undefined form");
     }
 
-    return (
-      <div className={styles.formContainer}>
-        <div className={styles.container}>
-          <div className={styles.formHeader}>Login</div>
-          <form className={styles.formFields} onSubmit={this.handleSubmit}>
-            <div className={styles.formField}>
-              <label className={styles.formFields}>Email</label>
-              <input
-                className={styles.formFieldInput}
-                id="email"
-                type="email"
-                name="email"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className={styles.formField}>
-              <label className={styles.formFields}>Password</label>
-              <input
-                className={styles.formFieldInput}
-                id="password"
-                type="password"
-                name="password"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className={styles.formField}>
-              <Button
-                variant="contained"
-                className={styles.formFieldButton}
-                type="submit"
-              >
-                Sign In
-              </Button>
-              <Link to="/signup" className={styles.formFieldLink}>
-                Sign Up
-              </Link>
-            </div>
-          </form>
-        </div>
-      </div>
-    );
+    return <div className={styles.pageContainer}>{formComponent}</div>;
   }
 }
 
-export default connect(
-  null,
-  { login }
-)(LoginPage);
+export default LoginPage;

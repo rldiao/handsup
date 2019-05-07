@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 
 import styles from "./signup.module.css";
-import DoneeForm from "../../components/donee/DoneeForm";
-import DonerForm from "../../components/doner/DonerForm";
-import { Button } from "@material-ui/core";
+import DoneeSignupForm from "../../components/donee/DoneeSignupForm";
+import DonerSignupForm from "../../components/doner/DonerSignupForm";
 
 export default class SignUpPage extends Component {
   state = {
@@ -26,10 +25,10 @@ export default class SignUpPage extends Component {
 
     switch (form) {
       case 1:
-        formComponent = <DonerForm switchForm={this.handleSwitch} />;
+        formComponent = <DonerSignupForm switchForm={this.handleSwitch} />;
         break;
       case 2:
-        formComponent = <DoneeForm switchForm={this.handleSwitch} />;
+        formComponent = <DoneeSignupForm switchForm={this.handleSwitch} />;
         break;
       default:
         throw new Error("Undefined form");

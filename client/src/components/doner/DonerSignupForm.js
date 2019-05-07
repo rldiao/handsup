@@ -1,6 +1,6 @@
 // https://learnetto.com/blog/how-to-do-simple-form-validation-in-reactjs
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
 import styles from "./doner.module.css";
@@ -8,18 +8,22 @@ import AuthService from "../../services/AuthService";
 
 // TODO: refactor into material ui components
 
-export default class DonerForm extends Component {
-  state = {
-    email: "",
-    password: "",
-    name: "",
-    hasAgreed: false,
-    formErrors: { name: "", email: "", password: "" },
-    emailValid: false,
-    passwordValid: false,
-    formValid: false,
-    redirect: false
-  };
+export default class DonerSignupForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      password: "",
+      name: "",
+      hasAgreed: false,
+      formErrors: { name: "", email: "", password: "" },
+      emailValid: false,
+      passwordValid: false,
+      formValid: false,
+      redirect: false
+    };
+  }
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
@@ -124,7 +128,7 @@ export default class DonerForm extends Component {
     return (
       <div className={styles.formContainer}>
         <div className={styles.container}>
-          <div className={styles.formHeader}>Doner Sign Up</div>
+          <h1>Doner Sign Up</h1>
           <form
             className={styles.formFields}
             method="post"
