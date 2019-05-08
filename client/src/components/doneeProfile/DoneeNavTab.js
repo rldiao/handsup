@@ -1,35 +1,22 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import NoSsr from "@material-ui/core/NoSsr";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
 import DoneeAbout from "./DoneeAbout";
 import DoneeMakeUpdate from "./DoneeMakeUpdate";
-import DoneePost from "./DoneePost";
+import Paper from "@material-ui/core/Paper";
+import classnames from "classnames";
 
 import styles from "./doneeProfile.module.css";
 import { styles as custom } from "./doneeProfile.style";
-
-function TabContainer(props) {
-  return <Typography component="div">{props.children}</Typography>;
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired
-};
+import DoneePostTab from "./DoneePostTab";
 
 class DoneeNavTab extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: 0,
-      newUpdate: false
-    };
-  }
+  state = {
+    value: 0,
+    newUpdate: false
+  };
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -46,13 +33,15 @@ class DoneeNavTab extends Component {
   render() {
     const { value } = this.state;
 
-    let updatePage = this.state.newUpdate ? (
-      <DoneeMakeUpdate handleCancelClick={this.handleCancelClick} />
-    ) : (
-      <DoneePost handleNewUpdateClick={this.handleNewUpdateClick} />
-    );
+    // let updatePage = this.state.newUpdate ? (
+    //   <DoneeMakeUpdate handleCancelClick={this.handleCancelClick} />
+    // ) : (
+    //   <DoneePostTab handleNewUpdateClick={this.handleNewUpdateClick} />
+    // );
 
     console.log(this.state.newUpdate);
+
+    const { classes } = this.props;
 
     return (
       <NoSsr>
@@ -67,19 +56,14 @@ class DoneeNavTab extends Component {
             <Tab label="Updates" style={custom.tabLabel} />
           </Tabs>
         </Paper>
-        {value === 0 && (
-          <TabContainer>
-            <DoneeAbout />
-          </TabContainer>
-        )}
-        {value === 1 && <TabContainer>{updatePage}</TabContainer>}
+        <div
+          className={classnames(styles.tabContainer, styles.tabContainerGrid)}
+        >
+          {value === 0 && <DoneeAbout />}
+          {value === 1 && <DoneePostTab />}
+        </div>
       </NoSsr>
     );
   }
 }
-
-DoneeNavTab.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(DoneeNavTab);
+export default DoneeNavTab;

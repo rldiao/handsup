@@ -4,7 +4,7 @@ export const styles = {
     backgroundColor: "#41521f",
     borderRadius: "5px",
     padding: "0.25% 4%",
-    marginLeft: "4vw",
+    margin: "0 0 3vw 6vw",
     textTransform: "initial"
   },
 
@@ -12,7 +12,7 @@ export const styles = {
     border: "1px solid grey",
     borderRadius: "5px",
     padding: "0.25% 4%",
-    marginLeft: "2vw",
+    margin: "0 0 3vw 2vw",
     textTransform: "initial"
   },
 

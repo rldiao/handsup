@@ -1,6 +1,16 @@
 .container {
   display: flex;
-  margin: 4vw;
+  margin: 4vw 0 3vw 6vw;
+}
+
+.tabContainer {
+  margin-top: 2rem;
+  padding: 0 20%;
+}
+
+.tabContainerGrid {
+  display: grid;
+  grid-gap: 2rem;
 }
 
 .titleField {
@@ -17,27 +27,47 @@
   font-size: large;
 }
 
-.postContainer {
-  margin: 4vw 0 3vw 6vw;
+.navtab {
+  margin: 0 5%;
 }
 
-.title {
+/* Posts */
+
+.postTitle {
   display: flex;
   font-family: open-sans, sans-serif;
   font-weight: 600;
   font-style: normal;
-  font-size: 1.75vw;
+  font-size: 1.5rem;
 }
 
-.time {
-  font-size: 0.9vw;
+.postDate {
+  font-size: 0.5rem;
 }
 
 .postContent {
-  width: 70%;
-  margin-top: 3vw;
+  font-size: 1rem;
 }
 
-.navtab {
-  margin: 0 5%;
+/* New posts */
+.newPostBorderBox {
+  border: 1px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.newPostLabel {
+  background-color: lightgray;
+  border-bottom: 1px solid black;
+  padding: 0.5rem;
+}
+
+.newPostTextField {
+  padding: 0.5rem 1rem;
+}
+
+.newPostBtns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
 }
