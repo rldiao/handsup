@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { login } from "../../actions/userActions";
-import Button from "@material-ui/core/Button";
+import classnames from "classnames";
 
+import { login } from "../../actions/userActions";
 import styles from "./doner.module.css";
 import AuthService from "../../services/AuthService";
+import { TextField } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 class DonerLoginForm extends Component {
   constructor(props) {
@@ -25,14 +27,8 @@ class DonerLoginForm extends Component {
     }
   };
 
-  handleChange = e => {
-    let target = e.target;
-    let value = target.type === "checkbox" ? target.checked : target.value;
-    let name = target.name;
-
-    this.setState({
-      [name]: value
-    });
+  handleChange = field => e => {
+    this.setState({ [field]: e.target.value });
   };
 
   handleSubmit = e => {
@@ -47,41 +43,30 @@ class DonerLoginForm extends Component {
     }
 
     return (
-      <div className={styles.formContainer}>
-        <div className={styles.container}>
-          <h1>Doner Login</h1>
-          <form className={styles.formFields} onSubmit={this.handleSubmit}>
-            <div className={styles.formField}>
-              <label className={styles.formFields}>Email</label>
-              <input
-                className={styles.formFieldInput}
-                id="email"
-                type="email"
-                name="email"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className={styles.formField}>
-              <label className={styles.formFields}>Password</label>
-              <input
-                className={styles.formFieldInput}
-                id="password"
-                type="password"
-                name="password"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className={styles.formField}>
-              <Button onClick={this.props.switchForm}>I'm a donee</Button>
-              <Button
-                variant="contained"
-                className={styles.formFieldButton}
-                type="submit"
-              >
-                Login
-              </Button>
-            </div>
-          </form>
+      <div className={styles.grid}>
+        <h1>Doner Login</h1>
+        <TextField
+          variant="outlined"
+          label="Email"
+          value={this.state.email}
+          onChange={this.handleChange("email")}
+        />
+        <TextField
+          variant="outlined"
+          label="Password"
+          value={this.state.password}
+          type="password"
+          onChange={this.handleChange("password")}
+        />
+        <div className={styles.gridItemSplit}>
+          <Button onClick={this.props.switchForm}>I'm a donee!</Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleSubmit}
+          >
+            Login
+          </Button>
         </div>
       </div>
     );

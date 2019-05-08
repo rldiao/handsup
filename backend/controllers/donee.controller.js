@@ -3,7 +3,7 @@ const Donee = require("../models/donee.model");
 const getDonees = function(req, res) {
   Donee.find((err, donee) => {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(404);
     } else {
       res.send(donee);
     }
@@ -13,7 +13,7 @@ const getDonees = function(req, res) {
 const getOneDonee = function(req, res) {
   Donee.findOne({ _id: req.params._id }, (err, donee) => {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(404);
     } else {
       res.send(donee);
     }
@@ -25,7 +25,7 @@ const addOneDonee = function(req, res) {
 
   newDonee.save((err, newDonee) => {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(404);
     } else {
       res.send(newDonee);
     }
@@ -39,7 +39,7 @@ const updateOneDonee = function(req, res) {
     { new: true },
     (err, donee) => {
       if (err) {
-        res.sendStatus(500);
+        res.sendStatus(404);
       } else {
         res.send(donee);
       }
@@ -50,7 +50,7 @@ const updateOneDonee = function(req, res) {
 const deleteOneDonee = function(req, res) {
   Donee.findOneAndDelete({ _id: req.params._id }, (err, donee) => {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(404);
     } else {
       res.send(donee);
     }
