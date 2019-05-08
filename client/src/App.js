@@ -14,6 +14,7 @@ import SignupPage from "./pages/login/SignupPage";
 import DiscoverPage from "./pages/discover/DiscoverPage";
 import UserProfilePage from "./pages/userProfile/userProfilePage";
 import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
+import DoneeProfilePage from "./pages/doneeProfile/DoneePage";
 
 const checkAuth = () => {
   const token = localStorage.getItem("id_token");
@@ -97,6 +98,7 @@ class App extends Component {
             <PrivateRoute path="/discover" component={DiscoverPage} />
             <PrivateRoute path="/userProfile" component={UserProfilePage} />
             <PrivateRoute path="/settings" component={UserSettingsPage} />
+            <PrivateRoute path="/:id" component={DoneeProfilePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignupPage} />
             <Route component={ErrorPage} />

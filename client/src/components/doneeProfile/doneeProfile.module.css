@@ -1,0 +1,99 @@
+.doneeProfileContainer {
+  background-color: #f5fff9;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 2rem;
+  padding: 1rem;
+}
+
+.pictureContainer {
+  display: flex;
+}
+.doneePicture {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  resize: inherit;
+}
+
+.doneeDetailsContainer {
+  margin: auto 0 auto 0;
+}
+
+.doneeName {
+  font-size: 4vw;
+  font-family: raleway, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.amountFunded {
+  padding-top: 1rem;
+  color: #096927;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.buttonContainer {
+  display: flex
+}
+
+.aboutContainer {
+  padding: 2rem;
+}
+
+.aboutTitle {
+  color: #000000;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding-top: 1rem;
+}
+
+.aboutText {
+  color: #37433c;
+  padding-bottom: 1rem;
+  font-weight: lighter;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+li {
+  display: list-item;
+  list-style-position: inside;
+  padding-bottom: 0.5rem;
+  padding-left: 0;
+}
+
+ol {
+  padding-left: 0;
+}
+
+.textContainer {
+  padding-bottom: 1rem;
+}
+
+
+
+.locationInput {
+  display: block;
+  padding: 1% 10rem 1% 1%;
+  text-align: left;
+  font-weight: lighter;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+
+}
+
+.editText {
+  width: 100%;
+  height: 100px;
+  padding: 1% 1% 1% 1%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: none;
+  font-weight: lighter;
+  font-family: "Source Sans Pro", sans-serif;
+}

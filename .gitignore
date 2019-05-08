@@ -16,6 +16,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+**/.idea
 
 /client/npm-debug.log*
 /client/yarn-debug.log*

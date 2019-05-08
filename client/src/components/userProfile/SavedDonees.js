@@ -3,8 +3,11 @@ import styles from "./userProfile.module.css";
 import AuthService from "../../services/AuthService";
 import DoneeCard from "./DoneeCard";
 import Axios from 'axios';
+import { withRouter } from "react-router-dom";
+import { history } from "../../helper/history";
 
-export default class SavedDonees extends Component {
+
+class SavedDonees extends Component {
     constructor() {
         super();
         this.state = {
@@ -35,8 +38,11 @@ export default class SavedDonees extends Component {
     }
 
 
-    handleDoneeClick = (event) =>  {
-        console.log(event);
+    handleDoneeClick = (state) =>  {
+        history.push({
+            pathname: state.name,
+            state: { doneeID: state.id }
+        });
     };
 
     handleRemoveClick = (state) => {
@@ -62,7 +68,8 @@ export default class SavedDonees extends Component {
         const cardContent = this.state.donees.map(donee => {
             const progressWidth = (donee.funded/donee.monthlyDonationLimit)*100;
 
-            return <DoneeCard key={donee._id} id={donee._id} donee={donee} handleDoneeClick={this.handleDoneeClick} handleButtonClick={this.handleRemoveClick} btnText="Remove"/>;
+            return <DoneeCard key={donee._id} id={donee._id} donee={donee} handleDoneeClick={this.handleDoneeClick}
+                              handleButtonClick={this.handleRemoveClick} btnText="Remove" progressWidth={progressWidth}/>;
         });
 
         return (
@@ -79,3 +86,5 @@ export default class SavedDonees extends Component {
         );
     }
 }
+
+export default withRouter(SavedDonees);
