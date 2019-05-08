@@ -4,6 +4,10 @@ import styles from "./donee.module.css";
 import { TextField, Button } from "@material-ui/core";
 
 export class DoneeLoginForm extends Component {
+  handleLogin = () => {
+    // TODO
+  };
+
   render() {
     return (
       <div className={styles.grid}>

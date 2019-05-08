@@ -22,6 +22,10 @@ export class DoneeSignupForm extends Component {
     bio: ""
   };
 
+  handleSignup = () => {
+    // TODO
+  };
+
   nextStep = () => {
     const { step } = this.state;
     this.setState({ step: step + 1 });
