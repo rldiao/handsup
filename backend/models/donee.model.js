@@ -30,14 +30,12 @@ const doneeSchema = mongoose.Schema({
   phoneNumber: String,
   dob: String,
   location: String,
-  nationality: String,
   gender: String,
   profilePicture: String,
   bio: String,
   goal: [String],
   monthlyDonationLimit: Number,
   funded: Number
-
   // bankAccountToken: String,
   // monthlyRenewalDate: String,
 });

@@ -13,9 +13,11 @@ const muStyles = theme => ({
 });
 
 export class Confirm extends Component {
-  next = () => {
+  next = e => {
     let submit = window.confirm("Are all details correct?");
     if (submit) {
+      // TODO: error handling
+      this.props.handleSignup(e);
       this.props.next();
     }
   };

@@ -92,12 +92,22 @@ export default class DonerSignupForm extends Component {
     );
   };
 
-  // Handle Email already registered
+  // Sign up
   handleSubmit = async e => {
     e.preventDefault();
     let that = this;
+    const { name, email, password } = this.state;
 
-    AuthService.signup(this.state.name, this.state.email, this.state.password)
+    AuthService.signup(
+      {
+        user: {
+          name,
+          email,
+          password
+        }
+      },
+      "user"
+    )
       .then(res => {
         that.setState({ redirect: true });
       })
@@ -117,28 +127,16 @@ export default class DonerSignupForm extends Component {
     let confirmError;
 
     if (this.state.formErrors.name !== "") {
-      nameError = (
-        <div className={styles.errorMsg}>{this.state.formErrors.name}</div>
-      );
+      nameError = `${this.state.formErrors.name}`;
     }
     if (this.state.formErrors.email !== "") {
-      emailError = (
-        <div className={styles.errorMsg}>
-          Email {this.state.formErrors.email}
-        </div>
-      );
+      emailError = `Email ${this.state.formErrors.email}`;
     }
     if (this.state.formErrors.password !== "") {
-      passwordError = (
-        <div className={styles.errorMsg}>
-          Password {this.state.formErrors.password}
-        </div>
-      );
+      passwordError = `Password ${this.state.formErrors.password}`;
     }
     if (this.state.formErrors.confirmPassword !== "") {
-      confirmError = (
-        <div className={styles.errorMsg}>Password does not match!</div>
-      );
+      confirmError = "Password does not match!";
     }
 
     if (this.state.redirect === true) {
@@ -186,20 +184,22 @@ export default class DonerSignupForm extends Component {
           helperText={confirmError}
         />
         <label className={styles.formFieldCheckBoxLabel}>
-          <input
-            className={styles.formFieldCheckBox}
-            type="checkbox"
-            name="hasAgreed"
-            value={this.state.hasAgreed}
-            onChange={this.handleChange}
-          />
-          <text>I agree all statements in </text>
-          <a
-            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            className="FormField__TermsLink"
-          >
-            <text>terms of service</text>
-          </a>
+          <div>
+            <input
+              className={styles.formFieldCheckBox}
+              type="checkbox"
+              name="hasAgreed"
+              value={this.state.hasAgreed}
+              onChange={this.handleChange}
+            />
+            I agree all statements in{" "}
+            <a
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              className="FormField__TermsLink"
+            >
+              terms of service
+            </a>
+          </div>
         </label>
         <div className={styles.gridItemSplit}>
           <Button onClick={this.props.switchForm}>I'm a donee!</Button>

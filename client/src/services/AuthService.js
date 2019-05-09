@@ -12,8 +12,8 @@ const AuthService = {
   getProfile
 };
 
-async function login(email, password) {
-  return Axios.post("/user/login", {
+async function login(email, password, userType) {
+  return Axios.post(`/${userType}/login`, {
     user: {
       email,
       password
@@ -28,13 +28,10 @@ async function login(email, password) {
     });
 }
 
-async function signup(name, email, password) {
-  return Axios.post("/user/signup", {
-    user: {
-      name,
-      email,
-      password
-    }
+async function signup(req, userType) {
+  const { user } = req;
+  return Axios.post(`/${userType}/signup`, {
+    user
   })
     .then(res => {
       return Promise.resolve(res);

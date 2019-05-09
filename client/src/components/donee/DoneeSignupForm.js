@@ -5,6 +5,7 @@ import styles from "./donee.module.css";
 import FormPersonalDetails from "./FormPersonalDetails";
 import PaymentForm from "./PaymentForm";
 import Confirm from "./Confirm";
+import AuthService from "../../services/AuthService";
 
 const genders = ["Male", "Female", "Other"];
 
@@ -16,14 +17,44 @@ export class DoneeSignupForm extends Component {
     confirmPassword: "",
     name: "",
     dob: "",
-    phone: "",
+    phoneNumber: "",
     gender: "",
     location: "",
     bio: ""
   };
 
-  handleSignup = () => {
+  handleSignup = async e => {
     // TODO
+    e.preventDefault();
+
+    const {
+      email,
+      password,
+      name,
+      dob,
+      phoneNumber,
+      gender,
+      location,
+      bio
+    } = this.state;
+
+    AuthService.signup(
+      {
+        user: {
+          email,
+          password,
+          name,
+          dob,
+          phoneNumber,
+          gender,
+          location,
+          bio
+        }
+      },
+      "donee"
+    ).catch(res => {
+      console.log("error: " + res);
+    });
   };
 
   nextStep = () => {
@@ -48,7 +79,7 @@ export class DoneeSignupForm extends Component {
       confirmPassword,
       name,
       dob,
-      phone,
+      phoneNumber,
       gender,
       location,
       bio
@@ -59,7 +90,7 @@ export class DoneeSignupForm extends Component {
       confirmPassword,
       name,
       dob,
-      phone,
+      phoneNumber,
       gender,
       location,
       bio
@@ -101,7 +132,12 @@ export class DoneeSignupForm extends Component {
         break;
       case 4:
         form = (
-          <Confirm next={this.nextStep} back={this.prevStep} values={values} />
+          <Confirm
+            next={this.nextStep}
+            back={this.prevStep}
+            values={values}
+            handleSignup={this.handleSignup}
+          />
         );
         break;
       case 5:

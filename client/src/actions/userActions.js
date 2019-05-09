@@ -4,8 +4,8 @@ import { stateConstants } from "../constants/stateConstants";
 import AuthService from "../services/AuthService";
 import { history } from "../helper/history";
 
-export const login = (email, password) => dispatch => {
-  AuthService.login(email, password)
+export const login = (email, password, userType) => dispatch => {
+  AuthService.login(email, password, userType)
     .then(res => {
       dispatch({
         type: userConstants.USER_VERIFIED,
