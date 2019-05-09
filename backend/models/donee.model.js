@@ -36,7 +36,8 @@ const doneeSchema = mongoose.Schema({
   bio: String,
   goal: [String],
   monthlyDonationLimit: Number,
-  funded: Number
+  funded: Number,
+  postIDs: [String]
 
   // bankAccountToken: String,
   // monthlyRenewalDate: String,
