@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import classnames from "classnames";
 
 import { login } from "../../actions/userActions";
 import styles from "./doner.module.css";

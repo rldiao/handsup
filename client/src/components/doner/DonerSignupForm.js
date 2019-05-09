@@ -27,7 +27,7 @@ export default class DonerSignupForm extends Component {
     };
   }
 
-  validateField(fieldName, value) {
+  validateField = (fieldName, value) => {
     let fieldValidationErrors = this.state.formErrors;
     let nameValid = this.state.name !== "";
     let emailValid = this.state.emailValid;
@@ -64,9 +64,9 @@ export default class DonerSignupForm extends Component {
       },
       this.validateForm
     );
-  }
+  };
 
-  validateForm() {
+  validateForm = () => {
     this.setState({
       formValid:
         this.state.emailValid &&
@@ -75,7 +75,7 @@ export default class DonerSignupForm extends Component {
         this.state.confirmValid &&
         this.state.name !== ""
     });
-  }
+  };
 
   handleChange = e => {
     let target = e.target;
@@ -93,7 +93,7 @@ export default class DonerSignupForm extends Component {
   };
 
   // Sign up
-  handleSubmit = async e => {
+  handleSignup = async e => {
     e.preventDefault();
     let that = this;
     const { name, email, password } = this.state;
@@ -207,7 +207,7 @@ export default class DonerSignupForm extends Component {
             className={styles.formFieldButton}
             disabled={!this.state.formValid}
             variant="contained"
-            onClick={this.handleSubmit}
+            onClick={this.handleSignup}
             color="primary"
           >
             Sign Up

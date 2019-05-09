@@ -17,8 +17,12 @@ export class Confirm extends Component {
     let submit = window.confirm("Are all details correct?");
     if (submit) {
       // TODO: error handling
-      this.props.handleSignup(e);
-      this.props.next();
+      if (this.props.validForm) {
+        this.props.handleSignup(e);
+        this.props.next();
+      } else {
+        alert("Missing Fields");
+      }
     }
   };
 
