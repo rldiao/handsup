@@ -22,22 +22,8 @@ class DoneeNavTab extends Component {
     this.setState({ value });
   };
 
-  handleCancelClick = () => {
-    this.setState({ newUpdate: false });
-  };
-
-  handleNewUpdateClick = () => {
-    this.setState({ newUpdate: true });
-  };
-
   render() {
     const { value } = this.state;
-
-    // let updatePage = this.state.newUpdate ? (
-    //   <DoneeMakeUpdate handleCancelClick={this.handleCancelClick} />
-    // ) : (
-    //   <DoneePostTab handleNewUpdateClick={this.handleNewUpdateClick} />
-    // );
 
     console.log(this.state.newUpdate);
 

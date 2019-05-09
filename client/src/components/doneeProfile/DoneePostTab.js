@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 import styles from "./doneeProfile.module.css";
 import DoneePost from "./DoneePost";
 import NewPost from "./NewPost";
-import axios from "axios";
-import authService from "../../services/AuthService";
+import Axios from "axios";
+import AuthService from "../../services/AuthService";
 
 const data = {
   title: "Hello World",
@@ -16,6 +16,7 @@ export class DoneePostTab extends Component {
   state = {
     loading: true,
     posts: [],
+    newPostTitle: "",
     newPostContent: "",
     user: null
   };
@@ -23,7 +24,30 @@ export class DoneePostTab extends Component {
   componentDidMount() {
     // Load posts here:
     this.setState({ loading: false });
-    // axios.get("/user/" + authService.getProfile.email).then()
+
+    const profile = AuthService.getProfile();
+
+    // TODO: get through user to get the post
+    // Axios.get("/user/" + profile.email)
+    //   .then(res => {
+    //     this.setState({ user: res.data });
+    //     this.setState({ postsID: this.state.user.postsID });
+    //     this.state.user.postsID.forEach(postID => {
+    //       Axios.get("/post/" + postID).then(res => {
+    //         let temp = this.state.posts;
+    //         temp.push(res.data);
+    //         this.setState({ posts: temp });
+    //       });
+    //     });
+    //   })
+    //   .catch(e => {
+    //     console.log(e);
+    //   });
+
+    Axios.get("/post").then(res => {
+      let temp = res.data;
+      this.setState({ posts: temp });
+    });
   }
 
   submitNewPost = () => {
@@ -36,22 +60,57 @@ export class DoneePostTab extends Component {
       (today.getMonth() + 1) +
       "-" +
       today.getFullYear();
-    // axios.post("/posts/newPost", () => {}).then(res => { alert("Success")}).catch(res=>{ alert("Fail")})
+
+    Axios.post("/post/new", {
+      title: this.state.newPostTitle,
+      createDate: date,
+      content: this.state.newPostContent
+    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(res => {
+        alert("Fail");
+      });
   };
 
-  handleChange = field => e => {
+  handleClearClick = () => {
+    this.setState({ newPostTitle: "", newPostContent: "" });
+  };
+
+  handleTitleChange = title => e => {
+    this.setState({ [title]: e.target.value });
+  };
+
+  handleContentChange = field => e => {
     this.setState({ [field]: e.target.value });
   };
 
   render() {
-    console.log(this.props.data);
+    const doneePost = this.state.posts.map(post => {
+      return (
+        <DoneePost
+          key={post._id}
+          title={post.title}
+          date={post.createDate}
+          content={post.content}
+        />
+      );
+    });
+
+    // console.log(this.props.data);
     return (
       <Fragment>
         <NewPost
           submitNewPost={this.submitNewPost}
-          handleChange={this.handleChange}
+          handleContentChange={this.handleContentChange}
+          handleTitleChange={this.handleTitleChange}
+          contentValue={this.state.newPostContent}
+          titleValue={this.state.newPostTitle}
+          handleClearClick={this.handleClearClick}
         />
-        <DoneePost title={data.title} date={data.date} content={data.content} />
+        {doneePost}
+        {/* <DoneePost title={data.title} date={data.date} content={data.content} /> */}
       </Fragment>
     );
   }
