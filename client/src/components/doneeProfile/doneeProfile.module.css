@@ -1,7 +1,7 @@
 .doneeProfileContainer {
   background-color: #f5fff9;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-gap: 2rem;
   padding: 1rem;
 }
@@ -53,9 +53,9 @@
 
 .aboutText {
   color: #37433c;
-  padding-bottom: 1rem;
   font-weight: lighter;
   font-family: "Source Sans Pro", sans-serif;
+  width: 90%;
 }
 
 li {
@@ -87,7 +87,7 @@ ol {
 }
 
 .editText {
-  width: 100%;
+  width: 90%;
   height: 100px;
   padding: 1% 1% 1% 1%;
   box-sizing: border-box;
@@ -96,4 +96,12 @@ ol {
   resize: none;
   font-weight: lighter;
   font-family: "Source Sans Pro", sans-serif;
+}
+
+@media screen and (max-width: 550px) {
+  .doneeProfileContainer {
+    grid-template-columns: 1fr 2fr;
+  }
+
+
 }

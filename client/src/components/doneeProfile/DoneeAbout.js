@@ -7,20 +7,7 @@ export default class DoneeAbout extends Component {
   constructor() {
     super();
 
-    this.state = {
-      donee: {
-        location: "Melbourne",
-        story:
-          "I come from Melbourne, living in poverty, want to go to school, sob T_T. Please please please help me.",
-        goals: [
-          "Have enough money to pay tuition fees.",
-          "Live without hunger.",
-          "Be able to afford rental."
-        ]
-      }
-    };
   }
-
 
   handleEditProfileClick = () => {
     this.props.handleEditProfileClick();
@@ -44,7 +31,7 @@ export default class DoneeAbout extends Component {
 
         <h2 className={styles.aboutTitle}>Goals</h2>
         <div className={styles.aboutText}>
-          <ol>{this.state.donee.goals.map((goal, i) => <li key={i}>{goal}</li>)}
+          <ol>{this.props.donee.goal.map((goal, i) => <li key={i}>{goal}</li>)}
           </ol>
         </div>
       </div>

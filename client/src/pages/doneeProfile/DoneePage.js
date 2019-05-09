@@ -31,14 +31,17 @@ export default class DoneePage extends Component {
     this.setState({editProfile: true});
   };
 
-  handleCancelClick = () => {
+  handleExitEditingClick = () => {
     this.setState({editProfile: false});
   };
+
+  
 
 
   render() {
     if (!this.state.loading) {
-      const editDoneeProfile = <EditDoneeProfile donee={this.state.donee} handleCancelClick={this.handleCancelClick}/>;
+      const editDoneeProfile = <EditDoneeProfile donee={this.state.donee} handleCancelClick={this.handleExitEditingClick}
+      handleSaveClick={this.handleExitEditingClick}/>;
       const doneeAbout = <DoneeAbout donee={this.state.donee} handleEditProfileClick={this.handleEditProfileClick}/>;
 
       return (

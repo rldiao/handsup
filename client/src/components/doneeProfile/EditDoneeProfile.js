@@ -2,28 +2,59 @@ import React, { Component } from "react";
 import styles from "./doneeProfile.module.css";
 import { profileStyles } from "../../pages/userProfile/profileStyles";
 import { Button, TextField } from "@material-ui/core";
+import Axios from "axios";
 
 export default class EditDoneeProfile extends Component {
   constructor() {
     super();
 
     this.state = {
-      donee: {
-        location: "Melbourne",
-        story:
-          "I come from Melbourne, living in poverty, want to go to school, sob T_T. Please please please help me.",
-        goals: [
-          "Have enough money to pay tuition fees.",
-          "Live without hunger.",
-          "Be able to afford rental."
-        ]
-      }
+      location: "",
+      bio: "",
+      goal: []
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      location: this.props.donee.location,
+      bio: this.props.donee.bio,
+      goal: this.props.donee.goal
+    });
+  }
+
+  handleOnChange = e => {
+    const attribute = e.target.name;
+    const value = e.target.value;
+
+    if (attribute === "goal") {
+      const id = e.target.id;
+      let goal;
+      goal = this.state.goal;
+      goal[id] = value;
+      this.setState({ goal: goal });
+    } else {
+      this.setState({ [attribute]: value });
+    }
+  };
 
   handleCancelClick = () => {
     this.props.handleCancelClick();
+  };
+
+  handleSaveClick = () => {
+    // push the change the database
+    let donee;
+    donee = this.props.donee;
+    donee.location = this.state.location;
+    donee.bio = this.state.bio;
+    donee.goal = this.state.goal;
+
+    Axios.put("donee/update/" + this.props.donee._id, donee).then(res => {
+      console.log(res.data);
+    });
+
+    this.props.handleSaveClick();
   };
 
   render() {
@@ -33,7 +64,7 @@ export default class EditDoneeProfile extends Component {
           <Button
             variant="outlined"
             style={profileStyles.saveButton}
-            // onClick = {}
+            onClick={this.handleSaveClick}
           >
             Save
           </Button>
@@ -48,39 +79,39 @@ export default class EditDoneeProfile extends Component {
 
         <h2 className={styles.aboutTitle}>Location</h2>
 
-          <input
-            type="Location"
-            id="Location"
-            name="Location"
-            defaultValue={this.props.donee.location}
-            className={styles.locationInput}
-          />
-
+        <input
+          type="location"
+          id="location"
+          name="location"
+          defaultValue={this.props.donee.location}
+          onChange={this.handleOnChange}
+          className={styles.locationInput}
+        />
 
         <h2 className={styles.aboutTitle}>My Story</h2>
 
-          <textarea
-            type="My Story"
-            defaultValue={this.props.donee.bio}
-            className={styles.editText}
-          />
-
+        <textarea
+          name="bio"
+          defaultValue={this.props.donee.bio}
+          onChange={this.handleOnChange}
+          className={styles.editText}
+        />
 
         <h2 className={styles.aboutTitle}>Goals</h2>
 
-
-        <div className={styles.aboutText}>
-          <ol>{this.state.donee.goals.map((goal, i) =>
-            <div className={styles.textContainer}
-              key={i}>
+        <ol>
+          {this.props.donee.goal.map((goal, i) => (
+            <div className={styles.textContainer} key={i}>
               <textarea
-              type="Goals"
-              defaultValue={goal}
-              className={styles.editText}
-            />
-            </div>)}
-          </ol>
-        </div>
+                name="goal"
+                id={i}
+                defaultValue={goal}
+                onChange={this.handleOnChange}
+                className={styles.editText}
+              />
+            </div>
+          ))}
+        </ol>
       </div>
     );
   }
