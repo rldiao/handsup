@@ -1,13 +1,9 @@
 import React, { Component, Fragment } from "react";
 import styles from "./doneeProfile.module.css";
-import { profileStyles } from "../../pages/userProfile/profileStyles";
-import { Button } from "@material-ui/core";
+// import { profileStyles } from "../../pages/userProfile/profileStyles";
+// import { Button } from "@material-ui/core";
 
 export default class DoneeAbout extends Component {
-  constructor() {
-    super();
-  }
-
   handleEditProfileClick = () => {
     this.props.handleEditProfileClick();
   };

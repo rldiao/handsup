@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import MainInfo from "../../components/doneeProfile/MainInfo";
-import EditDoneeProfile from "../../components/doneeProfile/EditDoneeProfile";
-import DoneeAbout from "../../components/doneeProfile/DoneeAbout";
+// import EditDoneeProfile from "../../components/doneeProfile/EditDoneeProfile";
+// import DoneeAbout from "../../components/doneeProfile/DoneeAbout";
 import Axios from "axios";
 import DoneeNavTab from "../../components/doneeProfile/DoneeNavTab";
 

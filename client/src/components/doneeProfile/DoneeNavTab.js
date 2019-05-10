@@ -1,21 +1,15 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Tabs from "@material-ui/core/Tabs";
 import NoSsr from "@material-ui/core/NoSsr";
 import Tab from "@material-ui/core/Tab";
 import DoneeAbout from "./DoneeAbout";
-import DoneeMakeUpdate from "./DoneeMakeUpdate";
 import Paper from "@material-ui/core/Paper";
-import classnames from "classnames";
 
 import styles from "./doneeProfile.module.css";
 import { styles as custom } from "./doneeProfile.style";
 import DoneePostTab from "./DoneePostTab";
 
 class DoneeNavTab extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     value: 0,
     newUpdate: false
@@ -27,8 +21,6 @@ class DoneeNavTab extends Component {
 
   render() {
     const { value } = this.state;
-
-    const { classes } = this.props;
 
     return (
       <NoSsr>

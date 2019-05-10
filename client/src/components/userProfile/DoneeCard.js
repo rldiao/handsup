@@ -5,8 +5,7 @@ import {
   CardContent,
   CardActionArea,
   Typography,
-  Button,
-  LinearProgress
+  Button
 } from "@material-ui/core";
 import { userStyles } from "./userStyles";
 import { BorderLinearProgress } from "./BorderLinearProgress";

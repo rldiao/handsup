@@ -115,7 +115,6 @@ class App extends Component {
               <Route path="/signup" exact component={SignUpPage} />
               <Route path="/about" exact component={AboutPage} />
               <Route path="/contact" exact component={ContactPage} />
-              <Route path="/donee" component={DoneePage} />
               <Route component={ErrorPage} />
             </Switch>
           </div>

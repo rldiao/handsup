@@ -4,7 +4,6 @@ import Axios from "axios";
 import TextField from "@material-ui/core/TextField";
 
 import styles from "./profileSettings.module.css";
-import { styles as custom } from "./userProfileSettings.style";
 import AuthService from "../../services/AuthService";
 
 export default class ChangePassword extends Component {

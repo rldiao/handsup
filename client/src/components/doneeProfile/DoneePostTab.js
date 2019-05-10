@@ -131,14 +131,15 @@
 
 // export default DoneePostTab;
 
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styles from "./doneeProfile.module.css";
 import Axios from "axios";
 import DoneePost from "./DoneePost";
 
 export default class DoneePostTab extends Component {
   state = {
-    posts: []
+    posts: [],
+    donee: null
   };
 
   componentDidMount() {
@@ -166,7 +167,6 @@ export default class DoneePostTab extends Component {
   };
 
   render() {
-    const { donee } = this.props;
     let posts;
 
     if (this.state.posts.length > 0) {

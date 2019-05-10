@@ -33,13 +33,13 @@ export default class DoneeMakeUpdate extends Component {
   };
 
   render() {
-    var today = new Date();
-    var date =
-      today.getDate() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getFullYear();
+    // var today = new Date();
+    // var date =
+    //   today.getDate() +
+    //   "-" +
+    //   (today.getMonth() + 1) +
+    //   "-" +
+    //   today.getFullYear();
 
     return (
       <div>

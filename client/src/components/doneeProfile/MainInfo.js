@@ -1,15 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styles from "./doneeProfile.module.css";
-import Axios from "axios";
+// import Axios from "axios";
 import { BorderLinearProgress } from "../userProfile/BorderLinearProgress";
 import { Button, Typography } from "@material-ui/core";
 import { profileStyles } from "../../pages/userProfile/profileStyles";
 
 export default class MainInfo extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const progressWidth =
       (this.props.donee.funded / this.props.donee.monthlyDonationLimit) * 100;
