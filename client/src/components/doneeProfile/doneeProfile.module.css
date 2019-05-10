@@ -36,7 +36,7 @@
 }
 
 .buttonContainer {
-  display: flex
+  display: flex;
 }
 
 .aboutContainer {
@@ -73,8 +73,6 @@ ol {
   padding-bottom: 1rem;
 }
 
-
-
 .locationInput {
   display: block;
   padding: 1% 10rem 1% 1%;
@@ -83,7 +81,6 @@ ol {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1rem;
   border: 1px solid #ccc;
-
 }
 
 .editText {
@@ -102,6 +99,78 @@ ol {
   .doneeProfileContainer {
     grid-template-columns: 1fr 2fr;
   }
+}
 
+.container {
+  display: flex;
+  margin: 4vw 0 3vw 6vw;
+}
 
+.tabContainer {
+  margin-top: 2rem;
+  padding: 0 20%;
+}
+
+.tabContainerGrid {
+  display: grid;
+  grid-gap: 2rem;
+}
+
+.titleField {
+  margin: normal;
+  width: 25%;
+}
+
+.postField {
+  margin: normal;
+  width: 50%;
+}
+
+.addIcon {
+  font-size: large;
+}
+
+.navtab {
+  margin: 0 5%;
+}
+
+/* Posts */
+
+.postTitle {
+  display: flex;
+  font-family: open-sans, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.5rem;
+}
+
+.postDate {
+  font-size: 0.5rem;
+}
+
+.postContent {
+  font-size: 1rem;
+}
+
+/* New posts */
+.newPostBorderBox {
+  border: 1px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.newPostLabel {
+  background-color: lightgray;
+  border-bottom: 1px solid black;
+  padding: 0.5rem;
+}
+
+.newPostTextField {
+  padding: 0.5rem 1rem;
+}
+
+.newPostBtns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
 }

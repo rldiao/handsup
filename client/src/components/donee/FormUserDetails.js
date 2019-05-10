@@ -15,18 +15,21 @@ export class FormUserDetails extends Component {
           label="Email"
           value={values.email}
           onChange={handleChange("email")}
+          helperText={values.formErrors.email}
         />
         <TextField
           label="Password"
           type="password"
           value={values.password}
           onChange={handleChange("password")}
+          helperText={values.formErrors.password}
         />
         <TextField
           label="Confirm Password"
           type="password"
           value={values.confirmPassword}
           onChange={handleChange("confirmPassword")}
+          helperText={values.formErrors.confirmPassword}
         />
         <div className={styles.gridItemSplit}>
           <Button onClick={this.props.switchForm}>I'm donating</Button>

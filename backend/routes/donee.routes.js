@@ -3,14 +3,18 @@ const doneeController = require("../controllers/donee.controller");
 const auth = require("../middleware/auth");
 const router = express.Router();
 
-router.get("/", [doneeController.getDonees]);
+router.post("/signup", doneeController.createDonee);
+
+router.post("/login", doneeController.loginDonee);
+
+router.get("/logout", doneeController.logoutDonee);
+
+router.get("/", doneeController.getDonees);
 
 router.get("/:_id", doneeController.getOneDonee);
 
+router.put("/updatePostID/:_id", doneeController.updatePostIDs);
+
 router.put("/update/:_id", doneeController.updateOneDonee);
-
-router.post("/new", doneeController.addOneDonee);
-
-router.delete("/delete/:_id", doneeController.deleteOneDonee);
 
 module.exports = router;

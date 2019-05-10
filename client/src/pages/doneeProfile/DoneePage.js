@@ -3,6 +3,7 @@ import MainInfo from "../../components/doneeProfile/MainInfo";
 import EditDoneeProfile from "../../components/doneeProfile/EditDoneeProfile";
 import DoneeAbout from "../../components/doneeProfile/DoneeAbout";
 import Axios from "axios";
+import DoneeNavTab from "../../components/doneeProfile/DoneeNavTab";
 
 export default class DoneePage extends Component {
   constructor(props) {
@@ -10,8 +11,8 @@ export default class DoneePage extends Component {
 
     this.state = {
       donee: null,
-      loading: true,
-      editProfile: false
+      loading: true
+      // editProfile: false
     };
   }
 
@@ -27,36 +28,40 @@ export default class DoneePage extends Component {
       });
   }
 
-  handleEditProfileClick = () => {
-    this.setState({editProfile: true});
-  };
+  // handleEditProfileClick = () => {
+  //   this.setState({ editProfile: true });
+  // };
 
-  handleExitEditingClick = () => {
-    this.setState({editProfile: false});
-  };
-
-  
-
+  // handleExitEditingClick = () => {
+  //   this.setState({ editProfile: false });
+  // };
 
   render() {
     if (!this.state.loading) {
-      const editDoneeProfile = <EditDoneeProfile donee={this.state.donee} handleCancelClick={this.handleExitEditingClick}
-      handleSaveClick={this.handleExitEditingClick}/>;
-      const doneeAbout = <DoneeAbout donee={this.state.donee} handleEditProfileClick={this.handleEditProfileClick}/>;
+      //   const editDoneeProfile = (
+      //     <EditDoneeProfile
+      //       donee={this.state.donee}
+      //       handleCancelClick={this.handleExitEditingClick}
+      //       handleSaveClick={this.handleExitEditingClick}
+      //     />
+      //   );
+      //   const doneeAbout = (
+      //     <DoneeAbout
+      //       donee={this.state.donee}
+      //       handleEditProfileClick={this.handleEditProfileClick}
+      //     />
+      //   );
 
       return (
         <Fragment>
           <div>
-            <MainInfo donee={this.state.donee}/>
+            <MainInfo donee={this.state.donee} />
           </div>
-          {this.state.editProfile ? editDoneeProfile : doneeAbout}
+          {/* {this.state.editProfile ? editDoneeProfile : doneeAbout} */}
+          <DoneeNavTab donee={this.state.donee} />
         </Fragment>
       );
     }
     return <Fragment />;
   }
 }
-
-
-
-

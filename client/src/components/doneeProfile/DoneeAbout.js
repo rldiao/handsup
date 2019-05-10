@@ -6,7 +6,6 @@ import { Button } from "@material-ui/core";
 export default class DoneeAbout extends Component {
   constructor() {
     super();
-
   }
 
   handleEditProfileClick = () => {
@@ -16,13 +15,13 @@ export default class DoneeAbout extends Component {
   render() {
     return (
       <div className={styles.aboutContainer}>
-        <Button
+        {/* <Button
           variant="outlined"
-          onClick = {this.handleEditProfileClick}
+          onClick={this.handleEditProfileClick}
           style={profileStyles.editProfileButton}
         >
           Edit Profile
-        </Button>
+        </Button> */}
         <h2 className={styles.aboutTitle}>Location</h2>
         <p className={styles.aboutText}>{this.props.donee.location}</p>
 
@@ -31,7 +30,10 @@ export default class DoneeAbout extends Component {
 
         <h2 className={styles.aboutTitle}>Goals</h2>
         <div className={styles.aboutText}>
-          <ol>{this.props.donee.goal.map((goal, i) => <li key={i}>{goal}</li>)}
+          <ol>
+            {this.props.donee.goal.map((goal, i) => (
+              <li key={i}>{goal}</li>
+            ))}
           </ol>
         </div>
       </div>

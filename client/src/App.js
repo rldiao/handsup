@@ -57,15 +57,8 @@ const theme = createMuiTheme({
 
 class App extends Component {
   state = {
-    data: null,
     sideDrawerOpen: false
   };
-
-  componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
 
   connecToServer = () => {
     fetch("/");
@@ -122,6 +115,7 @@ class App extends Component {
               <Route path="/signup" exact component={SignUpPage} />
               <Route path="/about" exact component={AboutPage} />
               <Route path="/contact" exact component={ContactPage} />
+              <Route path="/donee" component={DoneePage} />
               <Route component={ErrorPage} />
             </Switch>
           </div>

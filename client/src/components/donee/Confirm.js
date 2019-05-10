@@ -13,10 +13,16 @@ const muStyles = theme => ({
 });
 
 export class Confirm extends Component {
-  next = () => {
+  next = e => {
     let submit = window.confirm("Are all details correct?");
     if (submit) {
-      this.props.next();
+      // TODO: error handling
+      if (this.props.validForm) {
+        this.props.handleSignup(e);
+        this.props.next();
+      } else {
+        alert("Missing Fields");
+      }
     }
   };
 
