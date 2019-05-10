@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { List, ListItem, ListItemText, Collapse } from "@material-ui/core";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Collapse,
+  Typography
+} from "@material-ui/core";
+import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import AccountDetails from "./AccountDetails";
 import ChangePassword from "./ChangePassword";
 import PaymentForm from "./PaymentForm";
@@ -26,48 +33,82 @@ export default class UserProfileSettings extends Component {
   };
 
   render() {
+    let passwordBtnStyle = this.state.showPasswordComponent
+      ? custom.showDropDownPasswordBtn
+      : custom.hideDropDownPasswordBtn;
+
+    let paymentBtnStyle = this.state.showPaymentComponent
+      ? custom.showDropDownPaymentBtn
+      : custom.hideDropDownPaymentBtn;
+
     return (
       <div className={styles.settingsContainer}>
-        <div className={styles.settingTitle}>Settings</div>
-        <AccountDetails />
-        <List>
-          <ListItem
-            button
-            onClick={this.handlePasswordBtn}
-            style={custom.dropDownBtn}
-          >
-            <ListItemText inset primary="Change Password" />
-          </ListItem>
-          <Collapse
-            in={this.state.showPasswordComponent}
-            timeout="auto"
-            unmountOnExit
-          >
-            <List>
-              <ListItem>
-                <ChangePassword />
-              </ListItem>
-            </List>
-          </Collapse>
-          <ListItem
-            button
-            onClick={this.handlePaymentBtn}
-            style={custom.dropDownBtn}
-          >
-            <ListItemText inset primary="Payment Details" />
-          </ListItem>
-          <Collapse
-            in={this.state.showPaymentComponent}
-            timeout="auto"
-            unmountOnExit
-          >
-            <List>
-              <ListItem>
-                <PaymentForm />
-              </ListItem>
-            </List>
-          </Collapse>
-        </List>
+        <div className={styles.content}>
+          <div className={styles.settingTitle}>Settings</div>
+          <AccountDetails />
+          <List>
+            <ListItem
+              button
+              onClick={this.handlePasswordBtn}
+              style={passwordBtnStyle}
+            >
+              <ListItemText
+                disableTypography
+                primary={
+                  <Typography style={custom.listItemText}>
+                    Change Password
+                  </Typography>
+                }
+              />
+              {this.state.showPasswordComponent ? (
+                <ExpandLess />
+              ) : (
+                <ExpandMore />
+              )}
+            </ListItem>
+            <Collapse
+              in={this.state.showPasswordComponent}
+              timeout="auto"
+              unmountOnExit
+            >
+              <List>
+                <ListItem>
+                  <ChangePassword />
+                </ListItem>
+              </List>
+            </Collapse>
+            <ListItem
+              button
+              onClick={this.handlePaymentBtn}
+              style={paymentBtnStyle}
+            >
+              <ListItemText
+                disableTypography
+                primary={
+                  <Typography style={custom.listItemText}>
+                    Payment Details
+                  </Typography>
+                }
+              />
+              {this.state.showPaymentComponent ? (
+                <ExpandLess />
+              ) : (
+                <ExpandMore />
+              )}
+            </ListItem>
+            <Collapse
+              in={this.state.showPaymentComponent}
+              timeout="auto"
+              unmountOnExit
+            >
+              <List>
+                <ListItem>
+                  <PaymentForm />
+                </ListItem>
+              </List>
+            </Collapse>
+          </List>
+        </div>
       </div>
     );
   }

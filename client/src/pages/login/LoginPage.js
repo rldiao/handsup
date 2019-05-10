@@ -15,7 +15,8 @@ class LoginPage extends Component {
       email: "",
       password: "",
       error: "",
-      redirect: false
+      redirect: false,
+      declinedSubmission: false
     };
   }
 
@@ -37,7 +38,6 @@ class LoginPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("Login Button");
     this.props.login(this.state.email, this.state.password);
   };
 

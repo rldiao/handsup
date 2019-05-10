@@ -35,7 +35,7 @@ export default class DiscoverPage extends Component {
   handleDoneeClick = state => {
     console.log(state);
     history.push({
-      pathname: state.name,
+      pathname: "/user/" + state.name,
       state: { doneeID: state.id }
     });
   };

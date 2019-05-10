@@ -1,8 +1,9 @@
 const express = require("express");
 const doneeController = require("../controllers/donee.controller");
-
+const auth = require("../middleware/auth");
 const router = express.Router();
-router.get("/", doneeController.getDonees);
+
+router.get("/", [doneeController.getDonees]);
 
 router.get("/:_id", doneeController.getOneDonee);
 

@@ -37,7 +37,7 @@ class SavedDonees extends Component {
 
   handleDoneeClick = state => {
     history.push({
-      pathname: state.name,
+      pathname: "/user/" + state.name,
       state: { doneeID: state.id }
     });
   };

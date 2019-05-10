@@ -14,8 +14,7 @@ const doneeSchema = mongoose.Schema({
   funded: Number,
   goal: [String],
   location: String,
-  profilePicture: String,
-
+  profilePicture: String
 });
 
 module.exports = mongoose.model("donees", doneeSchema);

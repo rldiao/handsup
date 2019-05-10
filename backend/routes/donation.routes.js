@@ -1,12 +1,13 @@
 const express = require("express");
 const donationController = require("../controllers/donation.controller");
 const router = express.Router();
+const auth = require("../middleware/auth");
 
-router.get("/", donationController.getDonation);
+router.get("/", [auth.withAuth, donationController.getDonation]);
 
-router.get("/:_id", donationController.getOneDonation);
+router.get("/:_id", [auth.withAuth, donationController.getOneDonation]);
 
-router.post("/new", donationController.createDonation);
+router.post("/new", [auth.withAuth, donationController.createDonation]);
 
 // We assume the donations info can't be deleted or altered(updated)
 

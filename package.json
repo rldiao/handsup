@@ -9,7 +9,7 @@
     "start": "npm start --prefix backend",
     "server": "npm run server --prefix backend",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"cd backend && npm start\" \"cd client && npm start\"",
+    "dev": "concurrently \"cd backend && npm run server\" \"cd client && npm start\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client && npm install --prefix backend"
   },
   "repository": {
@@ -24,12 +24,9 @@
   },
   "homepage": "https://github.com/rdiaostudent/info30005#readme",
   "dependencies": {
-    "@material-ui/icons": "^3.0.2",
-    "concurrently": "^4.1.0",
-    "express": "^4.16.4",
-    "jslint": "^0.12.1"
+    "express": "^4.16.4"
   },
   "devDependencies": {
-    "prettier": "^1.17.0"
+    "concurrently": "^4.1.0"
   }
 }

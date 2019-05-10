@@ -27,13 +27,13 @@ exports.createUser = (req, res) => {
   newUser.setPassword(user.password);
 
   // .save() stores the model into db
-  newUser
-    .save()
-    .then(() => res.json({ user: newUser.toAuthJSON() }))
-    .catch(err => {
-      console.log(err);
-      res.send({ error: "email registered" });
-    });
+  newUser.save((err, user) => {
+    if (err) {
+      return res.status(400).json({ error: err.message });
+    }
+
+    res.json({ user: user.toAuthJSON() });
+  });
 };
 
 exports.loginUser = (req, res, next) => {
@@ -72,9 +72,9 @@ exports.loginUser = (req, res, next) => {
             .status(200)
             // .cookie('token', user.token, {httpOnly: true, secure: true});
             .json({ user: user.toAuthJSON() })
-        ); // DELETE this later for security
+        );
       }
-      return res.sendStatus(400);
+      return res.sendStatus(401);
     }
   )(req, res, next);
 };

@@ -12,9 +12,10 @@ import ErrorPage from "./pages/error/ErrorPage";
 import LoginPage from "./pages/login/LoginPage";
 import SignupPage from "./pages/login/SignupPage";
 import DiscoverPage from "./pages/discover/DiscoverPage";
-import UserProfilePage from "./pages/userProfile/userProfilePage";
-import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
-import DoneeProfilePage from "./pages/doneeProfile/DoneePage";
+import UserProfilePage from "./pages/userProfile/UserProfilePage";
+import UserSettingsPage from "./pages/userProfileSettings/UserSettingsPage";
+import AdminPage from "./pages/admin/AdminPage";
+import DoneePage from "./pages/doneeProfile/DoneePage";
 
 const checkAuth = () => {
   const token = localStorage.getItem("id_token");
@@ -45,7 +46,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 class App extends Component {
   state = {
     data: null,
-    isAuth: false,
     sideDrawerOpen: false
   };
 
@@ -53,7 +53,6 @@ class App extends Component {
     // Call our fetch function below once the component mounts
     this.callBackendAPI()
       .then(res => this.setState({ data: res.express }))
-      // .then(res => this.setState({ isAuth: res.isAuth}))
       .catch(err => console.log(err));
   }
 
@@ -95,12 +94,17 @@ class App extends Component {
         <div className={styles.content}>
           <Switch>
             <PrivateRoute path="/" exact component={HomePage} />
-            <PrivateRoute path="/discover" component={DiscoverPage} />
-            <PrivateRoute path="/userProfile" component={UserProfilePage} />
-            <PrivateRoute path="/settings" component={UserSettingsPage} />
-            <PrivateRoute path="/:id" component={DoneeProfilePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/signup" component={SignupPage} />
+            <PrivateRoute path="/discover" exact component={DiscoverPage} />
+            <PrivateRoute
+              path="/userProfile"
+              exact
+              component={UserProfilePage}
+            />
+            <PrivateRoute path="/settings" exact component={UserSettingsPage} />
+            <PrivateRoute path="/user/" component={DoneePage} />
+            <Route path="/login" exact component={LoginPage} />
+            <Route path="/signup" exact component={SignupPage} />
+            <Route path="/admin" exact component={AdminPage} />
             <Route component={ErrorPage} />
           </Switch>
         </div>
