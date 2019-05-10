@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 const Donee = require("../models/donee.model");
+const passport = require("passport");
 
 /* --Added donee profile creating controller functions-- */
 const createDonee = (req, res) => {
   const {
     body: { user }
   } = req;
+
   if (!user.email) {
     return res.status(422).json({
       errors: {
@@ -68,12 +70,7 @@ const loginDonee = (req, res, next) => {
       if (passportDonee) {
         const donee = passportDonee;
         donee.token = passportDonee.generateToken();
-        return (
-          res
-            .status(200)
-            // .cookie('token', donee.token, {httpOnly: true, secure: true});
-            .json({ donee: donee.toAuthJSON() })
-        );
+        return res.status(200).json({ user: donee.toAuthJSON() });
       }
       return res.sendStatus(401);
     }
