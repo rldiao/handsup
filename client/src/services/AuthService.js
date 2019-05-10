@@ -16,7 +16,8 @@ async function login(email, password, userType) {
   return Axios.post(`/${userType}/login`, {
     user: {
       email,
-      password
+      password,
+      userType
     }
   })
     .then(res => {

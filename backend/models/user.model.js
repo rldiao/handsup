@@ -6,7 +6,10 @@ const uniqueValidator = require("mongoose-unique-validator");
 const sessionTime = 60;
 
 const userSchema = mongoose.Schema({
-  name: String,
+  userType: {
+    type: String,
+    require: true
+  },
   email: {
     type: String,
     trim: true,
@@ -17,11 +20,24 @@ const userSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  profilePic: String,
-  savedDoneesID: [String],
-  donationsID: [String],
+  name: {
+    type: String,
+    require: true
+  },
+  socialSecurityNumber: {
+    type: String,
+    unique: true
+  },
+  phoneNumber: String,
+  dob: String,
   location: String,
-  bankAccountToken: String
+  gender: String,
+  profilePicture: String,
+  bio: String,
+  goal: [String],
+  monthlyDonationLimit: Number,
+  funded: Number
+  // bankAccountToken: String
 });
 
 // hash the password

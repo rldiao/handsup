@@ -1,5 +1,6 @@
 const passport = require("passport");
 const Users = require("../models/user.model");
+const userTypeConstants = require("../constants/userTypeConstants");
 
 exports.createUser = (req, res) => {
   const {
@@ -22,6 +23,7 @@ exports.createUser = (req, res) => {
   }
 
   const newUser = new Users(user);
+  user.userType = userTypeConstants.doner;
 
   // Hash password
   newUser.setPassword(user.password);
@@ -57,6 +59,10 @@ exports.loginUser = (req, res, next) => {
     });
   }
 
+  /* NOTE: cannot support multi-type user accounts because the findOne is in
+     local passport strategy, and the userType cannot be passed in through the
+     passport authenticate function.
+  */
   return passport.authenticate(
     "local",
     { session: false },

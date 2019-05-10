@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
-const Donee = require("../models/donee.model");
+const Donee = require("../models/user.model");
 const passport = require("passport");
+const userTypeConstants = require("../constants/userTypeConstants.js");
 
 /* --Added donee profile creating controller functions-- */
 const createDonee = (req, res) => {
@@ -25,6 +26,7 @@ const createDonee = (req, res) => {
   }
 
   const newDonee = new Donee(user);
+  user.userType = userTypeConstants.donee;
 
   // Hash password
   newDonee.setPassword(user.password);
@@ -94,7 +96,7 @@ const logoutDonee = (req, res) => {
 /* ---- */
 
 const getDonees = function(req, res) {
-  Donee.find((err, donee) => {
+  Donee.find({ userType: userTypeConstants.donee }, (err, donee) => {
     if (err) {
       res.sendStatus(404);
     } else {
@@ -104,13 +106,16 @@ const getDonees = function(req, res) {
 };
 
 const getOneDonee = function(req, res) {
-  Donee.findOne({ _id: req.params._id }, (err, donee) => {
-    if (err) {
-      res.sendStatus(404);
-    } else {
-      res.send(donee);
+  Donee.findOne(
+    { _id: req.params._id, userType: userTypeConstants.donee },
+    (err, donee) => {
+      if (err) {
+        res.sendStatus(404);
+      } else {
+        res.send(donee);
+      }
     }
-  });
+  );
 };
 
 const updateOneDonee = function(req, res) {

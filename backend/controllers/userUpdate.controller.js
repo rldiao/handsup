@@ -1,5 +1,6 @@
 const Donor = require("../models/user.model");
 const crypt = require("bcrypt");
+const userTypeConstants = require("../constants/userTypeConstants");
 
 const getOneProfile = function(req, res) {
   Donor.findOne({ email: req.params.email }, (err, donor) => {
