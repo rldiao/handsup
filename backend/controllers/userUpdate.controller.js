@@ -4,7 +4,7 @@ const crypt = require("bcrypt");
 const getOneProfile = function(req, res) {
   Donor.findOne({ email: req.params.email }, (err, donor) => {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(404);
     } else {
       res.send(donor);
     }
@@ -18,7 +18,7 @@ const updateProfile = function(req, res) {
     { new: true },
     (err, donor) => {
       if (err) {
-        res.sendStatus(500);
+        res.sendStatus(404);
       } else {
         res.sendStatus(200);
       }
@@ -29,7 +29,7 @@ const updateProfile = function(req, res) {
 const deleteProfile = function(req, res) {
   Donor.findOneAndDelete({ email: req.params.email }, (err, donor) => {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(404);
     } else {
       res.send(donor);
     }
@@ -45,7 +45,7 @@ const updatePassword = function(req, res) {
     { new: true },
     (err, donor) => {
       if (err) {
-        res.sendStatus(500);
+        res.sendStatus(404);
       } else {
         res.sendStatus(200);
       }

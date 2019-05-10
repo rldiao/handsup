@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import DonerLoginForm from "../../components/doner/DonerLoginForm";
-import DoneeLoginForm from "../../components/donee/DoneeLoginForm";
 
-import styles from "./loginPage.module.css";
+import styles from "./signup.module.css";
+import DoneeSignupForm from "../../components/donee/DoneeSignupForm";
+import DonerSignupForm from "../../components/doner/DonerSignupForm";
 
-export class LoginPage extends Component {
+export default class SignUpPage extends Component {
   state = {
     form: 1
   };
@@ -22,12 +22,13 @@ export class LoginPage extends Component {
   render() {
     let formComponent;
     const { form } = this.state;
+
     switch (form) {
       case 1:
-        formComponent = <DonerLoginForm switchForm={this.handleSwitch} />;
+        formComponent = <DonerSignupForm switchForm={this.handleSwitch} />;
         break;
       case 2:
-        formComponent = <DoneeLoginForm switchForm={this.handleSwitch} />;
+        formComponent = <DoneeSignupForm switchForm={this.handleSwitch} />;
         break;
       default:
         throw new Error("Undefined form");
@@ -36,5 +37,3 @@ export class LoginPage extends Component {
     return <div className={styles.pageContainer}>{formComponent}</div>;
   }
 }
-
-export default LoginPage;
