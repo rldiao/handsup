@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 const Donee = require("../models/donee.model");
+const passport = require("passport");
 
 /* --Added donee profile creating controller functions-- */
 const createDonee = (req, res) => {
   const {
-    body: { donee }
+    body: { user }
   } = req;
-  if (!donee.email) {
+
+  if (!user.email) {
     return res.status(422).json({
       errors: {
         email: "is required"
@@ -14,7 +16,7 @@ const createDonee = (req, res) => {
     });
   }
 
-  if (!donee.password) {
+  if (!user.password) {
     return res.status(422).json({
       errors: {
         password: "is required"
@@ -22,10 +24,10 @@ const createDonee = (req, res) => {
     });
   }
 
-  const newDonee = new Donee(donee);
+  const newDonee = new Donee(user);
 
   // Hash password
-  newDonee.setPassword(donee.password);
+  newDonee.setPassword(user.password);
 
   // .save() stores the model into db
   newDonee.save((err, donee) => {
@@ -39,10 +41,10 @@ const createDonee = (req, res) => {
 
 const loginDonee = (req, res, next) => {
   const {
-    body: { donee }
+    body: { user }
   } = req;
 
-  if (!donee.email) {
+  if (!user.email) {
     return res.status(422).json({
       errors: {
         email: "is required"
@@ -50,7 +52,7 @@ const loginDonee = (req, res, next) => {
     });
   }
 
-  if (!donee.password) {
+  if (!user.password) {
     return res.status(422).json({
       errors: {
         password: "is required"
@@ -68,12 +70,7 @@ const loginDonee = (req, res, next) => {
       if (passportDonee) {
         const donee = passportDonee;
         donee.token = passportDonee.generateToken();
-        return (
-          res
-            .status(200)
-            // .cookie('token', donee.token, {httpOnly: true, secure: true});
-            .json({ donee: donee.toAuthJSON() })
-        );
+        return res.status(200).json({ user: donee.toAuthJSON() });
       }
       return res.sendStatus(401);
     }
@@ -116,18 +113,6 @@ const getOneDonee = function(req, res) {
   });
 };
 
-const addOneDonee = function(req, res) {
-  const newDonee = new Donee(req.body);
-
-  newDonee.save((err, newDonee) => {
-    if (err) {
-      res.sendStatus(404);
-    } else {
-      res.send(newDonee);
-    }
-  });
-};
-
 const updateOneDonee = function(req, res) {
   Donee.findOneAndUpdate(
     { _id: req.params._id },
@@ -159,7 +144,6 @@ module.exports = {
   logoutDonee,
   getDonees,
   getOneDonee,
-  addOneDonee,
   updateOneDonee,
   deleteOneDonee
 };

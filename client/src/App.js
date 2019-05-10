@@ -58,15 +58,8 @@ const theme = createMuiTheme({
 
 class App extends Component {
   state = {
-    data: null,
     sideDrawerOpen: false
   };
-
-  componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
 
   connecToServer = () => {
     fetch("/");

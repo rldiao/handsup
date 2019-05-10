@@ -30,7 +30,6 @@ const doneeSchema = mongoose.Schema({
   phoneNumber: String,
   dob: String,
   location: String,
-  nationality: String,
   gender: String,
   profilePicture: String,
   bio: String,

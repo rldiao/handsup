@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import classnames from "classnames";
 
 import { login } from "../../actions/userActions";
 import styles from "./doner.module.css";
@@ -34,7 +33,7 @@ class DonerLoginForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     // TODO: get this to return a promise or change the redux setting
-    this.props.login(this.state.email, this.state.password);
+    this.props.login(this.state.email, this.state.password, "user");
   };
 
   render() {
