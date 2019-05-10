@@ -5,13 +5,6 @@ import NewPost from "./NewPost";
 import Axios from "axios";
 import AuthService from "../../services/AuthService";
 
-const data = {
-  title: "Hello World",
-  date: "11/11/11",
-  content:
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur architecto corporis vel soluta tempora, eius nobis aspernatur ea praesentium odit."
-};
-
 export class DoneePostTab extends Component {
   state = {
     loading: true,
@@ -32,7 +25,6 @@ export class DoneePostTab extends Component {
     Axios.get("/donee/" + id)
       .then(res => {
         this.setState({ donee: res.data });
-        console.log(res.data);
       })
       .then(() => {
         this.state.donee.postIDs.forEach(postID => {
@@ -120,7 +112,6 @@ export class DoneePostTab extends Component {
       });
     }
 
-    // console.log(this.props.data);
     return (
       <Fragment>
         <NewPost
