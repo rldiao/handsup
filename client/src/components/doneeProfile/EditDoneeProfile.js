@@ -49,6 +49,9 @@ export default class EditDoneeProfile extends Component {
         this.state.goal.splice(index, 1);
       }
     });
+    console.log(this.props.donee.goal);
+    console.log(this.state.goal);
+    // this.setState({ goal: this.props.donee.goal });
     this.props.handleCancelClick();
   };
 

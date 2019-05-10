@@ -18,7 +18,7 @@ class SavedDonees extends Component {
 
   componentDidMount() {
     const profile = AuthService.getProfile();
-    Axios.get("/" + profile.email)
+    Axios.get("/user/" + profile.email)
       .then(res => {
         this.setState({ user: res.data });
         this.setState({ savedDonees: this.state.user.savedDoneesID });
@@ -54,9 +54,11 @@ class SavedDonees extends Component {
       }
     });
     console.log(this.state.user.savedDoneesID);
-    Axios.put("/update/" + this.state.user.email, this.state.user).then(res => {
-      console.log(res.data);
-    });
+    Axios.put("/user/update/" + this.state.user.email, this.state.user).then(
+      res => {
+        console.log(res.data);
+      }
+    );
     this.forceUpdate();
   };
 

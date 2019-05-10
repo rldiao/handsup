@@ -64,7 +64,7 @@ export default class DoneeCard extends Component {
             {" "}
             {this.props.btnText}
           </Button>
-          <Typography variant="subheading">
+          <Typography variant="subtitle1">
             Until {this.props.donee.monthlyRenewalDate}
           </Typography>
           <div className={styles.doneeLocation}>

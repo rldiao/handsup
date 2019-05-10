@@ -47,7 +47,7 @@ export default class DiscoverPage extends Component {
     // get the user and update the savedDoneesID
     if (this.state.user != null) {
       // add the donee to saved donees list if the donee is not in the list
-      if (this.state.user.savedDoneesID.indexOf(state.id, 0) === -1) {
+      if (this.state.user.savedDoneesID.indexOf(state.id) === -1) {
         this.state.user.savedDoneesID.push(state.id);
       }
       // remove the donee from the saved donees list if the donee is already in the list
@@ -57,7 +57,7 @@ export default class DiscoverPage extends Component {
       }
       this.setState({ user: this.state.user });
       console.log(this.state.user);
-      Axios.put("update/" + this.state.user.email, this.state.user).then(
+      Axios.put("/user/update/" + this.state.user.email, this.state.user).then(
         res => {
           console.log(res.data);
         }
@@ -68,7 +68,7 @@ export default class DiscoverPage extends Component {
   async getUser() {
     const profile = AuthService.getProfile();
     try {
-      const res = await Axios.get("/" + profile.email);
+      const res = await Axios.get("/user/" + profile.email);
       const data = res.data;
       this.setState({ loading: false, user: data });
     } catch (e) {

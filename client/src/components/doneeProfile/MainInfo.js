@@ -27,10 +27,10 @@ export default class MainInfo extends Component {
           <p className={styles.doneeName}>{this.props.donee.name}</p>
           <BorderLinearProgress variant="determinate" value={progressWidth} />
           <div className={styles.amountFunded}>${this.props.donee.funded}</div>
-          <Typography variant="subheading">
+          <Typography variant="subtitle1">
             funded of ${this.props.donee.monthlyDonationLimit}
           </Typography>
-          <Typography variant="subheading">
+          <Typography variant="subtitle1">
             Until {this.props.donee.monthlyRenewalDate}
           </Typography>
           <br />
