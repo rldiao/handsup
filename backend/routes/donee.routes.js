@@ -9,12 +9,15 @@ router.post("/login", doneeController.loginDonee);
 
 router.get("/logout", doneeController.logoutDonee);
 
-router.get("/", doneeController.getDonees);
+router.get("/", [auth.withAuth, doneeController.getDonees]);
 
-router.get("/:_id", doneeController.getOneDonee);
+router.get("/:_id", [auth.withAuth, doneeController.getOneDonee]);
 
-router.put("/updatePostID/:_id", doneeController.updatePostIDs);
+router.put("/updatePostID/:_id", [
+  auth.withAuth,
+  doneeController.updatePostIDs
+]);
 
-router.put("/update/:_id", doneeController.updateOneDonee);
+router.put("/update/:_id", [auth.withAuth, doneeController.updateOneDonee]);
 
 module.exports = router;

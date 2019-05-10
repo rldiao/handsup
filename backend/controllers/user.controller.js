@@ -67,7 +67,10 @@ exports.loginUser = (req, res, next) => {
       if (passportUser) {
         const user = passportUser;
         user.token = passportUser.generateToken();
-        return res.status(200).json({ user: user.toAuthJSON() });
+        return res
+          .status(200)
+          .cookie("token", user.token, { httpOnly: true })
+          .json({ user: user.toAuthJSON() });
       }
       return res.sendStatus(401);
     }
