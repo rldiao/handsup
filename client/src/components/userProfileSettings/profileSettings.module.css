@@ -8,7 +8,10 @@
 .content {
   width: 70%;
 }
-
+.formContainer {
+  display: grid;
+  grid-row-gap: 2rem;
+}
 .form {
   font-weight: 500;
   display: flex;
