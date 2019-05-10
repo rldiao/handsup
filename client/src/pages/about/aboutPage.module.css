@@ -1,0 +1,11 @@
+/* .pageContainer {
+} */
+
+.tileContent {
+  padding: 1.5rem;
+}
+
+#banner {
+  background: var(--main-primary-color);
+  height: 100px;
+}

@@ -71,9 +71,13 @@ export default class EditDoneeProfile extends Component {
     donee.bio = this.state.bio;
     donee.goal = this.state.goal;
 
-    Axios.put("donee/update/" + this.props.donee._id, donee).then(res => {
-      console.log(res.data);
-    });
+    Axios.put("/donee/update/" + this.props.donee._id, donee)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log("Save Error: " + err);
+      });
 
     this.props.handleSaveClick();
   };
@@ -91,7 +95,7 @@ export default class EditDoneeProfile extends Component {
         <div className={styles.buttonContainer}>
           <Button
             variant="outlined"
-            style={profileStyles.greenButton}
+            style={profileStyles.saveButton}
             onClick={this.handleSaveClick}
           >
             Save

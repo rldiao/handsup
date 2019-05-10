@@ -1,0 +1,11 @@
+.grid {
+  display: grid;
+  grid-auto-columns: 400px;
+  grid-gap: 1rem;
+}
+
+.gridItemSplit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1rem;
+}

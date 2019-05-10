@@ -6,7 +6,7 @@ const createDonation = function(req, res) {
 
   newDonation.save((err, newDonation) => {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(404);
     } else {
       res.send(newDonation);
     }
@@ -16,7 +16,7 @@ const createDonation = function(req, res) {
 const getDonation = function(req, res) {
   Donation.find((err, donation) => {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(404);
     } else {
       res.send(donation);
     }
@@ -26,7 +26,7 @@ const getDonation = function(req, res) {
 const getOneDonation = function(req, res) {
   Donation.findOne({ _id: req.params._id }, (err, donation) => {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(404);
     } else {
       res.send(donation);
     }
