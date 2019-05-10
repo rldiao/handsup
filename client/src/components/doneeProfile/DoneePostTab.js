@@ -169,7 +169,7 @@ export default class DoneePostTab extends Component {
     const { donee } = this.props;
     let posts;
 
-    if (this.state.posts) {
+    if (this.state.posts.length > 0) {
       posts = this.state.posts.map(post => {
         try {
           return (
@@ -184,6 +184,8 @@ export default class DoneePostTab extends Component {
           console.log(error);
         }
       });
+    } else {
+      posts = <div>No Posts</div>;
     }
     return (
       <div className={styles.tabContainerGrid}>
