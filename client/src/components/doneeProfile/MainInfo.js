@@ -8,10 +8,7 @@ import { profileStyles } from "../../pages/userProfile/profileStyles";
 export default class MainInfo extends Component {
   constructor(props) {
     super(props);
-
   }
-
-
 
   render() {
     const progressWidth =
@@ -36,6 +33,14 @@ export default class MainInfo extends Component {
           <Typography variant="subheading">
             Until {this.props.donee.monthlyRenewalDate}
           </Typography>
+          <br />
+          <Button
+            variant="outlined"
+            // onClick={}
+            style={profileStyles.saveButton}
+          >
+            Donate Now
+          </Button>
         </div>
       </div>
     );

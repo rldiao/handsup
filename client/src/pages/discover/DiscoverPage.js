@@ -1,16 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import AuthService from "../../services/AuthService";
 import Axios from "axios";
 import DoneeCard from "../../components/userProfile/DoneeCard";
 import { history } from "../../helper/history";
 import styles from "./discover.module.css";
+import { Paper, InputBase, Icon } from "@material-ui/core";
+import { IconButton } from "@material-ui/core/es";
 
 export default class DiscoverPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: null,
-      donees: []
+      donees: [],
+      searching: false,
+      searchingDonee: null
     };
   }
 
@@ -42,17 +46,22 @@ export default class DiscoverPage extends Component {
   handleSaveClick = state => {
     // get the user and update the savedDoneesID
     if (this.state.user != null) {
+      // add the donee to saved donees list if the donee is not in the list
       if (this.state.user.savedDoneesID.indexOf(state.id, 0) === -1) {
         this.state.user.savedDoneesID.push(state.id);
-        this.setState({ user: this.state.user });
-        console.log(this.state.user);
-
-        Axios.put("update/" + this.state.user.email, this.state.user).then(
-          res => {
-            console.log(res.data);
-          }
-        );
       }
+      // remove the donee from the saved donees list if the donee is already in the list
+      else {
+        let index = this.state.user.savedDoneesID.indexOf(state.id);
+        this.state.user.savedDoneesID.splice(index, 1);
+      }
+      this.setState({ user: this.state.user });
+      console.log(this.state.user);
+      Axios.put("update/" + this.state.user.email, this.state.user).then(
+        res => {
+          console.log(res.data);
+        }
+      );
     }
   };
 
@@ -75,6 +84,22 @@ export default class DiscoverPage extends Component {
     );
   };
 
+  handleSearchOnChange = e => {
+    let found = false;
+    this.state.donees.forEach(donee => {
+      if (donee.name === e.target.value) {
+        this.setState({ searching: true, searchingDonee: donee });
+        found = true;
+      }
+    });
+    if (found === false) {
+      this.setState({ searching: false, searchingDonee: null });
+    }
+
+    console.log(e.target);
+    console.log(e.target.value);
+  };
+
   render() {
     const cardContent = this.state.donees.map(donee => {
       const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
@@ -90,6 +115,45 @@ export default class DiscoverPage extends Component {
         />
       );
     });
-    return <div className={styles.doneesContainer}>{cardContent}</div>;
+
+    const searchingDonee = () => {
+      const progressWidth =
+        (this.state.searchingDonee.funded /
+          this.state.searchingDonee.monthlyDonationLimit) *
+        100;
+      return (
+        <DoneeCard
+          key={this.state.searchingDonee._id}
+          id={this.state.searchingDonee._id}
+          donee={this.state.searchingDonee}
+          handleDoneeClick={this.handleDoneeClick}
+          handleButtonClick={this.handleSaveClick}
+          btnText={
+            this.isDoneeSaved(this.state.searchingDonee) ? "Saved" : "Save"
+          }
+          progressWidth={progressWidth}
+        />
+      );
+    };
+    return (
+      <Fragment>
+        <div className={styles.searchBarContainer}>
+          <Paper elevation={1}>
+            <IconButton aria-label="Search">
+              <Icon>search</Icon>
+            </IconButton>
+
+            <InputBase
+              name="doneeName"
+              onChange={this.handleSearchOnChange}
+              placeholder="Search donee"
+            />
+          </Paper>
+        </div>
+        <div className={styles.doneesContainer}>
+          {this.state.searching ? searchingDonee : cardContent}
+        </div>
+      </Fragment>
+    );
   }
 }
