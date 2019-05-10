@@ -14,7 +14,7 @@ export default class DiscoverPage extends Component {
       user: null,
       donees: [],
       searching: false,
-      searchingDonee: null
+      searchingDonee: []
     };
   }
 
@@ -88,16 +88,14 @@ export default class DiscoverPage extends Component {
     let found = false;
     this.state.donees.forEach(donee => {
       if (donee.name === e.target.value) {
-        this.setState({ searching: true, searchingDonee: donee });
+        this.state.searchingDonee.push(donee);
+        this.setState({ searching: true });
         found = true;
       }
     });
     if (found === false) {
-      this.setState({ searching: false, searchingDonee: null });
+      this.setState({ searching: false, searchingDonee: [] });
     }
-
-    console.log(e.target);
-    console.log(e.target.value);
   };
 
   render() {
@@ -116,25 +114,22 @@ export default class DiscoverPage extends Component {
       );
     });
 
-    const searchingDonee = () => {
-      const progressWidth =
-        (this.state.searchingDonee.funded /
-          this.state.searchingDonee.monthlyDonationLimit) *
-        100;
+    const searchingDonee = this.state.searchingDonee.map(donee => {
+      console.log(donee);
+
+      const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
       return (
         <DoneeCard
-          key={this.state.searchingDonee._id}
-          id={this.state.searchingDonee._id}
-          donee={this.state.searchingDonee}
+          key={donee._id}
+          id={donee._id}
+          donee={donee}
           handleDoneeClick={this.handleDoneeClick}
           handleButtonClick={this.handleSaveClick}
-          btnText={
-            this.isDoneeSaved(this.state.searchingDonee) ? "Saved" : "Save"
-          }
+          btnText={this.isDoneeSaved(donee) ? "Saved" : "Save"}
           progressWidth={progressWidth}
         />
       );
-    };
+    });
     return (
       <Fragment>
         <div className={styles.searchBarContainer}>

@@ -39,13 +39,16 @@ export default class EditDoneeProfile extends Component {
   };
 
   handleCancelClick = () => {
-    this.state.goal.forEach(goal=> {
-      if (goal === "Add a new goal" || goal === "" || !goal.replace(/\s/g, '').length) {
+    this.state.goal.forEach(goal => {
+      if (
+        goal === "Add a new goal" ||
+        goal === "" ||
+        !goal.replace(/\s/g, "").length
+      ) {
         let index = this.state.goal.indexOf(goal);
         this.state.goal.splice(index, 1);
-
       }
-    })
+    });
     this.props.handleCancelClick();
   };
 
@@ -54,13 +57,16 @@ export default class EditDoneeProfile extends Component {
     let donee;
     donee = this.props.donee;
 
-    this.state.goal.forEach(goal=> {
-      if (goal === "Add a new goal" || goal === "" || !goal.replace(/\s/g, '').length) {
+    this.state.goal.forEach(goal => {
+      if (
+        goal === "Add a new goal" ||
+        goal === "" ||
+        !goal.replace(/\s/g, "").length
+      ) {
         let index = this.state.goal.indexOf(goal);
         this.state.goal.splice(index, 1);
-
       }
-    })
+    });
     donee.location = this.state.location;
     donee.bio = this.state.bio;
     donee.goal = this.state.goal;
@@ -76,9 +82,8 @@ export default class EditDoneeProfile extends Component {
     let newGoal;
     newGoal = "Add a new goal";
     this.state.goal.push(newGoal);
-    this.forceUpdate();  
-
-  }
+    this.forceUpdate();
+  };
 
   render() {
     return (
@@ -86,7 +91,7 @@ export default class EditDoneeProfile extends Component {
         <div className={styles.buttonContainer}>
           <Button
             variant="outlined"
-            style={profileStyles.saveButton}
+            style={profileStyles.greenButton}
             onClick={this.handleSaveClick}
           >
             Save
@@ -136,12 +141,12 @@ export default class EditDoneeProfile extends Component {
           ))}
         </ol>
         <Button
-            variant="outlined"
-            onClick={this.handleNewGoalClick}
-            style={profileStyles.editProfileButton}
-          >
-            New Goal
-          </Button>
+          variant="outlined"
+          onClick={this.handleNewGoalClick}
+          style={profileStyles.editProfileButton}
+        >
+          New Goal
+        </Button>
       </div>
     );
   }
