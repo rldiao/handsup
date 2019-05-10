@@ -14,10 +14,10 @@ router.get("/logout", users.logoutUser);
 //   res.send(req.headers);
 // });
 
-router.get("/:email", [auth.withAuth, update.getOneProfile]);
+router.get("/:email", update.getOneProfile);
 
-router.put("/update/:email", [auth.withAuth, update.updateProfile]);
+router.put("/update/:email", update.updateProfile);
 
-router.put("/change_password/:email", [auth.withAuth, update.updatePassword]);
+router.put("/change_password/:email", update.updatePassword);
 
 module.exports = router;

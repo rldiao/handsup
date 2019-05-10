@@ -20,9 +20,10 @@ passport.use(
           if (!err && user && user.validatePassword(password)) {
             return done(null, user);
           }
-        });
-
-        return done(new Error("Invalid email or password!"));
+          return done(null, false, {
+            error: "invalid email or password"
+          });
+        }).catch(done);
       });
     }
   )

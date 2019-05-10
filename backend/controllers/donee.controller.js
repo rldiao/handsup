@@ -141,7 +141,7 @@ const deleteOneDonee = function(req, res) {
 const updatePostIDs = function(req, res) {
   Donee.findOneAndUpdate(
     { _id: req.params._id },
-    { $push: { postIDs: req.body._id } },
+    { $push: { postIDs: req.body.postID } },
     { new: true },
     (err, postID) => {
       if (err) {

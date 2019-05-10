@@ -25,8 +25,6 @@ class DoneeNavTab extends Component {
   render() {
     const { value } = this.state;
 
-    console.log(this.state.newUpdate);
-
     const { classes } = this.props;
 
     return (
