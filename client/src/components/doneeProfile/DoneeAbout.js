@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styles from "./doneeProfile.module.css";
 import { profileStyles } from "../../pages/userProfile/profileStyles";
 import { Button } from "@material-ui/core";
@@ -14,7 +14,7 @@ export default class DoneeAbout extends Component {
 
   render() {
     return (
-      <div className={styles.aboutContainer}>
+      <Fragment>
         {/* <Button
           variant="outlined"
           onClick={this.handleEditProfileClick}
@@ -36,7 +36,7 @@ export default class DoneeAbout extends Component {
             ))}
           </ol>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

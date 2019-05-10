@@ -43,9 +43,7 @@ class DoneeNavTab extends Component {
             <Tab label="Updates" style={custom.tabLabel} />
           </Tabs>
         </Paper>
-        <div
-          className={classnames(styles.tabContainer, styles.tabContainerGrid)}
-        >
+        <div className={styles.tabContainer}>
           {value === 0 && <DoneeAbout donee={this.props.donee} />}
           {value === 1 && <DoneePostTab donee={this.props.donee} />}
         </div>

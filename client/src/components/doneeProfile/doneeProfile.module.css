@@ -1,3 +1,4 @@
+/* ============= Main Section ============== */
 .doneeProfileContainer {
   background-color: #f5fff9;
   display: grid;
@@ -39,10 +40,40 @@
   display: flex;
 }
 
-.aboutContainer {
-  padding: 2rem;
+@media screen and (max-width: 550px) {
+  .doneeProfileContainer {
+    grid-template-columns: 1fr 2fr;
+  }
 }
 
+/* ============== Tab Component =============== */
+
+.tabContainer {
+  margin-top: 2rem;
+  padding: 0 20%;
+  padding-block-end: 4rem;
+}
+
+.tabContainerGrid {
+  display: grid;
+  grid-gap: 2rem;
+}
+
+.titleField {
+  margin: normal;
+  width: 25%;
+}
+
+.postField {
+  margin: normal;
+  width: 50%;
+}
+
+.navtab {
+  margin: 0 5%;
+}
+
+/* ============= About Tab =========== */
 .aboutTitle {
   color: #000000;
   font-family: "Open Sans", sans-serif;
@@ -95,46 +126,7 @@ ol {
   font-family: "Source Sans Pro", sans-serif;
 }
 
-@media screen and (max-width: 550px) {
-  .doneeProfileContainer {
-    grid-template-columns: 1fr 2fr;
-  }
-}
-
-.container {
-  display: flex;
-  margin: 4vw 0 3vw 6vw;
-}
-
-.tabContainer {
-  margin-top: 2rem;
-  padding: 0 20%;
-}
-
-.tabContainerGrid {
-  display: grid;
-  grid-gap: 2rem;
-}
-
-.titleField {
-  margin: normal;
-  width: 25%;
-}
-
-.postField {
-  margin: normal;
-  width: 50%;
-}
-
-.addIcon {
-  font-size: large;
-}
-
-.navtab {
-  margin: 0 5%;
-}
-
-/* Posts */
+/* ================ Posts =============== */
 
 .postTitle {
   display: flex;
@@ -152,7 +144,7 @@ ol {
   font-size: 1rem;
 }
 
-/* New posts */
+/* ============== New Posts ============= */
 .newPostBorderBox {
   border: 1px solid black;
   border-radius: 8px;
