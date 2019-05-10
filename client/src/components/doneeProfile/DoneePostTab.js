@@ -15,7 +15,7 @@ const data = {
 export class DoneePostTab extends Component {
   state = {
     loading: true,
-    posts: [],
+    postIDs: [],
     newPostTitle: "",
     newPostContent: "",
     user: null
@@ -27,32 +27,30 @@ export class DoneePostTab extends Component {
 
     const profile = AuthService.getProfile();
 
-    // TODO: get through user to get the post
-    // Axios.get("/user/" + profile.email)
-    //   .then(res => {
-    //     this.setState({ user: res.data });
-    //     this.setState({ postsID: this.state.user.postsID });
-    //     this.state.user.postsID.forEach(postID => {
-    //       Axios.get("/post/" + postID).then(res => {
-    //         let temp = this.state.posts;
-    //         temp.push(res.data);
-    //         this.setState({ posts: temp });
-    //       });
-    //     });
-    //   })
-    //   .catch(e => {
-    //     console.log(e);
-    //   });
+    Axios.get("/user/" + profile.email)
+      .then(res => {
+        this.setState({ user: res.data });
+        this.setState({ postIDs: this.state.user.postIDs });
+        this.state.user.postIDs.forEach(postID => {
+          Axios.get("/post/" + postID).then(res => {
+            let temp = this.state.postIDs;
+            temp.push(res.data);
+            this.setState({ postIDs: temp });
+          });
+        });
+      })
+      .catch(e => {
+        console.log("Error: " + e);
+      });
 
-    Axios.get("/post").then(res => {
-      let temp = res.data;
-      this.setState({ posts: temp });
-    });
+    // Axios.get("/post").then(res => {
+    //   let temp = res.data;
+    //   this.setState({ posts: temp });
+    // });
   }
 
-  submitNewPost = () => {
+  submitNewPost = async () => {
     // Send new post to post api
-    alert("Submit new post: " + this.state.newPostContent);
     let today = new Date();
     const date =
       today.getDate() +
@@ -61,17 +59,20 @@ export class DoneePostTab extends Component {
       "-" +
       today.getFullYear();
 
-    Axios.post("/post/new", {
-      title: this.state.newPostTitle,
-      createDate: date,
-      content: this.state.newPostContent
-    })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(res => {
-        alert("Fail");
+    let newPostID;
+
+    try {
+      newPostID = await Axios.post("/post/new", {
+        title: this.state.newPostTitle,
+        createDate: date,
+        content: this.state.newPostContent
+      }).then(res => {
+        return res.data._id;
       });
+      await Axios.put("/donee/updatePostID/" + this.state.user._id, newPostID);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   handleClearClick = () => {
@@ -87,7 +88,7 @@ export class DoneePostTab extends Component {
   };
 
   render() {
-    const doneePost = this.state.posts.map(post => {
+    const doneePost = this.state.postIDs.map(post => {
       return (
         <DoneePost
           key={post._id}

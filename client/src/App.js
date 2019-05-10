@@ -17,7 +17,6 @@ import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
 import ContactPage from "./pages/contact/ContactPage";
 import AboutPage from "./pages/about/AboutPage";
 import DoneePage from "./pages/doneeProfile/DoneePage";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 
 // Private Routing
 const checkAuth = () => {

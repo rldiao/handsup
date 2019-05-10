@@ -43,8 +43,8 @@ function NewPost(props) {
 }
 
 NewPost.propTypes = {
-  titleValue: PropTypes.object.isRequired,
-  contentValue: PropTypes.object.isRequired
+  titleValue: PropTypes.string.isRequired,
+  contentValue: PropTypes.string.isRequired
 };
 
 export default withStyles(muStyles)(NewPost);

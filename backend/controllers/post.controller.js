@@ -11,6 +11,16 @@ const getPosts = function(req, res) {
   });
 };
 
+const getOnePost = function(req, res) {
+  Post.findOne({ _id: req.params._id }, (err, postID) => {
+    if (err) {
+      res.sendStatus(404);
+    } else {
+      res.send(postID);
+    }
+  });
+};
+
 const addPost = function(req, res) {
   const newPost = new Post(req.body);
 
@@ -35,6 +45,7 @@ const deleteOnePost = function(req, res) {
 
 module.exports = {
   getPosts,
+  getOnePost,
   addPost,
   deleteOnePost
 };

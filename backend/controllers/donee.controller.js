@@ -138,6 +138,21 @@ const deleteOneDonee = function(req, res) {
   });
 };
 
+const updatePostIDs = function(req, res) {
+  Donee.findOneAndUpdate(
+    { _id: req.params._id },
+    { $push: { postIDs: req.body._id } },
+    { new: true },
+    (err, postID) => {
+      if (err) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(200);
+      }
+    }
+  );
+};
+
 module.exports = {
   createDonee,
   loginDonee,
@@ -145,5 +160,6 @@ module.exports = {
   getDonees,
   getOneDonee,
   updateOneDonee,
-  deleteOneDonee
+  deleteOneDonee,
+  updatePostIDs
 };
