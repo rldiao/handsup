@@ -23,7 +23,7 @@ exports.createUser = (req, res) => {
   }
 
   const newUser = new Users(user);
-  user.userType = userTypeConstants.doner;
+  newUser.userType = userTypeConstants.doner;
 
   // Hash password
   newUser.setPassword(user.password);
@@ -73,7 +73,9 @@ exports.loginUser = (req, res, next) => {
       if (passportUser) {
         const user = passportUser;
         user.token = passportUser.generateToken();
-        return res.status(200).json({ user: user.toAuthJSON() });
+        return res
+          .status(200)
+          .json({ user: user.toAuthJSON(), userType: user.userType });
       }
       return res.sendStatus(401);
     }

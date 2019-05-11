@@ -26,7 +26,7 @@ const createDonee = (req, res) => {
   }
 
   const newDonee = new Donee(user);
-  user.userType = userTypeConstants.donee;
+  newDonee.userType = userTypeConstants.donee;
 
   // Hash password
   newDonee.setPassword(user.password);

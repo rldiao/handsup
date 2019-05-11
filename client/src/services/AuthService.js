@@ -12,16 +12,17 @@ const AuthService = {
   getProfile
 };
 
-async function login(email, password, userType) {
-  return Axios.post(`/${userType}/login`, {
+async function login(email, password) {
+  return Axios.post("/user/login", {
     user: {
       email,
-      password,
-      userType
+      password
     }
   })
     .then(res => {
-      setToken(res.data.user.token); // Setting the token in localStorage
+      let { user, userType } = res.data;
+      setToken(user.token);
+      setUserType(userType);
       return Promise.resolve(res);
     })
     .catch(res => {
@@ -68,8 +69,17 @@ function getToken() {
   return localStorage.getItem("id_token");
 }
 
+function setUserType(userType) {
+  localStorage.setItem("userType", userType);
+}
+
+function getUserType() {
+  localStorage.getItem("userType");
+}
+
 function logout() {
   localStorage.removeItem("id_token");
+  localStorage.removeItem("userType");
 }
 
 function getProfile() {

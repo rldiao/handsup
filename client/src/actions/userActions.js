@@ -4,14 +4,14 @@ import { stateConstants } from "../constants/stateConstants";
 import AuthService from "../services/AuthService";
 import { history } from "../helper/history";
 
-export const login = (email, password, userType) => dispatch => {
-  AuthService.login(email, password, userType)
+export const login = (email, password) => dispatch => {
+  AuthService.login(email, password)
     .then(res => {
       dispatch({
         type: userConstants.USER_VERIFIED,
         payload: {
           state: stateConstants.AUTH,
-          user: res.user
+          userType: res.data.userType
         }
       });
       history.push("/");
@@ -27,7 +27,7 @@ export const logout = () => dispatch => {
     type: userConstants.USER_UNVERIFIED,
     payload: {
       state: stateConstants.UNAUTH,
-      user: null
+      userType: null
     }
   });
   history.push("/login");
