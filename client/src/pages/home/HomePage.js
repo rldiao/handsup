@@ -104,7 +104,9 @@ class HomePage extends Component {
     let content = (
       <Fragment>
         {/* Placeholder Items */}
-        <Button onClick={this.props.logout}>Logout</Button>
+        <Button onClick={this.props.logout} color="primary" variant="contained">
+          Logout
+        </Button>
       </Fragment>
     );
 
