@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { login } from "../../actions/userActions";
-import styles from "./doner.module.css";
+import styles from "./login.module.css";
 import AuthService from "../../services/AuthService";
 import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
@@ -43,7 +43,7 @@ class DonerLoginForm extends Component {
 
     return (
       <div className={styles.grid}>
-        <h1>Doner Login</h1>
+        <h1>Login</h1>
         <TextField
           variant="outlined"
           label="Email"
@@ -57,16 +57,9 @@ class DonerLoginForm extends Component {
           type="password"
           onChange={this.handleChange("password")}
         />
-        <div className={styles.gridItemSplit}>
-          <Button onClick={this.props.switchForm}>I'm a donee!</Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleSubmit}
-          >
-            Login
-          </Button>
-        </div>
+        <Button variant="contained" color="primary" onClick={this.handleSubmit}>
+          Login
+        </Button>
       </div>
     );
   }

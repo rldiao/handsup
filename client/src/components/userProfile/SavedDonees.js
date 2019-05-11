@@ -23,6 +23,10 @@ class SavedDonees extends Component {
         this.setState({ user: res.data });
         this.setState({ savedDonees: this.state.user.savedDoneesID });
         this.state.user.savedDoneesID.map(doneeID => {
+          if (doneeID === "") {
+            // MongoDB issue as array is initalized as [""]
+            return;
+          }
           Axios.get("/donee/" + doneeID).then(res => {
             let temp = this.state.donees;
             temp.push(res.data);
@@ -53,7 +57,6 @@ class SavedDonees extends Component {
         this.state.user.savedDoneesID.splice(index, 1);
       }
     });
-    console.log(this.state.user.savedDoneesID);
     Axios.put("/user/update/" + this.state.user.email, this.state.user).then(
       res => {
         console.log(res.data);
@@ -65,7 +68,6 @@ class SavedDonees extends Component {
   render() {
     const cardContent = this.state.donees.map(donee => {
       const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
-
       return (
         <DoneeCard
           key={donee._id}

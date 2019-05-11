@@ -3,9 +3,11 @@ import MainSection from "../../components/userProfile/MainSection";
 import SavedDonees from "../../components/userProfile/SavedDonees";
 import styles from "./profile.module.css";
 import Button from "@material-ui/core/Button";
-import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import { profileStyles } from "./profileStyles";
 import { history } from "../../helper/history";
+import { userTypeConstants } from "../../constants";
+import DoneeNavTab from "../../components/doneeProfile/DoneeNavTab";
 
 class UserProfilePage extends Component {
   constructor() {
@@ -18,6 +20,13 @@ class UserProfilePage extends Component {
   }
 
   render() {
+    const { userType } = this.props;
+    let content;
+    if (userType === userTypeConstants.DONER) {
+      content = <SavedDonees />;
+    } else if (userType === userTypeConstants.DONEE) {
+      content = <div>Donee Nav Tab</div>;
+    }
     return (
       <div className={styles.userProfileContainer}>
         <div className={styles.editProfileButton}>
@@ -30,10 +39,16 @@ class UserProfilePage extends Component {
           </Button>
         </div>
         <MainSection />
-        <SavedDonees />
+        {content}
       </div>
     );
   }
 }
 
-export default withRouter(UserProfilePage);
+const mapStateToProps = state => {
+  return {
+    userType: state.auth.userType
+  };
+};
+
+export default connect(mapStateToProps)(UserProfilePage);

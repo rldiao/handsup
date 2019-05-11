@@ -1,20 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import logo from "../../assets/img/logo_slogan.png";
 import DrawerToggleButton from "./SideDrawer/DrawerToggleButton";
 import styles from "./NavBarTutorial.module.css";
 import CallToAction from "./CallToAction";
-import { stateConstants } from "../../constants/stateConstants";
-import { Link } from "react-router-dom";
+import { stateConstants, userTypeConstants } from "../../constants/";
 
 class NavBarTutorial extends Component {
   render() {
     let callToActionDiv;
+    let discoverTab;
     let loggedIn = this.props.authState === stateConstants.AUTH;
 
     if (!loggedIn) {
       callToActionDiv = <CallToAction />;
+    }
+    if (this.props.userType === userTypeConstants.DONER) {
+      discoverTab = (
+        <li>
+          <Link to="/discover" className={styles.navBarItem}>
+            Discover
+          </Link>
+        </li>
+      );
     }
 
     return (
@@ -34,11 +44,7 @@ class NavBarTutorial extends Component {
                   About Us
                 </Link>
               </li>
-              <li>
-                <Link to="/discover" className={styles.navBarItem}>
-                  Discover
-                </Link>
-              </li>
+              {discoverTab}
               <li>
                 <Link to="/contact" className={styles.navBarItem}>
                   Contact Us
@@ -58,7 +64,8 @@ class NavBarTutorial extends Component {
 
 const mapStateToProps = state => {
   return {
-    authState: state.auth.state
+    authState: state.auth.state,
+    userType: state.auth.userType
   };
 };
 

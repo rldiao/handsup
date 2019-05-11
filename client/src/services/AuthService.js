@@ -8,6 +8,8 @@ const AuthService = {
   isTokenExpired,
   setToken,
   getToken,
+  setUserType,
+  getUserType,
   logout,
   getProfile
 };
@@ -70,11 +72,11 @@ function getToken() {
 }
 
 function setUserType(userType) {
-  localStorage.setItem("userType", userType);
+  return localStorage.setItem("userType", userType);
 }
 
 function getUserType() {
-  localStorage.getItem("userType");
+  return localStorage.getItem("userType");
 }
 
 function logout() {

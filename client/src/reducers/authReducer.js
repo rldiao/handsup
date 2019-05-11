@@ -5,7 +5,9 @@ const initialAuthState = AuthService.loggedIn()
   ? stateConstants.AUTH
   : stateConstants.UNAUTH;
 
-const initialState = { state: initialAuthState };
+const initialUserType = AuthService.getUserType();
+
+const initialState = { state: initialAuthState, userType: initialUserType };
 
 export default function(state = initialState, action) {
   switch (action.type) {
