@@ -12,8 +12,9 @@ import ErrorPage from "./pages/error/ErrorPage";
 import LoginPage from "./pages/login/LoginPage";
 import SignUpPage from "./pages/signup/SignUpPage";
 import DiscoverPage from "./pages/discover/DiscoverPage";
-import UserProfilePage from "./pages/userProfile/userProfilePage";
-import UserSettingsPage from "./pages/userProfileSettings/userSettingsPage";
+import UserProfilePage from "./pages/userProfile/UserProfilePage";
+import UserSettingsPage from "./pages/userProfileSettings/UserSettingsPage";
+import DoneePage from "./pages/doneeProfile/DoneePage";
 import ContactPage from "./pages/contact/ContactPage";
 import AboutPage from "./pages/about/AboutPage";
 
@@ -98,13 +99,22 @@ class App extends Component {
           <div className={styles.content}>
             <Switch>
               <PrivateRoute path="/" exact component={HomePage} />
-              <PrivateRoute path="/discover" component={DiscoverPage} />
-              <PrivateRoute path="/userProfile" component={UserProfilePage} />
-              <PrivateRoute path="/settings" component={UserSettingsPage} />
-              <Route path="/login" component={LoginPage} />
-              <Route path="/signup" component={SignUpPage} />
-              <Route path="/contact" component={ContactPage} />
-              <Route path="/about" component={AboutPage} />
+              <PrivateRoute path="/discover" exact component={DiscoverPage} />
+              <PrivateRoute
+                path="/userProfile"
+                exact
+                component={UserProfilePage}
+              />
+              <PrivateRoute
+                path="/settings"
+                exact
+                component={UserSettingsPage}
+              />
+              <PrivateRoute path="/user/" component={DoneePage} />
+              <Route path="/login" exact component={LoginPage} />
+              <Route path="/signup" exact component={SignUpPage} />
+              <Route path="/about" exact component={AboutPage} />
+              <Route path="/contact" exact component={ContactPage} />
               <Route component={ErrorPage} />
             </Switch>
           </div>

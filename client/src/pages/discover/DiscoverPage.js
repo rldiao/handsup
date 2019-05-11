@@ -1,21 +1,26 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import AuthService from "../../services/AuthService";
 import Axios from "axios";
 import DoneeCard from "../../components/userProfile/DoneeCard";
+import { history } from "../../helper/history";
 import styles from "./discover.module.css";
+import { Paper, InputBase, Icon } from "@material-ui/core";
+import { IconButton } from "@material-ui/core/es";
 
 export default class DiscoverPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: null,
-      donees: []
+      donees: [],
+      searching: false,
+      searchingDonee: []
     };
   }
 
   componentDidMount() {
     this.getUser();
-    Axios.get("/donee")
+    Axios.get("/donee/")
       .then(res => {
         this.setState({ donees: res.data });
       })
@@ -27,7 +32,13 @@ export default class DiscoverPage extends Component {
   /**
    * The page will redirect to the specific donee page when the user(donor) clicks on that donee's name
    */
-  handleDoneeClick = () => {};
+  handleDoneeClick = state => {
+    console.log(state);
+    history.push({
+      pathname: "/user/" + state.name,
+      state: { doneeID: state.id }
+    });
+  };
 
   /**
    * The donee that the user clicks "Save" will be saved to the user Savd donees list
@@ -35,11 +46,22 @@ export default class DiscoverPage extends Component {
   handleSaveClick = state => {
     // get the user and update the savedDoneesID
     if (this.state.user != null) {
-      if (this.state.user.savedDoneesID.indexOf(state.id, 0) === -1) {
+      // add the donee to saved donees list if the donee is not in the list
+      if (this.state.user.savedDoneesID.indexOf(state.id) === -1) {
         this.state.user.savedDoneesID.push(state.id);
-        this.setState({ user: this.state.user });
-        Axios.put("/user/update/" + this.state.user.email, this.state.user);
       }
+      // remove the donee from the saved donees list if the donee is already in the list
+      else {
+        let index = this.state.user.savedDoneesID.indexOf(state.id);
+        this.state.user.savedDoneesID.splice(index, 1);
+      }
+      this.setState({ user: this.state.user });
+      console.log(this.state.user);
+      Axios.put("/user/update/" + this.state.user.email, this.state.user).then(
+        res => {
+          console.log(res.data);
+        }
+      );
     }
   };
 
@@ -62,9 +84,23 @@ export default class DiscoverPage extends Component {
     );
   };
 
+  handleSearchOnChange = e => {
+    let found = false;
+    this.state.donees.forEach(donee => {
+      if (donee.name === e.target.value) {
+        this.state.searchingDonee.push(donee);
+        this.setState({ searching: true });
+        found = true;
+      }
+    });
+    if (found === false) {
+      this.setState({ searching: false, searchingDonee: [] });
+    }
+  };
+
   render() {
     const cardContent = this.state.donees.map(donee => {
-      // const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
+      const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
       return (
         <DoneeCard
           key={donee._id}
@@ -73,9 +109,46 @@ export default class DiscoverPage extends Component {
           handleDoneeClick={this.handleDoneeClick}
           handleButtonClick={this.handleSaveClick}
           btnText={this.isDoneeSaved(donee) ? "Saved" : "Save"}
+          progressWidth={progressWidth}
         />
       );
     });
-    return <div className={styles.doneesContainer}>{cardContent}</div>;
+
+    const searchingDonee = this.state.searchingDonee.map(donee => {
+      console.log(donee);
+
+      const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
+      return (
+        <DoneeCard
+          key={donee._id}
+          id={donee._id}
+          donee={donee}
+          handleDoneeClick={this.handleDoneeClick}
+          handleButtonClick={this.handleSaveClick}
+          btnText={this.isDoneeSaved(donee) ? "Saved" : "Save"}
+          progressWidth={progressWidth}
+        />
+      );
+    });
+    return (
+      <Fragment>
+        <div className={styles.searchBarContainer}>
+          <Paper elevation={1}>
+            <IconButton aria-label="Search">
+              <Icon>search</Icon>
+            </IconButton>
+
+            <InputBase
+              name="doneeName"
+              onChange={this.handleSearchOnChange}
+              placeholder="Search donee"
+            />
+          </Paper>
+        </div>
+        <div className={styles.doneesContainer}>
+          {this.state.searching ? searchingDonee : cardContent}
+        </div>
+      </Fragment>
+    );
   }
 }

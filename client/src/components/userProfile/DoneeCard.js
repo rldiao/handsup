@@ -8,29 +8,36 @@ import {
   Button
 } from "@material-ui/core";
 import { userStyles } from "./userStyles";
+import { BorderLinearProgress } from "./BorderLinearProgress";
 
 export default class DoneeCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id
+      id: this.props.id,
+      name: this.props.donee.name
     };
   }
+
+  handleDoneeClick = () => {
+    this.props.handleDoneeClick(this.state);
+  };
 
   handleButtonClick = () => {
     this.props.handleButtonClick(this.state);
   };
+
   // props: donee
   render() {
     return (
       <Card style={userStyles.doneeCard}>
         <img
           className={styles.doneePicture}
-          alt="donation receiptiant"
+          alt="Donee's Picture"
           src={this.props.donee.profilePicture}
         />
         <CardContent>
-          <CardActionArea onClick={this.props.handleDoneeClick}>
+          <CardActionArea onClick={this.handleDoneeClick}>
             <Typography gutterBottom variant="h6" component="h3">
               {this.props.donee.name}
             </Typography>
@@ -38,7 +45,11 @@ export default class DoneeCard extends Component {
           <Typography component="p" style={userStyles.doneeTypography}>
             {this.props.donee.bio}
           </Typography>
-          <div className={styles.progress} />
+
+          <BorderLinearProgress
+            variant="determinate"
+            value={this.props.progressWidth}
+          />
           <Typography variant="body2">
             ${this.props.donee.funded} funded of $
             {this.props.donee.monthlyDonationLimit}
@@ -52,7 +63,7 @@ export default class DoneeCard extends Component {
             {" "}
             {this.props.btnText}
           </Button>
-          <Typography variant="subheading">
+          <Typography variant="subtitle1">
             Until {this.props.donee.monthlyRenewalDate}
           </Typography>
           <div className={styles.doneeLocation}>

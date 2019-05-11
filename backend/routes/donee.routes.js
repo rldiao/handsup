@@ -13,6 +13,13 @@ router.get("/", [doneeController.getDonees]);
 
 router.get("/:_id", doneeController.getOneDonee);
 
-router.put("/update/:_id", doneeController.updateOneDonee);
+router.get("/:_id", [auth.withAuth, doneeController.getOneDonee]);
+
+router.put("/updatePostID/:_id", [
+  auth.withAuth,
+  doneeController.updatePostIDs
+]);
+
+router.put("/update/:_id", [auth.withAuth, doneeController.updateOneDonee]);
 
 module.exports = router;

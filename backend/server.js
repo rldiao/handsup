@@ -31,10 +31,12 @@ app.use(
 const doneeRouter = require("./routes/donee.routes");
 const donationRouter = require("./routes/donation.routes");
 const userRoute = require("./routes/user.routes");
+const postRoute = require("./routes/post.routes");
 
 app.use("/donee", doneeRouter);
 app.use("/donation", donationRouter);
 app.use("/user", userRoute);
+app.use("/post", postRoute);
 
 require("./database");
 require("./config/passport");
