@@ -23,6 +23,10 @@
   height: 100%;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
 .spacer {
   flex: 1;
 }

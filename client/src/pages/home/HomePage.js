@@ -115,18 +115,14 @@ class HomePage extends Component {
       let doneePost;
       if (this.state.donee !== null) {
         doneePost = this.state.posts.map(post => {
-          try {
-            return (
-              <DoneePost
-                key={post._id}
-                title={post.title}
-                date={post.createDate}
-                content={post.content}
-              />
-            );
-          } catch (error) {
-            console.log(error);
-          }
+          return (
+            <DoneePost
+              key={post._id}
+              title={post.title}
+              date={post.createDate}
+              content={post.content}
+            />
+          );
         });
       }
       content = (

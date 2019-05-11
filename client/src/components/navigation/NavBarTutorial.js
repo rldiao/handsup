@@ -7,8 +7,13 @@ import DrawerToggleButton from "./SideDrawer/DrawerToggleButton";
 import styles from "./NavBarTutorial.module.css";
 import CallToAction from "./CallToAction";
 import { stateConstants, userTypeConstants } from "../../constants/";
+import { history } from "../../helper/history";
 
 class NavBarTutorial extends Component {
+  handleImageClick = () => {
+    history.push("/");
+  };
+
   render() {
     let callToActionDiv;
     let discoverTab;
