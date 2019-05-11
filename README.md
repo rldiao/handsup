@@ -1,7 +1,10 @@
+<!-- Prettier Ignored -->
 # Info30005
 Team name: DaWebBois  
 Web Info Tech  
-*Discription*
+
+### Submittable 4  
+
 
 ### Set up
 For each package.lock in info30005 & backend & client  
@@ -9,7 +12,7 @@ For each package.lock in info30005 & backend & client
 
 ### Run App Locally
 In info30005 folder  
-`npm start`
+`npm run dev`
 
 ### File Structure 
 
