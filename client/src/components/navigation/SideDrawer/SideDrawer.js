@@ -4,6 +4,7 @@ import styles from "./SideDrawer.module.css";
 import { stateConstants } from "../../../constants/stateConstants";
 import { Link } from "react-router-dom";
 import { logout } from "../../../actions/userActions";
+import { userTypeConstants } from "../../../constants";
 
 const classNames = require("classnames");
 
@@ -11,6 +12,15 @@ const sideDrawer = props => {
   let drawerClasses = styles.sideDrawer;
   if (props.show) {
     drawerClasses = classNames(styles.open, styles.sideDrawer);
+  }
+
+  let discoverTab;
+  if (props.userType === userTypeConstants.DONER) {
+    discoverTab = (
+      <li>
+        <Link to="/discover">Discover</Link>
+      </li>
+    );
   }
 
   let accountActionButtons;
@@ -55,9 +65,7 @@ const sideDrawer = props => {
           <li>
             <a href="/about">About Us</a>
           </li>
-          <li>
-            <Link to="/discover">Discover</Link>
-          </li>
+          {discoverTab}
           <li>
             <a href="/contact">Contact Us</a>
           </li>
@@ -70,7 +78,8 @@ const sideDrawer = props => {
 
 const mapStateToProps = state => {
   return {
-    authState: state.auth.state
+    authState: state.auth.state,
+    userType: state.auth.userType
   };
 };
 

@@ -29,6 +29,7 @@ const userSchema = mongoose.Schema({
     unique: true
   },
   savedDoneesID: [String],
+  postIDs: [String],
   phoneNumber: String,
   dob: String,
   location: String,
