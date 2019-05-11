@@ -3,8 +3,10 @@ import styles from "./userProfile.module.css";
 import AuthService from "../../services/AuthService";
 import DoneeCard from "./DoneeCard";
 import Axios from "axios";
+import { withRouter } from "react-router-dom";
+import { history } from "../../helper/history";
 
-export default class SavedDonees extends Component {
+class SavedDonees extends Component {
   constructor() {
     super();
     this.state = {
@@ -20,7 +22,7 @@ export default class SavedDonees extends Component {
       .then(res => {
         this.setState({ user: res.data });
         this.setState({ savedDonees: this.state.user.savedDoneesID });
-        this.state.user.savedDoneesID.forEach(doneeID => {
+        this.state.user.savedDoneesID.map(doneeID => {
           Axios.get("/donee/" + doneeID).then(res => {
             let temp = this.state.donees;
             temp.push(res.data);
@@ -33,8 +35,11 @@ export default class SavedDonees extends Component {
       });
   }
 
-  handleDoneeClick = event => {
-    console.log(event);
+  handleDoneeClick = state => {
+    history.push({
+      pathname: "/user/" + state.name,
+      state: { doneeID: state.id }
+    });
   };
 
   handleRemoveClick = state => {
@@ -48,22 +53,28 @@ export default class SavedDonees extends Component {
         this.state.user.savedDoneesID.splice(index, 1);
       }
     });
-    Axios.put("/user/update/" + this.state.user.email, this.state.user);
+    console.log(this.state.user.savedDoneesID);
+    Axios.put("/user/update/" + this.state.user.email, this.state.user).then(
+      res => {
+        console.log(res.data);
+      }
+    );
     this.forceUpdate();
   };
 
   render() {
     const cardContent = this.state.donees.map(donee => {
-      //   const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
+      const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
 
       return (
         <DoneeCard
           key={donee._id}
           id={donee._id}
           donee={donee}
-          //   handleDoneeClick={this.handleDoneeClick}
+          handleDoneeClick={this.handleDoneeClick}
           handleButtonClick={this.handleRemoveClick}
           btnText="Remove"
+          progressWidth={progressWidth}
         />
       );
     });
@@ -78,3 +89,5 @@ export default class SavedDonees extends Component {
     );
   }
 }
+
+export default withRouter(SavedDonees);

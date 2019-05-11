@@ -75,7 +75,8 @@ exports.loginUser = (req, res, next) => {
         user.token = passportUser.generateToken();
         return res
           .status(200)
-          .json({ user: user.toAuthJSON(), userType: user.userType });
+          .json({ user: user.toAuthJSON(), userType: user.userType })
+          .cookie("token", user.token, { httpOnly: true });
       }
       return res.sendStatus(401);
     }

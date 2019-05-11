@@ -5,16 +5,16 @@ import styles from "./profile.module.css";
 import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
 import { profileStyles } from "./profileStyles";
+import { history } from "../../helper/history";
 
-class userProfilePage extends Component {
+class UserProfilePage extends Component {
   constructor() {
     super();
-    this.routeChange = this.routeChange.bind(this);
+    UserProfilePage.routeChange = UserProfilePage.routeChange.bind(this);
   }
 
-  routeChange() {
-    let path = "/settings";
-    this.props.history.push(path);
+  static routeChange() {
+    history.push("/settings");
   }
 
   render() {
@@ -23,7 +23,7 @@ class userProfilePage extends Component {
         <div className={styles.editProfileButton}>
           <Button
             variant="outlined"
-            onClick={this.routeChange}
+            onClick={UserProfilePage.routeChange}
             style={profileStyles.editProfileButton}
           >
             Edit Profile
@@ -36,4 +36,4 @@ class userProfilePage extends Component {
   }
 }
 
-export default withRouter(userProfilePage);
+export default withRouter(UserProfilePage);

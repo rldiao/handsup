@@ -1,33 +1,56 @@
+/* ======== User Profile Settings =======*/
+
 .settingsContainer {
   margin-top: 3%;
-  padding: 0% 10%;
+  padding: 0% 10% 0% 12.5%;
+  display: flex;
+  justify-content: center;
 }
 
-.form {
+.content {
+  width: 70%;
+}
+
+.settingTitle {
+  font-size: 1.75rem;
+  font-family: raleway, sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  padding: 5% 0 2.5% 0;
+}
+
+/* ================================== */
+
+/* ========= Payment Form && Change Password ====== */
+
+.formContainer {
+  display: grid;
+  grid-row-gap: 2rem;
+}
+
+.input {
+  padding: 1% 10rem 1% 1%;
+  text-align: left;
+}
+
+/* .form {
   font-weight: 500;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   margin: 25px 0;
-}
+} */
 
-.form label {
-  margin: 15px 10px 5px 0;
-}
-
-.formCell button {
+/* 
+.formCell > button {
   padding: 10px 20px;
   background-color: #41521f;
   border: 1px solid #41521f;
   color: white;
   cursor: pointer;
-}
+} */
 
-.uploadBtnContainer {
-  display: flex;
-}
-
-@media (max-width: 3000px) {
+/* @media (max-width: 3000px) {
   .form input {
     margin: 10px 0;
   }
@@ -36,15 +59,9 @@
     flex-direction: column;
     align-items: stretch;
   }
-}
+} */
 
-.settingTitle {
-  font-size: 3.5vw;
-  font-family: raleway, sans-serif;
-  font-weight: 800;
-  font-style: normal;
-  padding: 5% 0 2.5% 0;
-}
+/* ========================================= */
 
 .navtab {
   background-color: white;
@@ -58,26 +75,8 @@
   width: 1%;
 }
 
-.clicked {
-  width: 10%;
-  font-size: 20px;
-  font-family: open-sans, sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
 .account {
   font-weight: 900;
-}
-
-.formCell {
-  display: block;
-  margin-top: 2rem;
-}
-
-.input {
-  padding: 1% 10rem 1% 1%;
-  text-align: left;
 }
 
 .content {
