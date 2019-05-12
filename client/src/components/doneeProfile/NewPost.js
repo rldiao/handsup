@@ -19,7 +19,7 @@ function NewPost(props) {
           <TextField
             fullWidth
             placeholder="Title"
-            onChange={props.handleTitleChange("newPostTitle")}
+            onChange={props.handleChange("newPostTitle")}
             value={props.titleValue}
           />
         </div>
@@ -29,7 +29,7 @@ function NewPost(props) {
             multiline
             rows="4"
             placeholder="What's new?"
-            onChange={props.handleContentChange("newPostContent")}
+            onChange={props.handleChange("newPostContent")}
             value={props.contentValue}
           />
         </div>
@@ -44,7 +44,10 @@ function NewPost(props) {
 
 NewPost.propTypes = {
   titleValue: PropTypes.string.isRequired,
-  contentValue: PropTypes.string.isRequired
+  contentValue: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleClearClick: PropTypes.func.isRequired,
+  submitNewPost: PropTypes.func.isRequired
 };
 
 export default withStyles(muStyles)(NewPost);

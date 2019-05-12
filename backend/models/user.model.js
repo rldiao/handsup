@@ -29,6 +29,7 @@ const userSchema = mongoose.Schema({
     unique: true
   },
   savedDoneesID: [String],
+  postIDs: [String],
   phoneNumber: String,
   dob: String,
   location: String,
@@ -37,7 +38,9 @@ const userSchema = mongoose.Schema({
   bio: String,
   goal: [String],
   monthlyDonationLimit: Number,
-  funded: Number
+  funded: Number,
+  monthlyDonationLimit: Number,
+  monthlyRenewalDate: String
   // bankAccountToken: String
 });
 

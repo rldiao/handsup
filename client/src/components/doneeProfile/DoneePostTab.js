@@ -171,18 +171,14 @@ export default class DoneePostTab extends Component {
 
     if (this.state.posts.length > 0) {
       posts = this.state.posts.map(post => {
-        try {
-          return (
-            <DoneePost
-              key={post._id}
-              title={post.title}
-              date={post.createDate}
-              content={post.content}
-            />
-          );
-        } catch (error) {
-          console.log(error);
-        }
+        return (
+          <DoneePost
+            key={post._id}
+            title={post.title}
+            date={post.createDate}
+            content={post.content}
+          />
+        );
       });
     } else {
       posts = <div>No Posts</div>;

@@ -4,11 +4,10 @@
   "description": "Web Info Tech",
   "main": "index.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
-    "backend-install": "npm install --prefix backend",
-    "start": "npm start --prefix backend",
-    "server": "npm run server --prefix backend",
-    "client": "npm start --prefix client",
+    "client-install": " cd client && npm install",
+    "backend-install": "cd backend && npm install",
+    "server": "cd backend && npm run server",
+    "client": "cd client && npm start",
     "dev": "concurrently \"cd backend && npm run server\" \"cd client && npm start\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix client && npm run build --prefix client && npm install --prefix backend"
   },

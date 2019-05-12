@@ -6,6 +6,7 @@ import FormPersonalDetails from "./FormPersonalDetails";
 import PaymentForm from "./PaymentForm";
 import Confirm from "./Confirm";
 import AuthService from "../../services/AuthService";
+import { history } from "../../helper/history";
 
 const genders = ["Male", "Female", "Other"];
 
@@ -115,9 +116,13 @@ export class DoneeSignupForm extends Component {
         }
       },
       "donee"
-    ).catch(res => {
-      console.log("error: " + res);
-    });
+    )
+      .then(() => {
+        history.push("/signup");
+      })
+      .catch(res => {
+        console.log("error: " + res);
+      });
   };
 
   nextStep = () => {
@@ -134,7 +139,8 @@ export class DoneeSignupForm extends Component {
     const value = e.target.value;
     this.setState({ [field]: value }, () => {
       this.validateField(field, value);
-      this.setState({ validForm: this.validateForm() });
+      const isValidForm = this.validateForm();
+      this.setState({ validForm: isValidForm });
     });
   };
 
@@ -208,6 +214,7 @@ export class DoneeSignupForm extends Component {
             back={this.prevStep}
             values={values}
             handleSignup={this.handleSignup}
+            validForm={this.state.validForm}
           />
         );
         break;
