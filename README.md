@@ -2,7 +2,7 @@
 Team name: DaWebBois  
 Web Info Tech  
 
-## Submittable 4
+## Submission 4
 Functionalities:
 1. Posts
     * Donation recipients (Donees) can make posts updating other on their situation or give more background

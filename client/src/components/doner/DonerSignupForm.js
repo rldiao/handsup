@@ -52,6 +52,7 @@ export default class DonerSignupForm extends Component {
         fieldValidationErrors.confirmPassword = confirmValid
           ? ""
           : "does not match!";
+        break;
       default:
         break;
     }

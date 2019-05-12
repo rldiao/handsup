@@ -15,19 +15,17 @@ const muStyles = theme => ({
 export class Confirm extends Component {
   next = e => {
     let submit = window.confirm("Are all details correct?");
-    if (submit) {
+    if (submit && this.props.validForm) {
       // TODO: error handling
-      // if (this.props.validForm) {
       this.props.handleSignup(e);
       this.props.next();
-      // } else {
-      // alert("Missing Fields");
-      // }
+    } else {
+      alert("Missing Fields");
     }
   };
 
   render() {
-    const { values, classes, className, ...other } = this.props;
+    const { values, classes, className } = this.props;
 
     return (
       <div>
@@ -38,7 +36,6 @@ export class Confirm extends Component {
             className={classnames(classes.root, className)}
             primary="Email"
             secondary={values.email || "Not Provided"}
-            {...other}
           />
           <h4>Personal Details</h4>
           <ListItemText
