@@ -33,7 +33,7 @@ export default class DoneeCard extends Component {
       <Card style={userStyles.doneeCard}>
         <img
           className={styles.doneePicture}
-          alt="Donee's Picture"
+          alt="Donee"
           src={this.props.donee.profilePicture}
         />
         <CardContent>
