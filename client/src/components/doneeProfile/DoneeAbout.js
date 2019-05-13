@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import styles from "./doneeProfile.module.css";
-// import { profileStyles } from "../../pages/userProfile/profileStyles";
-// import { Button } from "@material-ui/core";
+import { userTypeConstants } from "../../constants";
+import { profileStyles } from "../../pages/userProfile/profileStyles";
+import { Button } from "@material-ui/core";
 
 export default class DoneeAbout extends Component {
   handleEditProfileClick = () => {
@@ -9,15 +10,24 @@ export default class DoneeAbout extends Component {
   };
 
   render() {
-    return (
-      <Fragment>
-        {/* <Button
+    const userType = this.props.userType;
+    let editButton;
+    console.log(this.props);
+    console.log(userType);
+    if (userType === userTypeConstants.DONEE) {
+      editButton = (
+        <Button
           variant="outlined"
           onClick={this.handleEditProfileClick}
           style={profileStyles.editProfileButton}
         >
           Edit Profile
-        </Button> */}
+        </Button>
+      );
+    }
+    return (
+      <Fragment>
+        {editButton}
         <h2 className={styles.aboutTitle}>Location</h2>
         <p className={styles.aboutText}>{this.props.donee.location}</p>
 
