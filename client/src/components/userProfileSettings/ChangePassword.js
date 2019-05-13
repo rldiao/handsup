@@ -14,7 +14,9 @@ export default class ChangePassword extends Component {
       oldPw: "",
       newPw: "",
       confirmPw: "",
-      user: null
+      errors: {
+        oldPw: ""
+      }
     };
   }
 
@@ -22,14 +24,29 @@ export default class ChangePassword extends Component {
     const profile = AuthService.getProfile();
 
     // TODO: make backend route to validate old pw
-
-    Axios.put("/user/change_password/" + profile.email, {
-      password: this.state.newPw
+    Axios.post("/user/validate_password", {
+      user: {
+        email: profile.email,
+        password: this.state.oldPw
+      }
     })
-      .then(() => {
-        this.setState({ oldPw: "", newPw: "", confirmPw: "" });
+      .then(res => {
+        if (!res.ok) {
+          throw Error(res.status);
+        }
+        Axios.put("/user/change_password/" + profile.email, {
+          password: this.state.newPw
+        }).then(() => {
+          this.setState({
+            oldPw: "",
+            newPw: "",
+            confirmPw: "",
+            errors: { oldPw: "" }
+          });
+        });
       })
       .catch(err => {
+        this.setState({ errors: { oldPw: "Incorrect password" } });
         console.log(err);
       });
   };
@@ -42,13 +59,15 @@ export default class ChangePassword extends Component {
     return (
       <div className={styles.formContainer}>
         <TextField
-          label="Current Password"
+          label="Old Password"
           name="oldPw"
           type="password"
           fullWidth
           value={this.state.oldPw}
           className={styles.input}
           onChange={this.handleChange}
+          error={this.state.errors.oldPw}
+          helperText={this.state.errors.oldPw}
         />
         <TextField
           label="New Password"

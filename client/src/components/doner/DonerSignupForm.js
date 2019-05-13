@@ -7,8 +7,6 @@ import styles from "./doner.module.css";
 import AuthService from "../../services/AuthService";
 import { TextField } from "@material-ui/core";
 
-// TODO: refactor into material ui components
-
 export default class DonerSignupForm extends Component {
   constructor(props) {
     super(props);

@@ -97,3 +97,20 @@ exports.logoutUser = (req, res) => {
     }
   });
 };
+
+exports.validatePassword = (req, res) => {
+  const {
+    body: { user }
+  } = req;
+
+  const email = user.email;
+  const password = user.password;
+
+  Users.findOne({ email }).then(user => {
+    if (user.validatePassword(password)) {
+      return res.sendStatus(200);
+    } else {
+      return res.sendStatus(401);
+    }
+  });
+};

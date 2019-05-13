@@ -16,7 +16,7 @@ export class Confirm extends Component {
   next = e => {
     let submit = window.confirm("Are all details correct?");
     if (submit && this.props.validForm) {
-      // TODO: error handling
+      // TODO: improve error handling
       this.props.handleSignup(e);
       this.props.next();
     } else {

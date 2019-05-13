@@ -3,9 +3,6 @@
 Team name: DaWebBois  
 Web Info Tech  
 
-<<<<<<< HEAD
-### Submittable 4  
-=======
 ## Submission 4
 Functionalities:
 1. Posts
@@ -40,7 +37,6 @@ Functionalities:
         * userUpdate.controller.js
         * pages/login/LoginPage.js
         * pages/signup/SignUpPage.js
->>>>>>> 30ddae84fe5366716c116bca180978731a16a366
 
 
 ### Set up
