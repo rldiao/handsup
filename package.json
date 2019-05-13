@@ -6,6 +6,7 @@
   "scripts": {
     "client-install": " cd client && npm install",
     "backend-install": "cd backend && npm install",
+    "start": "npm start --prefix backend",
     "server": "cd backend && npm run server",
     "client": "cd client && npm start",
     "dev": "concurrently \"cd backend && npm run server\" \"cd client && npm start\"",
