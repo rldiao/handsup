@@ -34,7 +34,7 @@ const addPost = function(req, res) {
 };
 
 const deleteOnePost = function(req, res) {
-  Post.fineOneAndDelete({ _id: req.params._id }, (err, post) => {
+  Post.findOneAndRemove({ _id: req.params._id }, (err, post) => {
     if (!err) {
       res.send(post);
     } else {

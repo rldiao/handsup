@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import styles from "./doneeProfile.module.css";
-import { Paper, Button, TextField } from "@material-ui/core";
+import {
+  Paper,
+  TextField,
+  Menu,
+  MenuItem,
+  IconButton,
+  Icon
+} from "@material-ui/core";
 import Axios from "axios";
+import { MoreVertIcon } from "@material-ui/icons";
 
 export default class DoneePost extends Component {
   constructor(props) {
@@ -9,6 +17,8 @@ export default class DoneePost extends Component {
 
     this.state = {
       editMode: false,
+      anchorEl: null,
+      // post
       _id: this.props._id,
       title: this.props.title,
       date: this.props.date,
@@ -16,8 +26,16 @@ export default class DoneePost extends Component {
     };
   }
 
-  handleModes = () => {
-    const { editMode, _id, title, content } = this.state;
+  handleMenuToggle = e => {
+    this.setState({ anchorEl: e.currentTarget });
+  };
+
+  handleMenuClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
+  handleEditModes = () => {
+    const { editMode, anchorEl, _id, title, content } = this.state;
     this.setState({ editMode: !editMode });
     if (this.state.editMode) {
       // save content
@@ -34,8 +52,19 @@ export default class DoneePost extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handlePostRemove = () => {
+    const { _id } = this.state;
+    // Axios.delete("/post/" + _id)
+    //   .then(res => {
+    this.props.handlePostRemove();
+    //   })
+    //   .catch(err => {
+    //     alert("Error removing post");
+    //   });
+  };
+
   render() {
-    const { title, date, content, editMode } = this.state;
+    const { title, date, content, editMode, anchorEl } = this.state;
 
     let titleComponent, contentComponent;
     if (editMode) {
@@ -73,9 +102,38 @@ export default class DoneePost extends Component {
             {titleComponent}
             <span className={styles.spacer} />
             <span className={styles.postEditBtn}>
-              <Button size="small" onClick={this.handleModes}>
-                {btnText}
-              </Button>
+              <IconButton
+                size="small"
+                aria-label="More"
+                aria-owns={anchorEl ? "simple-menu" : undefined}
+                aria-haspopup="true"
+                onClick={this.handleMenuToggle}
+              >
+                <Icon>more_vert</Icon>
+              </IconButton>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={this.handleMenuClose}
+              >
+                <MenuItem
+                  onClick={() => {
+                    this.handleEditModes();
+                    this.handleMenuClose();
+                  }}
+                >
+                  {btnText}
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    this.handlePostRemove(this.state._id);
+                    this.handleMenuClose();
+                  }}
+                >
+                  Remove
+                </MenuItem>
+              </Menu>
             </span>
           </div>
           <div className={styles.postDate} dateTime={date}>

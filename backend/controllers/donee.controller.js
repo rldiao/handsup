@@ -106,16 +106,13 @@ const getDonees = function(req, res) {
 };
 
 const getOneDonee = function(req, res) {
-  Donee.findOne(
-    { _id: req.params._id, userType: userTypeConstants.donee },
-    (err, donee) => {
-      if (err) {
-        res.sendStatus(404);
-      } else {
-        res.send(donee);
-      }
+  Donee.findOne({ _id: req.params._id }, (err, donee) => {
+    if (err) {
+      res.sendStatus(404);
+    } else {
+      res.send(donee);
     }
-  );
+  });
 };
 
 const updateOneDonee = function(req, res) {
@@ -143,7 +140,7 @@ const deleteOneDonee = function(req, res) {
   });
 };
 
-const updatePostIDs = function(req, res) {
+const addPostID = function(req, res) {
   Donee.findOneAndUpdate(
     { _id: req.params._id },
     { $push: { postIDs: req.body.postID } },
@@ -166,5 +163,5 @@ module.exports = {
   getOneDonee,
   updateOneDonee,
   deleteOneDonee,
-  updatePostIDs
+  addPostID
 };

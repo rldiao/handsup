@@ -15,10 +15,7 @@ router.get("/:_id", doneeController.getOneDonee);
 
 router.get("/:_id", [auth.withAuth, doneeController.getOneDonee]);
 
-router.put("/updatePostID/:_id", [
-  auth.withAuth,
-  doneeController.updatePostIDs
-]);
+router.put("/new_post/:_id", [auth.withAuth, doneeController.addPostID]);
 
 router.put("/update/:_id", [auth.withAuth, doneeController.updateOneDonee]);
 

@@ -78,7 +78,7 @@ class HomePage extends Component {
         temp.postIDs.push(res.data._id);
         this.setState({ donee: temp });
         newPostID = res.data._id;
-        Axios.put("/donee/updatePostID/" + this.state.donee._id, {
+        Axios.put("/donee/new_post/" + this.state.donee._id, {
           postID: newPostID
         });
         let tempPosts = this.state.posts;
@@ -95,6 +95,14 @@ class HomePage extends Component {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  handlePostRemove = removeID => {
+    this.state.donee.postIDs = this.state.donee.postIDs.filter(
+      (value, index, arr) => {
+        return value !== removeID;
+      }
+    );
   };
 
   render() {
@@ -122,6 +130,7 @@ class HomePage extends Component {
               title={post.title}
               date={post.createDate}
               content={post.content}
+              handlePostRemove={this.handlePostRemove}
             />
           );
         });
