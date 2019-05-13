@@ -4,6 +4,15 @@ Team name: DaWebBois
 Web Info Tech  
 
 ## Submission 4
+Kindly use these credentials to test as Donee and Doner.
+* Doner account:
+  * Username: donor1@test.com
+  * Password: 123456
+* Donee account:
+  * Username: donee2@test.com
+  * Password: 123456
+
+
 Functionalities:
 
 1. Users (Doners and Donees)
