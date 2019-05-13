@@ -31,7 +31,7 @@ export default class ChangePassword extends Component {
       }
     })
       .then(res => {
-        if (!res.ok) {
+        if (res.status !== 200) {
           throw Error(res.status);
         }
         Axios.put("/user/change_password/" + profile.email, {
