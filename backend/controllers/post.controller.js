@@ -43,9 +43,26 @@ const deleteOnePost = function(req, res) {
   });
 };
 
+const editPost = function(req, res) {
+  const { body } = req;
+  Post.findOneAndUpdate(
+    { _id: req.params._id },
+    body,
+    { new: true },
+    (err, post) => {
+      if (err) {
+        res.sendStatus(404);
+      } else {
+        res.send(post);
+      }
+    }
+  );
+};
+
 module.exports = {
   getPosts,
   getOnePost,
   addPost,
-  deleteOnePost
+  deleteOnePost,
+  editPost
 };

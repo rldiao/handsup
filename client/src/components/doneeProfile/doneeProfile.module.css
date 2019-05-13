@@ -128,8 +128,15 @@ ol {
 
 /* ================ Posts =============== */
 
-.postTitle {
+.postContainer {
+  display: unset;
+}
+
+.postTitleContainer {
   display: flex;
+}
+
+.postTitle {
   font-family: open-sans, sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -165,4 +172,9 @@ ol {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
+}
+
+/* misc */
+.spacer {
+  flex: 1 1;
 }

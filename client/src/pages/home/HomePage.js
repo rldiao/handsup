@@ -118,6 +118,7 @@ class HomePage extends Component {
           return (
             <DoneePost
               key={post._id}
+              _id={post._id}
               title={post.title}
               date={post.createDate}
               content={post.content}
