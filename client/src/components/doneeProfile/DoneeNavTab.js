@@ -5,7 +5,6 @@ import Tab from "@material-ui/core/Tab";
 import DoneeAbout from "./DoneeAbout";
 import EditDoneeProfile from "./EditDoneeProfile";
 import Paper from "@material-ui/core/Paper";
-import Axios from "axios";
 
 import styles from "./doneeProfile.module.css";
 import { styles as custom } from "./doneeProfile.style";

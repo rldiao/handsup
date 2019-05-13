@@ -9,7 +9,6 @@ import {
   Icon
 } from "@material-ui/core";
 import Axios from "axios";
-import { MoreVertIcon } from "@material-ui/icons";
 
 export default class DoneePost extends Component {
   constructor(props) {
@@ -35,7 +34,7 @@ export default class DoneePost extends Component {
   };
 
   handleEditModes = () => {
-    const { editMode, anchorEl, _id, title, content } = this.state;
+    const { editMode, _id, title, content } = this.state;
     this.setState({ editMode: !editMode });
     if (this.state.editMode) {
       // save content
@@ -53,7 +52,7 @@ export default class DoneePost extends Component {
   };
 
   handlePostRemove = () => {
-    const { _id } = this.state;
+    // const { _id } = this.state;
     // Axios.delete("/post/" + _id)
     //   .then(res => {
     this.props.handlePostRemove();

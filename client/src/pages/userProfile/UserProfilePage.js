@@ -42,8 +42,6 @@ class UserProfilePage extends Component {
 
   render() {
     const { userType } = this.props;
-    console.log(this.props);
-    console.log(userType);
 
     let content;
     let mainInfo;

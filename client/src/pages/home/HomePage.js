@@ -98,11 +98,14 @@ class HomePage extends Component {
   };
 
   handlePostRemove = removeID => {
-    this.state.donee.postIDs = this.state.donee.postIDs.filter(
-      (value, index, arr) => {
-        return value !== removeID;
-      }
-    );
+    // TODO: Fix
+    alert("Not working");
+    // let temp = this.state.donee.postIDs.filter(
+    //   (value, index, arr) => {
+    //     return value !== removeID;
+    //   }
+    // );
+    // this.setState({})
   };
 
   render() {
