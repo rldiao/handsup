@@ -42,6 +42,7 @@ class DoneeNavTab extends Component {
     const doneeAbout = (
       <DoneeAbout
         donee={this.props.donee}
+        userType={this.props.userType}
         handleEditProfileClick={this.handleEditProfileClick}
       />
     );

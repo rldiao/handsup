@@ -8,7 +8,7 @@ import { profileStyles } from "../../pages/userProfile/profileStyles";
 
 export default class MainInfo extends Component {
   render() {
-    const userType = this.props.donee.userType;
+    const userType = this.props.userType;
     let donateButton;
     if (userType === userTypeConstants.DONER) {
       donateButton = (

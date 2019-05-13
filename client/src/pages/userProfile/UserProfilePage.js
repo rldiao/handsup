@@ -42,10 +42,16 @@ class UserProfilePage extends Component {
 
   render() {
     const { userType } = this.props;
+    console.log(this.props);
     console.log(userType);
 
     let content;
     let mainInfo;
+    if (this.state.user !== null) {
+      content = <DoneeNavTab donee={this.state.user} userType={userType} />;
+      mainInfo = <MainInfo donee={this.state.user} userType={userType} />;
+    }
+
     if (userType === userTypeConstants.DONER) {
       content = <SavedDonees />;
       mainInfo = (
@@ -62,11 +68,6 @@ class UserProfilePage extends Component {
           <MainSection />
         </div>
       );
-    } else if (userType === userTypeConstants.DONEE) {
-      if (this.state.user !== null) {
-        content = <DoneeNavTab donee={this.state.user} />;
-        mainInfo = <MainInfo donee={this.state.user} />;
-      }
     }
     return (
       <div className={styles.userProfileContainer}>
