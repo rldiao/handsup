@@ -61,8 +61,8 @@ Functionalities:
             * client\src\pages\userProfileSettings
         * Making posts (refer to functionality 2 below)
 
-2. Posts (Donees)
-    * Donation recipients (Donees) can make and edit posts, updating others on their current situation or give more background on their struggles.
+2. Making and editing posts (Donees)
+    * Donation recipients (Donees) can make and edit posts, updating others on their current situation or give more background on their struggles. Removing posts is not working yet for deliverable 4.
     * URL
       * /
     * Associated files:
