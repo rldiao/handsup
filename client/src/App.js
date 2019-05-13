@@ -12,7 +12,7 @@ import ErrorPage from "./pages/error/ErrorPage";
 import LoginPage from "./pages/login/LoginPage";
 import SignUpPage from "./pages/signup/SignUpPage";
 import DiscoverPage from "./pages/discover/DiscoverPage";
-import UserProfilePage from "./pages/userProfile/userProfilePage";
+import UserProfilePage from "./pages/userProfile/UserProfilePage";
 import UserSettingsPage from "./pages/userProfileSettings/UserSettingsPage";
 import DoneePage from "./pages/doneeProfile/DoneePage";
 import ContactPage from "./pages/contact/ContactPage";
