@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import MainSection from "../../components/userProfile/MainSection";
 import SavedDonees from "../../components/userProfile/SavedDonees";
+import MainInfo from "../../components/doneeProfile/MainInfo";
 import styles from "./profile.module.css";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { profileStyles } from "./profileStyles";
 import { history } from "../../helper/history";
 import { userTypeConstants } from "../../constants";
+import Axios from "axios";
+import AuthService from "../../services/AuthService";
 import DoneeNavTab from "../../components/doneeProfile/DoneeNavTab";
 
 class UserProfilePage extends Component {
   constructor() {
     super();
+    this.state = {
+      user: null
+    };
     UserProfilePage.routeChange = UserProfilePage.routeChange.bind(this);
   }
 
@@ -19,26 +25,52 @@ class UserProfilePage extends Component {
     history.push("/settings");
   }
 
+  componentWillMount() {
+    const { userType } = this.props;
+    if (userType === userTypeConstants.DONEE) {
+      this.loadDonee();
+      console.log(this.state.user);
+    }
+  }
+
+  loadDonee = () => {
+    const id = AuthService.getProfile().id;
+    Axios.get("/donee/" + id).then(res => {
+      this.setState({ user: res.data });
+    });
+  };
+
   render() {
     const { userType } = this.props;
+    console.log(userType);
+
     let content;
+    let mainInfo;
     if (userType === userTypeConstants.DONER) {
       content = <SavedDonees />;
+      mainInfo = (
+        <div>
+          <div className={styles.editProfileButton}>
+            <Button
+              variant="outlined"
+              onClick={UserProfilePage.routeChange}
+              style={profileStyles.editProfileButton}
+            >
+              Edit Profile
+            </Button>
+          </div>
+          <MainSection />
+        </div>
+      );
     } else if (userType === userTypeConstants.DONEE) {
-      content = <div>Donee Nav Tab</div>;
+      if (this.state.user !== null) {
+        content = <DoneeNavTab donee={this.state.user} />;
+        mainInfo = <MainInfo donee={this.state.user} />;
+      }
     }
     return (
       <div className={styles.userProfileContainer}>
-        <div className={styles.editProfileButton}>
-          <Button
-            variant="outlined"
-            onClick={UserProfilePage.routeChange}
-            style={profileStyles.editProfileButton}
-          >
-            Edit Profile
-          </Button>
-        </div>
-        <MainSection />
+        {mainInfo}
         {content}
       </div>
     );
