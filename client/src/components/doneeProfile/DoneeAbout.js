@@ -19,7 +19,7 @@ export default class DoneeAbout extends Component {
         <Button
           variant="outlined"
           onClick={this.handleEditProfileClick}
-          style={profileStyles.editProfileButton}
+          style={profileStyles.saveButton}
         >
           Edit Profile
         </Button>
