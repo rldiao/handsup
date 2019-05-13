@@ -1,5 +1,4 @@
-<!-- Prettier Ignored -->
-# Info30005
+<!-- Prettier Ignored --> # Info30005
 Team name: DaWebBois  
 Web Info Tech  
 
@@ -7,34 +6,55 @@ Web Info Tech
 Functionalities:
 
 1. Users (Doners and Donees)
+    * Common associated files
+      * backend\controllers\donee.controller.js
+      * backend\controllers\user.controller.js
+      * backend\models\user.model.js
+      * backend\routes\donee.routes.js
+      * backend\routes\user.routes.js
     * Common functionalities for both users
-        * Signup and login
-            * backend\controllers\donee.controller.js
-            * backend\controllers\user.controller.js
-            * backend\models\user.model.js
-            * backend\routes\donee.routes.js
-            * backend\routes\user.routes.jss
+        * Signup and login (for authentication, refer to functionality 3 below)
+          * Associated files
+            * client\src\pages\login
+            * client\src\pages\signup
         * Updating account password and payment/bank details
+          * Associated files
+            * client\src\pages\userProfile
+            * client\src\pages\userProfileSettings
     * Doner-specific functionalities
         * Removing and saving donee profiles to 'follow' certain donees
+          * Associated files
+            * client\src\pages\discover
+            * client\src\pages\userProfile
         * Searching for a specific registered donee
+          * Associated files
+            * client\src\pages\discover
         * Viewing all registered donees in the 'Discover' page
+          * Associated files
+            * client\src\pags\discover
         * Viewing a specific donee's profile
+          * Associated files
+            * client\src\pages\doneeProfile
         * Making a donation to a donee (currently unimplemented)
     * Donee-specific functionalities
         * Edting location, their story/bio, and their goals
-        * Making posts (refer to functionality 1 above)
+          * Associated files
+            * backend\controllers\donee.controller.js
+            * backend\routes\donee.routes.js
+            * backend\models\user.model.js
+            * client\src\pages\userProfile
+            * client\src\pages\userProfileSettings
+        * Making posts (refer to functionality 2 below)
 
 2. Posts (Donees)
-    * Donation recipients (Donees) can make posts updating others on their current situation or give more background
-    on their struggles.
-    * Connected files:
-        * donee.controller.js
-        * donee.routes.js
-        * posts.routes.js
-        * client\src\components\doneeProfile\NewPost.js
-        * client\src\components\doneeProfile\DoneePost.js
-        * client\src\page\HomePage.js
+    * Donation recipients (Donees) can make posts updating others on their current situation or give more background on their struggles.
+    * Associated files:
+      * backend\controllers\donee.controller.js
+      * backend\routes\donee.routes.js
+      * backend\routes\posts.routes.js
+      * client\src\components\doneeProfile\NewPost.js
+      * client\src\components\doneeProfile\DoneePost.js
+      * client\src\pages\home\HomePage.js
 
 <!-- 2. Updating profile (Doners and Donees)
     * Users can update relevant details on their profile. Doners can change their account password and payment details. Donees can also change password, update bank account details, and in addition: change their location, their bio, and their life goals.
