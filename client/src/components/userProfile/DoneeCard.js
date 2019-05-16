@@ -15,7 +15,8 @@ export default class DoneeCard extends Component {
     super(props);
     this.state = {
       id: this.props.id,
-      name: this.props.donee.name
+      name: this.props.donee.name,
+      email: this.props.donee.email
     };
   }
 
@@ -31,20 +32,20 @@ export default class DoneeCard extends Component {
   render() {
     return (
       <Card style={userStyles.doneeCard}>
-        <img
-          className={styles.doneePicture}
-          alt="Donee"
-          src={this.props.donee.profilePicture}
-        />
         <CardContent>
           <CardActionArea onClick={this.handleDoneeClick}>
+            <img
+              className={styles.doneePicture}
+              alt="Donee"
+              src={this.props.donee.profilePicture}
+            />
             <Typography gutterBottom variant="h6" component="h3">
               {this.props.donee.name}
             </Typography>
+            <Typography component="p" style={userStyles.doneeTypography}>
+              {this.props.donee.bio}
+            </Typography>
           </CardActionArea>
-          <Typography component="p" style={userStyles.doneeTypography}>
-            {this.props.donee.bio}
-          </Typography>
 
           <BorderLinearProgress
             variant="determinate"

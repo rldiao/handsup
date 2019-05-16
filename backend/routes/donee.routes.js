@@ -13,8 +13,6 @@ router.get("/", [doneeController.getDonees]);
 
 router.get("/:_id", doneeController.getOneDonee);
 
-router.get("/:_id", [auth.withAuth, doneeController.getOneDonee]);
-
 router.put("/new_post/:_id", [auth.withAuth, doneeController.addPostID]);
 
 router.put("/update/:_id", [auth.withAuth, doneeController.updateOneDonee]);
