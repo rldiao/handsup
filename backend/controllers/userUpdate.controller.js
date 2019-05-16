@@ -38,7 +38,6 @@ const deleteProfile = function(req, res) {
 };
 
 const updatePassword = function(req, res) {
-  // TODO: try find better design using donor.setpassword
   let newPassword = crypt.hashSync(req.body.password, crypt.genSaltSync(8));
   Donor.findOneAndUpdate(
     { email: req.params.email },
