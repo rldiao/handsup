@@ -5,6 +5,7 @@ import MainInfo from "../../components/doneeProfile/MainInfo";
 import Axios from "axios";
 import DoneeNavTab from "../../components/doneeProfile/DoneeNavTab";
 import { userTypeConstants } from "../../constants";
+import DonationDialog from "../../components/donation/DonationDialog";
 
 export default class DoneePage extends Component {
   constructor(props) {
@@ -12,8 +13,9 @@ export default class DoneePage extends Component {
 
     this.state = {
       donee: null,
-      loading: true
+      loading: true,
       // editProfile: false
+      donationDialogOpen: false
     };
   }
 
@@ -29,14 +31,29 @@ export default class DoneePage extends Component {
       });
   }
 
+  handleDonate = () => {
+    this.setState({
+      donationDialogOpen: !this.state.donationDialogOpen
+    });
+  };
+
   render() {
+    let donationDialog;
+    if (this.state.donationDialogOpen) {
+      donationDialog = (
+        <DonationDialog isOpen={this.state.donationDialogOpen} />
+      );
+    }
+
     if (!this.state.loading) {
       return (
         <Fragment>
+          {donationDialog}
           <div>
             <MainInfo
               donee={this.state.donee}
               userType={userTypeConstants.DONER}
+              handleDonate={this.handleDonate}
             />
           </div>
           {/* {this.state.editProfile ? editDoneeProfile : doneeAbout} */}

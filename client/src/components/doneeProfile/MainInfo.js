@@ -14,7 +14,7 @@ export default class MainInfo extends Component {
       donateButton = (
         <Button
           variant="outlined"
-          // onClick={}
+          onClick={this.props.handleDonate}
           style={profileStyles.saveButton}
         >
           Donate Now
