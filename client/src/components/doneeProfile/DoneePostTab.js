@@ -168,7 +168,7 @@ export default class DoneePostTab extends Component {
 
   render() {
     let posts;
-
+    // FIXME: post edit and remove does not work
     if (this.state.posts.length > 0) {
       posts = this.state.posts.map(post => {
         return (

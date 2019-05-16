@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styles from "./doneeProfile.module.css";
 import {
   Paper,
@@ -17,7 +17,7 @@ export default class DoneePost extends Component {
     this.state = {
       editMode: false,
       anchorEl: null,
-      // post
+      isDeleted: false,
       _id: this.props._id,
       title: this.props.title,
       date: this.props.date,
@@ -51,15 +51,8 @@ export default class DoneePost extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handlePostRemove = () => {
-    // const { _id } = this.state;
-    // Axios.delete("/post/" + _id)
-    //   .then(res => {
-    this.props.handlePostRemove();
-    //   })
-    //   .catch(err => {
-    //     alert("Error removing post");
-    //   });
+  handlePostRemove = postID => {
+    this.setState({ isDeleted: true });
   };
 
   render() {
@@ -93,6 +86,10 @@ export default class DoneePost extends Component {
     }
 
     let btnText = editMode ? "Save" : "Edit";
+
+    if (this.state.isDeleted) {
+      return <Fragment />;
+    }
 
     return (
       <Paper style={{ padding: "1rem" }}>

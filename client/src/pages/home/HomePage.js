@@ -15,7 +15,7 @@ class HomePage extends Component {
     newPostTitle: "",
     newPostContent: "",
     donee: null,
-    posts: []
+    posts: {}
   };
 
   componentDidMount() {
@@ -37,7 +37,12 @@ class HomePage extends Component {
           }
           Axios.get("/post/" + postID).then(res => {
             let temp = this.state.posts;
-            temp.push(res.data);
+            const post = res.data;
+            temp[post._id] = {
+              title: post.title,
+              createDate: post.createDate,
+              content: post.content
+            };
             this.setState({ posts: temp });
           });
         });
@@ -97,17 +102,6 @@ class HomePage extends Component {
       });
   };
 
-  handlePostRemove = removeID => {
-    // TODO: Fix
-    alert("Not working");
-    // let temp = this.state.donee.postIDs.filter(
-    //   (value, index, arr) => {
-    //     return value !== removeID;
-    //   }
-    // );
-    // this.setState({})
-  };
-
   render() {
     let { userType } = this.props;
     let { newPostTitle, newPostContent } = this.state;
@@ -125,15 +119,15 @@ class HomePage extends Component {
     if (userType === userTypeConstants.DONEE) {
       let doneePost;
       if (this.state.donee !== null) {
-        doneePost = this.state.posts.map(post => {
+        let posts = this.state.posts;
+        doneePost = Object.keys(posts).map(id => {
           return (
             <DoneePost
-              key={post._id}
-              _id={post._id}
-              title={post.title}
-              date={post.createDate}
-              content={post.content}
-              handlePostRemove={this.handlePostRemove}
+              key={id}
+              _id={id}
+              title={posts[id].title}
+              date={posts[id].createDate}
+              content={posts[id].content}
             />
           );
         });

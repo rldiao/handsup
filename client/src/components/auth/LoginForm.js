@@ -15,7 +15,6 @@ class DonerLoginForm extends Component {
     this.state = {
       email: "",
       password: "",
-      error: "",
       redirect: false
     };
   }
@@ -33,6 +32,7 @@ class DonerLoginForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.login(this.state.email, this.state.password);
+    this.setState({ email: "", password: "" });
   };
 
   render() {
@@ -43,7 +43,7 @@ class DonerLoginForm extends Component {
       return <Redirect to="/" />;
     }
 
-    if (authState == stateConstants.AUTH_ERR) {
+    if (authState === stateConstants.AUTH_ERR) {
       errorMsg = (
         <Typography color="error">Email or Password is incorrect!</Typography>
       );
