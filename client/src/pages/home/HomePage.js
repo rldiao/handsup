@@ -15,7 +15,7 @@ class HomePage extends Component {
     newPostTitle: "",
     newPostContent: "",
     donee: null,
-    posts: {}
+    posts: []
   };
 
   componentDidMount() {
@@ -38,11 +38,7 @@ class HomePage extends Component {
           Axios.get("/post/" + postID).then(res => {
             let temp = this.state.posts;
             const post = res.data;
-            temp[post._id] = {
-              title: post.title,
-              createDate: post.createDate,
-              content: post.content
-            };
+            temp.push(post);
             this.setState({ posts: temp });
           });
         });
@@ -76,6 +72,7 @@ class HomePage extends Component {
     Axios.post("/post/new", {
       title: this.state.newPostTitle,
       createDate: date,
+      authorID: this.state.donee._id,
       content: this.state.newPostContent
     })
       .then(res => {
@@ -89,6 +86,7 @@ class HomePage extends Component {
         let tempPosts = this.state.posts;
         tempPosts.push({
           title: res.data.title,
+          authorID: res.data.authorID,
           createDate: res.data.createDate,
           content: res.data.content
         });
@@ -120,14 +118,15 @@ class HomePage extends Component {
       let doneePost;
       if (this.state.donee !== null) {
         let posts = this.state.posts;
-        doneePost = Object.keys(posts).map(id => {
+        doneePost = posts.map(post => {
           return (
             <DoneePost
-              key={id}
-              _id={id}
-              title={posts[id].title}
-              date={posts[id].createDate}
-              content={posts[id].content}
+              key={post._id}
+              _id={post._id}
+              title={post.title}
+              date={post.createDate}
+              authorID={post.authorID}
+              content={post.content}
             />
           );
         });

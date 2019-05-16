@@ -20,6 +20,7 @@ export default class DoneePost extends Component {
       isDeleted: false,
       _id: this.props._id,
       title: this.props.title,
+      authorID: this.props.authorID,
       date: this.props.date,
       content: this.props.content
     };
@@ -53,6 +54,17 @@ export default class DoneePost extends Component {
 
   handlePostRemove = postID => {
     this.setState({ isDeleted: true });
+    const { authorID, _id } = this.state;
+    // Delete post from authorID postIDs
+    Axios.put("/donee/remove_post/" + authorID, { deletePostID: _id }).catch(
+      err => {
+        console.log(err);
+      }
+    );
+    // Delete post from db
+    Axios.delete("/post/" + _id).catch(err => {
+      console.log(err);
+    });
   };
 
   render() {
