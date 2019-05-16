@@ -33,11 +33,7 @@ export default class DiscoverPage extends Component {
    * The page will redirect to the specific donee page when the user(donor) clicks on that donee's name
    */
   handleDoneeClick = state => {
-    console.log(state);
-    history.push({
-      pathname: "/user/" + state.name,
-      state: { doneeID: state.id }
-    });
+    history.push("/user/" + state.email);
   };
 
   /**
@@ -56,7 +52,6 @@ export default class DiscoverPage extends Component {
         this.state.user.savedDoneesID.splice(index, 1);
       }
       this.setState({ user: this.state.user });
-      console.log(this.state.user);
       Axios.put("/user/update/" + this.state.user.email, this.state.user).then(
         res => {
           console.log(res.data);
@@ -86,14 +81,17 @@ export default class DiscoverPage extends Component {
 
   handleSearchOnChange = e => {
     let found = false;
-    this.state.donees.forEach(donee => {
-      if (donee.name === e.target.value) {
-        this.state.searchingDonee.push(donee);
-        this.setState({ searching: true });
-        found = true;
-      }
-    });
-    if (found === false) {
+    if (e.target.value !== null) {
+      console.log(e.target.value);
+      this.setState({ searching: true });
+      this.state.donees.forEach(donee => {
+        if (donee.name.toLowerCase() === e.target.value.toLowerCase()) {
+          this.state.searchingDonee.push(donee);
+          found = true;
+        }
+      });
+    }
+    if (found === false && e.target.value === "") {
       this.setState({ searching: false, searchingDonee: [] });
     }
   };
@@ -115,8 +113,6 @@ export default class DiscoverPage extends Component {
     });
 
     const searchingDonee = this.state.searchingDonee.map(donee => {
-      console.log(donee);
-
       const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
       return (
         <DoneeCard
@@ -133,7 +129,7 @@ export default class DiscoverPage extends Component {
     return (
       <Fragment>
         <div className={styles.searchBarContainer}>
-          <Paper elevation={1}>
+          <Paper style={{ display: "flex" }} elevation={1}>
             <IconButton aria-label="Search">
               <Icon>search</Icon>
             </IconButton>
@@ -141,6 +137,7 @@ export default class DiscoverPage extends Component {
             <InputBase
               name="doneeName"
               onChange={this.handleSearchOnChange}
+              fullWidth
               placeholder="Search donee"
             />
           </Paper>

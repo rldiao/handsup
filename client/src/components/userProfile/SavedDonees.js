@@ -22,7 +22,7 @@ class SavedDonees extends Component {
       .then(res => {
         this.setState({ user: res.data });
         this.setState({ savedDonees: this.state.user.savedDoneesID });
-        this.state.user.savedDoneesID.map(doneeID => {
+        this.state.user.savedDoneesID.forEach(doneeID => {
           if (doneeID === "") {
             // MongoDB issue as array is initalized as [""]
             return;
@@ -40,10 +40,7 @@ class SavedDonees extends Component {
   }
 
   handleDoneeClick = state => {
-    history.push({
-      pathname: "/user/" + state.name,
-      state: { doneeID: state.id }
-    });
+    history.push("/user/" + state.email);
   };
 
   handleRemoveClick = state => {

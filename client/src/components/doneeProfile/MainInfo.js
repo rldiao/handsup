@@ -30,7 +30,7 @@ export default class MainInfo extends Component {
         <div className={styles.pictureContainer}>
           <img
             className={styles.doneePicture}
-            alt="Donee's Picture"
+            alt="Donee"
             src={this.props.donee.profilePicture}
           />
         </div>

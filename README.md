@@ -82,28 +82,6 @@ Functionalities:
       * client\src\components\doneeProfile\DoneePost.js
       * client\src\pages\home\HomePage.js
 
-<!-- 2. Updating profile (Doners and Donees)
-    * Users can update relevant details on their profile. Doners can change their account password and payment details. Donees can also change password, update bank account details, and in addition: change their location, their bio, and their life goals.
-    * Connected files:
-        * donee.controller.js
-        * donee.routes.js
-        * userUpdate.controller.js
-        * client\src\components\doneeProfile\DoneeNavTab.js
-        * client\src\components\doneeProfile\EditDoneeProfile.js
-        * client\src\components\doneeProfile\DoneeAbout.js
-        * client\src\pages\userProfile\UserProfilePage.js -->
-
-<!-- 2. Save & Remove Donee profiles (Doners)
-    * Doners can save and remove Donees from the discover tab and profile page so that they can follow the lives of Donees they find compelling, 
-    and they can make donations to them more easily in the future. 
-    * Connected files:
-        * user.routes.js
-        * userUpdate.controller.js
-        * user.controller.js
-        * components/userProfile/DoneeCard.js
-        * components/userProfile/SavedDonee.js
-        * pages/discover/DiscoverPage.js -->
-
 3. User Authentication (Doners and Donees)
     * Allow users to create accounts to login to our service. Password is stored securely with bcrypt (Encryption library) within our database. Passport and jwt is used to handle the sessions associated with logged in users.
     * Connected files:
