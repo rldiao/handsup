@@ -17,16 +17,16 @@ router.post("/login", doneeController.loginDonee);
 
 router.get("/logout", doneeController.logoutDonee);
 
-router.get("/", _auth, doneeController.getDonees);
+router.get("/", [auth.withAuth], doneeController.getDonees);
 
 router.get("/:_id", doneeController.getOneDonee);
 
-router.get("/:_id", [_auth], doneeController.getOneDonee);
+router.get("/:_id", [auth.withAuth], doneeController.getOneDonee);
 
-router.put("/new_post/:_id", [_auth], doneeController.addPostID);
+router.put("/new_post/:_id", [auth.withAuth], doneeController.addPostID);
 
-router.put("/remove_post/:_id", [_auth], doneeController.removePostID);
+router.put("/remove_post/:_id", [auth.withAuth], doneeController.removePostID);
 
-router.put("/update/:_id", [_auth], doneeController.updateOneDonee);
+router.put("/update/:_id", [auth.withAuth], doneeController.updateOneDonee);
 
 module.exports = router;

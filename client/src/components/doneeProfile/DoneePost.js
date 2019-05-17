@@ -9,6 +9,7 @@ import {
   Icon
 } from "@material-ui/core";
 import Axios from "axios";
+import { userTypeConstants } from "../../constants";
 
 export default class DoneePost extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ export default class DoneePost extends Component {
       _id: this.props._id,
       title: this.props.title,
       authorID: this.props.authorID,
+      author: this.props.author,
       date: this.props.date,
       content: this.props.content
     };
@@ -69,6 +71,59 @@ export default class DoneePost extends Component {
 
   render() {
     const { title, date, content, editMode, anchorEl } = this.state;
+    const userType = this.props.userType;
+
+    let removeBtn, writtenBy;
+
+    if (userType === userTypeConstants.DONEE) {
+      let btnText = editMode ? "Save" : "Edit";
+
+      removeBtn = (
+        <Fragment>
+          <span className={styles.spacer} />
+          <span className={styles.postEditBtn}>
+            <IconButton
+              size="small"
+              aria-label="More"
+              aria-owns={anchorEl ? "simple-menu" : undefined}
+              aria-haspopup="true"
+              onClick={this.handleMenuToggle}
+            >
+              <Icon>more_vert</Icon>
+            </IconButton>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={this.handleMenuClose}
+            >
+              <MenuItem
+                onClick={() => {
+                  this.handleEditModes();
+                  this.handleMenuClose();
+                }}
+              >
+                {btnText}
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  this.handlePostRemove(this.state._id);
+                  this.handleMenuClose();
+                }}
+              >
+                Remove
+              </MenuItem>
+            </Menu>
+          </span>
+        </Fragment>
+      );
+    } else if (userType === userTypeConstants.DONER) {
+      writtenBy = (
+        <div className={styles.postWrittenBy}>
+          By : {" " + this.state.author}
+        </div>
+      );
+    }
 
     let titleComponent, contentComponent;
     if (editMode) {
@@ -97,8 +152,6 @@ export default class DoneePost extends Component {
       contentComponent = <p className={styles.postContent}>{content}</p>;
     }
 
-    let btnText = editMode ? "Save" : "Edit";
-
     if (this.state.isDeleted) {
       return <Fragment />;
     }
@@ -108,46 +161,14 @@ export default class DoneePost extends Component {
         <div className={styles.postContainer}>
           <div className={styles.postTitleContainer}>
             {titleComponent}
-            <span className={styles.spacer} />
-            <span className={styles.postEditBtn}>
-              <IconButton
-                size="small"
-                aria-label="More"
-                aria-owns={anchorEl ? "simple-menu" : undefined}
-                aria-haspopup="true"
-                onClick={this.handleMenuToggle}
-              >
-                <Icon>more_vert</Icon>
-              </IconButton>
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={this.handleMenuClose}
-              >
-                <MenuItem
-                  onClick={() => {
-                    this.handleEditModes();
-                    this.handleMenuClose();
-                  }}
-                >
-                  {btnText}
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    this.handlePostRemove(this.state._id);
-                    this.handleMenuClose();
-                  }}
-                >
-                  Remove
-                </MenuItem>
-              </Menu>
-            </span>
+
+            {removeBtn}
           </div>
           <div className={styles.postDate} dateTime={date}>
             {date}
           </div>
           {contentComponent}
+          {writtenBy}
         </div>
       </Paper>
     );
