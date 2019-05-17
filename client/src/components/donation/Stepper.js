@@ -43,8 +43,6 @@ class HorizontalLinearStepper extends Component {
     skipped: new Set()
   };
 
-  isStepOptional = step => step === 1;
-
   handleNext = () => {
     const { activeStep } = this.state;
     let { skipped } = this.state;
@@ -103,17 +101,9 @@ class HorizontalLinearStepper extends Component {
           {steps.map((label, index) => {
             const props = {};
             const labelProps = {};
-            if (this.isStepOptional(index)) {
-              labelProps.optional = (
-                <Typography variant="caption">Optional</Typography>
-              );
-            }
-            if (this.isStepSkipped(index)) {
-              props.completed = false;
-            }
             return (
-              <Step key={label} {...props}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
               </Step>
             );
           })}
@@ -122,10 +112,13 @@ class HorizontalLinearStepper extends Component {
           {activeStep === steps.length ? (
             <div>
               <Typography className={classes.instructions}>
-                All steps completed - you&apos;re finished
+                Thank you for your donation!
               </Typography>
-              <Button onClick={this.handleReset} className={classes.button}>
-                Reset
+              <Button
+                // onClick={this.handleReset}
+                className={classes.button}
+              >
+                Finish
               </Button>
             </div>
           ) : (
@@ -134,21 +127,9 @@ class HorizontalLinearStepper extends Component {
                 {getStepContent(activeStep)}
               </Typography>
               <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  className={classes.button}
-                >
-                  Back
-                </Button>
-                {this.isStepOptional(activeStep) && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleSkip}
-                    className={classes.button}
-                  >
-                    Skip
+                {activeStep === 1 && (
+                  <Button onClick={this.handleBack} className={classes.button}>
+                    Back
                   </Button>
                 )}
                 <Button
