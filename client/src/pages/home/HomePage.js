@@ -2,13 +2,12 @@ import React, { Component, Fragment } from "react";
 import { logout } from "../../actions/userActions";
 import { connect } from "react-redux";
 import styles from "./homePage.module.css";
-import { Button } from "@material-ui/core";
 import { userTypeConstants } from "../../constants";
 import NewPost from "../../components/doneeProfile/NewPost";
 import Axios from "axios";
 import AuthService from "../../services/AuthService";
 import DoneePost from "../../components/doneeProfile/DoneePost";
-import { AirlineSeatFlat } from "@material-ui/icons";
+import { sortBy } from "lodash";
 
 class HomePage extends Component {
   state = {
@@ -45,6 +44,9 @@ class HomePage extends Component {
             const post = res.data;
             temp.push(post);
             this.setState({ posts: temp });
+
+            let sortPosts = sortBy(this.state.posts, "createDate").reverse();
+            this.setState({ posts: sortPosts });
           });
         });
       });
@@ -78,6 +80,12 @@ class HomePage extends Component {
                   const savedDoneePost = res.data;
                   temp.push(savedDoneePost);
                   this.setState({ savedDoneePosts: temp });
+
+                  let sortSavedDoneePosts = sortBy(
+                    this.state.savedDoneePosts,
+                    "createDate"
+                  ).reverse();
+                  this.setState({ savedDoneePosts: sortSavedDoneePosts });
                 });
               });
             });
@@ -166,16 +174,6 @@ class HomePage extends Component {
   render() {
     let { userType } = this.props;
     let { newPostTitle, newPostContent } = this.state;
-
-    // let content = (
-    //   <Fragment>
-    //     {/* Placeholder Items */}
-    //     <Button onClick={this.props.logout} color="primary" variant="contained">
-    //       Logout
-    //     </Button>
-    //   </Fragment>
-    // );
-
     let doneePost, content;
 
     // If User is a donee
