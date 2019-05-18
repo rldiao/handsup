@@ -5,8 +5,9 @@ import { connect } from "react-redux";
 import { login } from "../../actions/userActions";
 import styles from "./login.module.css";
 import AuthService from "../../services/AuthService";
-import { TextField } from "@material-ui/core";
+import { TextField, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import { stateConstants } from "../../constants/stateConstants";
 
 class DonerLoginForm extends Component {
   constructor(props) {
@@ -14,9 +15,7 @@ class DonerLoginForm extends Component {
     this.state = {
       email: "",
       password: "",
-      error: "",
-      redirect: false,
-      declinedSubmission: false
+      redirect: false
     };
   }
 
@@ -32,18 +31,28 @@ class DonerLoginForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // TODO: get this to return a promise or change the redux setting
     this.props.login(this.state.email, this.state.password);
+    this.setState({ email: "", password: "" });
   };
 
   render() {
+    const { authState } = this.props;
+    let errorMsg;
+
     if (this.state.redirect === true) {
       return <Redirect to="/" />;
+    }
+
+    if (authState === stateConstants.AUTH_ERR) {
+      errorMsg = (
+        <Typography color="error">Email or Password is incorrect!</Typography>
+      );
     }
 
     return (
       <div className={styles.grid}>
         <h1>Login</h1>
+        {errorMsg}
         <TextField
           variant="outlined"
           label="Email"
@@ -65,7 +74,13 @@ class DonerLoginForm extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    authState: state.auth.state
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { login }
 )(DonerLoginForm);
