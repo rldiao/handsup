@@ -190,7 +190,6 @@ class HomePage extends Component {
               authorID={post.authorID}
               author={post.author}
               content={post.content}
-              userType={userTypeConstants.DONEE}
             />
           );
         });
@@ -220,7 +219,6 @@ class HomePage extends Component {
               authorID={savedDoneePost.authorID}
               author={savedDoneePost.author}
               content={savedDoneePost.content}
-              userType={userTypeConstants.DONER}
             />
           );
         });
