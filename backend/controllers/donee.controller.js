@@ -105,7 +105,18 @@ const getDonees = function(req, res) {
 };
 
 const getOneDonee = function(req, res) {
-  Donee.findOne({ _id: req.params._id }, (err, donee) => {
+  // Figure out if email or id
+  let key;
+  const value = req.params._id;
+  if (value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+    // Means value is email
+    key = "email";
+  } else {
+    // Its _id
+    key = "_id";
+  }
+
+  Donee.findOne({ [key]: value }, (err, donee) => {
     if (err) {
       res.sendStatus(404);
     } else {

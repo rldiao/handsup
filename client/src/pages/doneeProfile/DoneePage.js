@@ -18,11 +18,14 @@ export default class DoneePage extends Component {
   }
 
   componentDidMount() {
-    const doneeID = this.props.location.state.doneeID;
-    Axios.get("/donee/" + doneeID)
+    // Handle should be donee email
+    const { handle } = this.props.match.params;
+
+    Axios.get("/donee/" + handle)
       .then(res => {
         this.setState({ donee: res.data });
         this.setState({ loading: false });
+        console.log(this.state.donee);
       })
       .catch(err => {
         console.log(err.message);

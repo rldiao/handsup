@@ -2,12 +2,12 @@ import React, { Component, Fragment } from "react";
 import { logout } from "../../actions/userActions";
 import { connect } from "react-redux";
 import styles from "./homePage.module.css";
-import { Button } from "@material-ui/core";
 import { userTypeConstants } from "../../constants";
 import NewPost from "../../components/doneeProfile/NewPost";
 import Axios from "axios";
 import AuthService from "../../services/AuthService";
 import DoneePost from "../../components/doneeProfile/DoneePost";
+import { sortBy } from "lodash";
 
 class HomePage extends Component {
   state = {
@@ -15,12 +15,16 @@ class HomePage extends Component {
     newPostTitle: "",
     newPostContent: "",
     donee: null,
-    posts: []
+    donor: null,
+    posts: [],
+    savedDoneePosts: []
   };
 
   componentDidMount() {
     if (this.props.userType === userTypeConstants.DONEE) {
       this.loadDonee();
+    } else if (this.props.userType === userTypeConstants.DONER) {
+      this.loadDonor();
     }
   }
 
@@ -40,7 +44,51 @@ class HomePage extends Component {
             const post = res.data;
             temp.push(post);
             this.setState({ posts: temp });
+
+            let sortPosts = sortBy(this.state.posts, "createDate").reverse();
+            this.setState({ posts: sortPosts });
           });
+        });
+      });
+  };
+
+  loadDonor = () => {
+    const email = AuthService.getProfile().email;
+    console.log("email = " + email);
+    Axios.get("/user/" + email)
+      .then(res => {
+        this.setState({ donor: res.data });
+        console.log("donor = " + this.state.donor);
+      })
+      .then(() => {
+        this.state.donor.savedDoneesID.forEach(savedDoneeID => {
+          if (savedDoneeID === null || savedDoneeID === "") {
+            return;
+          }
+          Axios.get("/donee/" + savedDoneeID)
+            .then(res => {
+              this.setState({ donee: res.data });
+              console.log("donee = " + this.state.donee);
+            })
+            .then(() => {
+              this.state.donee.postIDs.forEach(postID => {
+                if (postID === null || postID === "") {
+                  return;
+                }
+                Axios.get("/post/" + postID).then(res => {
+                  let temp = this.state.savedDoneePosts;
+                  const savedDoneePost = res.data;
+                  temp.push(savedDoneePost);
+                  this.setState({ savedDoneePosts: temp });
+
+                  let sortSavedDoneePosts = sortBy(
+                    this.state.savedDoneePosts,
+                    "createDate"
+                  ).reverse();
+                  this.setState({ savedDoneePosts: sortSavedDoneePosts });
+                });
+              });
+            });
         });
       });
   };
@@ -59,13 +107,34 @@ class HomePage extends Component {
 
   handleSubmit = () => {
     // Send new post to post api
-    let today = new Date();
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+
+    const dt = new Date();
     const date =
-      today.getDate() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getFullYear();
+      monthNames[dt.getMonth()] +
+      " " +
+      dt.getDate() +
+      ", " +
+      dt.getFullYear() +
+      " " +
+      dt.getHours() +
+      ":" +
+      dt.getMinutes() +
+      ":" +
+      dt.getSeconds();
 
     let newPostID;
 
@@ -73,6 +142,7 @@ class HomePage extends Component {
       title: this.state.newPostTitle,
       createDate: date,
       authorID: this.state.donee._id,
+      author: this.state.donee.name,
       content: this.state.newPostContent
     })
       .then(res => {
@@ -87,6 +157,7 @@ class HomePage extends Component {
         tempPosts.push({
           title: res.data.title,
           authorID: res.data.authorID,
+          author: this.state.donee.author,
           createDate: res.data.createDate,
           content: res.data.content
         });
@@ -103,19 +174,10 @@ class HomePage extends Component {
   render() {
     let { userType } = this.props;
     let { newPostTitle, newPostContent } = this.state;
-
-    let content = (
-      <Fragment>
-        {/* Placeholder Items */}
-        <Button onClick={this.props.logout} color="primary" variant="contained">
-          Logout
-        </Button>
-      </Fragment>
-    );
+    let doneePost, content;
 
     // If User is a donee
     if (userType === userTypeConstants.DONEE) {
-      let doneePost;
       if (this.state.donee !== null) {
         let posts = this.state.posts;
         doneePost = posts.map(post => {
@@ -126,6 +188,7 @@ class HomePage extends Component {
               title={post.title}
               date={post.createDate}
               authorID={post.authorID}
+              author={post.author}
               content={post.content}
             />
           );
@@ -143,6 +206,24 @@ class HomePage extends Component {
           {doneePost}
         </Fragment>
       );
+    } else if (userType === userTypeConstants.DONER) {
+      if (this.state.donor !== null) {
+        let savedDoneePosts = this.state.savedDoneePosts;
+        doneePost = savedDoneePosts.map(savedDoneePost => {
+          return (
+            <DoneePost
+              key={savedDoneePost._id}
+              _id={savedDoneePost._id}
+              title={savedDoneePost.title}
+              date={savedDoneePost.createDate}
+              authorID={savedDoneePost.authorID}
+              author={savedDoneePost.author}
+              content={savedDoneePost.content}
+            />
+          );
+        });
+      }
+      content = <Fragment>{doneePost}</Fragment>;
     }
     return (
       <div className={styles.pageContainer}>
