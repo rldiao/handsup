@@ -1,6 +1,9 @@
 :root {
   --main-navbar-height: 3.5rem;
   --main-primary-color: #41521f;
+  --main-accent-color: #8c3138;
+  --main-highlight-color: #f4f7e5;
+  --main-midtone-color: #5a7d3e;
 }
 
 html {

@@ -48,7 +48,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 // Material UI Theme
 const theme = createMuiTheme({
   palette: {
-    primary: { main: "#41521f" }
+    primary: {
+      main: "#41521f",
+      light: "#f4f7e5",
+      contrastText: "white"
+    },
+    secondary: { main: "#8c3131" }
   },
   typography: {
     useNextVariants: true

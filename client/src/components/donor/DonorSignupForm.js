@@ -2,11 +2,11 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import styles from "./doner.module.css";
+import styles from "./donor.module.css";
 import AuthService from "../../services/AuthService";
 import { TextField } from "@material-ui/core";
 
-export default class DonerSignupForm extends Component {
+export default class DonorSignupForm extends Component {
   constructor(props) {
     super(props);
 
@@ -143,7 +143,7 @@ export default class DonerSignupForm extends Component {
 
     return (
       <div className={styles.grid}>
-        <h1>Doner Sign Up</h1>
+        <h1>Donor Sign Up</h1>
         <TextField
           variant="outlined"
           fullWidth

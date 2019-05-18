@@ -9,7 +9,7 @@ import { TextField, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { stateConstants } from "../../constants/stateConstants";
 
-class DonerLoginForm extends Component {
+class DonorLoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -83,4 +83,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { login }
-)(DonerLoginForm);
+)(DonorLoginForm);

@@ -23,7 +23,7 @@ exports.createUser = (req, res) => {
   }
 
   const newUser = new Users(user);
-  newUser.userType = userTypeConstants.doner;
+  newUser.userType = userTypeConstants.donor;
 
   // Hash password
   newUser.setPassword(user.password);

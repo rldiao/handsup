@@ -15,7 +15,7 @@ const sideDrawer = props => {
   }
 
   let discoverTab;
-  if (props.userType === userTypeConstants.DONER) {
+  if (props.userType === userTypeConstants.DONOR) {
     discoverTab = (
       <li>
         <Link to="/discover">Discover</Link>
