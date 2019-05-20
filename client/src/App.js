@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import decode from "jwt-decode";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 
 import styles from "./App.module.css";
 import NavBarTutorial from "./components/navigation/NavBarTutorial";
@@ -45,21 +44,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-// Material UI Theme
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#41521f",
-      light: "#f4f7e5",
-      contrastText: "white"
-    },
-    secondary: { main: "#8c3131" }
-  },
-  typography: {
-    useNextVariants: true
-  }
-});
-
 class App extends Component {
   state = {
     sideDrawerOpen: false
@@ -96,38 +80,23 @@ class App extends Component {
       backdrop = <Backdrop click={this.backdropClickHandler} />;
     }
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className={styles.pagecontainer}>
-          <NavBarTutorial drawerClickHandler={this.drawerToggleClickHandler} />
-          <SideDrawer show={this.state.sideDrawerOpen} />
-          {backdrop}
-          <div className={styles.content}>
-            <Switch>
-              <PrivateRoute path="/" exact component={HomePage} />
-              <PrivateRoute path="/discover" exact component={DiscoverPage} />
-              <PrivateRoute
-                path="/userProfile"
-                exact
-                component={UserProfilePage}
-              />
-              <PrivateRoute
-                path="/settings"
-                exact
-                component={UserSettingsPage}
-              />
-              <PrivateRoute path="/user/" component={DoneePage} />
-              <Route path="/login" exact component={LoginPage} />
-              <Route path="/signup" exact component={SignUpPage} />
-              <Route path="/about" exact component={AboutPage} />
-              <Route path="/contact" exact component={ContactPage} />
-              <Route component={ErrorPage} />
-            </Switch>
-          </div>
-          {/* <div className={styles.footer}>
-          <Footer />
-        </div> */}
-        </div>
-      </MuiThemeProvider>
+      <div className="content">
+        <NavBarTutorial drawerClickHandler={this.drawerToggleClickHandler} />
+        <SideDrawer show={this.state.sideDrawerOpen} />
+        {backdrop}
+        <Switch>
+          <PrivateRoute path="/" exact component={HomePage} />
+          <PrivateRoute path="/discover" exact component={DiscoverPage} />
+          <PrivateRoute path="/userProfile" exact component={UserProfilePage} />
+          <PrivateRoute path="/settings" exact component={UserSettingsPage} />
+          <PrivateRoute path="/user/" component={DoneePage} />
+          <Route path="/login" exact component={LoginPage} />
+          <Route path="/signup" exact component={SignUpPage} />
+          <Route path="/about" exact component={AboutPage} />
+          <Route path="/contact" exact component={ContactPage} />
+          <Route component={ErrorPage} />
+        </Switch>
+      </div>
     );
   }
 }
