@@ -1,0 +1,27 @@
+.container {
+  background-color: var(--main-highlight-color);
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  padding: 1rem;
+}
+
+.content {
+  margin: 0;
+  box-sizing: border-box;
+  margin-block-end: 30px;
+}
+
+.authorTag {
+  display: flex;
+}
+
+.authorProfilePic {
+  border-radius: 4rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+.authorName {
+  margin: auto 0;
+  padding-left: 1rem;
+}
