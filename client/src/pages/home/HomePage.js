@@ -23,7 +23,7 @@ class HomePage extends Component {
   componentDidMount() {
     if (this.props.userType === userTypeConstants.DONEE) {
       this.loadDonee();
-    } else if (this.props.userType === userTypeConstants.DONER) {
+    } else if (this.props.userType === userTypeConstants.DONOR) {
       this.loadDonor();
     }
   }
@@ -206,7 +206,7 @@ class HomePage extends Component {
           {doneePost}
         </Fragment>
       );
-    } else if (userType === userTypeConstants.DONER) {
+    } else if (userType === userTypeConstants.DONOR) {
       if (this.state.donor !== null) {
         let savedDoneePosts = this.state.savedDoneePosts;
         doneePost = savedDoneePosts.map(savedDoneePost => {
