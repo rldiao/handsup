@@ -22,7 +22,7 @@ class NavBarTutorial extends Component {
     if (!loggedIn) {
       callToActionDiv = <CallToAction />;
     }
-    if (this.props.userType === userTypeConstants.DONER) {
+    if (this.props.userType === userTypeConstants.DONOR) {
       discoverTab = (
         <li>
           <Link to="/discover" className={styles.navBarItem}>

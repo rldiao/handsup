@@ -1,22 +1,25 @@
 const jwt = require("jsonwebtoken");
-const secret = process.env.TOKEN_STR;
+const envParsed = require("dotenv").config().parsed;
+const env = envParsed.NODE_ENV;
+const secret = envParsed.TOKEN_STR;
 
 const withAuth = function(req, res, next) {
   // Cookie is still here prabably due to passport
-  const token =
-    req.cookies.token ||
-    (req.headers["authorization"] && process.env.NODE_ENV === "development");
-  // console.log(token);
+  const token = req.cookies.token;
+
+  if (env === "development") {
+    return next();
+  }
   if (!token) {
     res.status(403).send("FORBIDDEN");
   } else {
     jwt.verify(token, secret, function(err, decoded) {
       if (err) {
         console.log(err);
-        res.status(401).send("UNAUTHORIZED");
+        return res.status(401).send("UNAUTHORIZED");
       } else {
         req.email = decoded.email;
-        next();
+        return next();
       }
     });
   }

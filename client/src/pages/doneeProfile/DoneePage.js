@@ -39,13 +39,13 @@ export default class DoneePage extends Component {
           <div>
             <MainInfo
               donee={this.state.donee}
-              userType={userTypeConstants.DONER}
+              userType={userTypeConstants.DONOR}
             />
           </div>
           {/* {this.state.editProfile ? editDoneeProfile : doneeAbout} */}
           <DoneeNavTab
             donee={this.state.donee}
-            userType={userTypeConstants.DONER}
+            userType={userTypeConstants.DONOR}
           />
         </Fragment>
       );

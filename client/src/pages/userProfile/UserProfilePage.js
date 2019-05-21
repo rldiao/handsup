@@ -50,7 +50,7 @@ class UserProfilePage extends Component {
       mainInfo = <MainInfo donee={this.state.user} userType={userType} />;
     }
 
-    if (userType === userTypeConstants.DONER) {
+    if (userType === userTypeConstants.DONOR) {
       content = <SavedDonees />;
       mainInfo = (
         <div>

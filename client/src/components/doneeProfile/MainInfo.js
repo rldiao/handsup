@@ -10,7 +10,7 @@ export default class MainInfo extends Component {
   render() {
     const userType = this.props.userType;
     let donateButton;
-    if (userType === userTypeConstants.DONER) {
+    if (userType === userTypeConstants.DONOR) {
       donateButton = (
         <Button
           variant="outlined"

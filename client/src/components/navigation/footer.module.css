@@ -1,0 +1,82 @@
+.grid {
+  background-color: var(--main-highlight-color);
+  display: grid;
+  grid-gap: 1rem;
+  padding: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: ". ." ". ." "newsletter newsletter";
+}
+
+.gridItem {
+  padding-block-end: 1rem;
+  color: var(--main-midtone-color);
+}
+
+.gridItem ul,
+.gridItem li,
+.gridItem h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.gridItem h4 {
+  padding-block-end: 0.5rem;
+  color: var(--main-primary-color);
+}
+
+.gridItem ul {
+  list-style: none;
+}
+
+.gridItem li:hover,
+.gridItem li:active {
+  cursor: pointer;
+  color: var(--main-accent-color);
+}
+
+#newsletter {
+  grid-area: newsletter;
+}
+
+#newsletter h4 {
+  margin: 0;
+}
+
+#newsletter input {
+  width: 100%;
+}
+
+.inputField {
+  display: flex;
+}
+
+.inputField input {
+  all: unset;
+  background-color: white;
+  padding-left: 0.5rem;
+}
+
+#legal {
+  background-color: var(--main-primary-color);
+  color: var(--main-highlight-color);
+  padding: 10px;
+  font-size: 10px;
+}
+
+@media (min-width: 800px) {
+  .grid {
+    display: flex;
+    height: 260px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gridItem {
+    padding: 0 2rem;
+    height: 120px;
+  }
+
+  #newsletter {
+    width: 400px;
+  }
+}
