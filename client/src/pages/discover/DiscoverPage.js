@@ -82,12 +82,18 @@ export default class DiscoverPage extends Component {
   handleSearchOnChange = e => {
     let found = false;
     if (e.target.value !== null) {
-      console.log(e.target.value);
       this.setState({ searching: true });
       this.state.donees.forEach(donee => {
         if (donee.name.toLowerCase() === e.target.value.toLowerCase()) {
           this.state.searchingDonee.push(donee);
           found = true;
+        }
+        if (
+          donee.name.toLowerCase() !== e.target.value.toLowerCase() &&
+          this.state.searchingDonee.indexOf(donee, 0) !== -1
+        ) {
+          let index = this.state.searchingDonee.indexOf(donee, 0);
+          this.state.searchingDonee.splice(index);
         }
       });
     }
@@ -128,8 +134,12 @@ export default class DiscoverPage extends Component {
     });
     return (
       <Fragment>
+        <div className={styles.discoveryTitle}>
+          <h1>Browse donees</h1>
+          <p>Let your kindness and generosity change your community.</p>
+        </div>
         <div className={styles.searchBarContainer}>
-          <Paper style={{ display: "flex" }} elevation={1}>
+          <Paper style={{ display: "flex" }} elevation={3}>
             <IconButton aria-label="Search">
               <Icon>search</Icon>
             </IconButton>

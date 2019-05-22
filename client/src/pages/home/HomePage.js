@@ -176,7 +176,7 @@ class HomePage extends Component {
     let { newPostTitle, newPostContent } = this.state;
     let doneePost, content;
 
-    // If User is a donee
+    // If User is Donee render
     if (userType === userTypeConstants.DONEE) {
       if (this.state.donee !== null) {
         let posts = this.state.posts;
@@ -206,6 +206,7 @@ class HomePage extends Component {
           {doneePost}
         </Fragment>
       );
+      // User is Donor Render
     } else if (userType === userTypeConstants.DONOR) {
       if (this.state.donor !== null) {
         let savedDoneePosts = this.state.savedDoneePosts;
@@ -222,12 +223,24 @@ class HomePage extends Component {
             />
           );
         });
+        if (doneePost.length === 0) {
+          doneePost = (
+            <Fragment>
+              <h3>Oops! Your saved donees do not have any post yet...</h3>
+              <img
+                className={styles.noPosts}
+                alt="no posts"
+                src={require("../../assets/img/home/undraw_unexpected_friends_tg6k.svg")}
+              />
+            </Fragment>
+          );
+        }
       }
       content = <Fragment>{doneePost}</Fragment>;
     }
     return (
       <div className={styles.pageContainer}>
-        <h2>Your Home</h2>
+        <h1>Your Home</h1>
         {content}
       </div>
     );

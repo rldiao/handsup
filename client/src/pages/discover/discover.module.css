@@ -1,6 +1,11 @@
 .searchBarContainer {
   margin: 2rem 10% 0 10%;
 }
+
+.discoveryTitle {
+  font-size: 1.625rem;
+  padding: 2rem 10% 0 10%;
+}
 .inputBaseConatiner {
   margin: 0 auto;
 }

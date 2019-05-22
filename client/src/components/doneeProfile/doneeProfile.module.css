@@ -1,10 +1,10 @@
 /* ============= Main Section ============== */
 .doneeProfileContainer {
-  background-color: #f5fff9;
+  background-color: var(--main-highlight-color);
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-gap: 2rem;
-  padding: 1rem;
+  grid-gap: 5rem;
+  padding: 2rem 0 3rem 5rem;
 }
 
 .pictureContainer {
@@ -22,8 +22,7 @@
 }
 
 .doneeName {
-  font-size: 4vw;
-  font-family: raleway, sans-serif;
+  font-size: 3.5vw;
   font-weight: 700;
   font-style: normal;
 }
@@ -43,6 +42,8 @@
 @media screen and (max-width: 550px) {
   .doneeProfileContainer {
     grid-template-columns: 1fr 2fr;
+    grid-gap: 2rem;
+    padding: 1rem;
   }
 }
 

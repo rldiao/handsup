@@ -30,6 +30,8 @@ export default class DoneeCard extends Component {
 
   // props: donee
   render() {
+    let name = this.props.donee.name;
+    name = name.charAt(0).toUpperCase() + name.slice(1);
     return (
       <Card style={userStyles.doneeCard}>
         <CardContent>
@@ -40,7 +42,7 @@ export default class DoneeCard extends Component {
               src={this.props.donee.profilePicture}
             />
             <Typography gutterBottom variant="h6" component="h3">
-              {this.props.donee.name}
+              {name}
             </Typography>
             <Typography component="p" style={userStyles.doneeTypography}>
               {this.props.donee.bio}
@@ -52,8 +54,8 @@ export default class DoneeCard extends Component {
             value={this.props.progressWidth}
           />
           <Typography variant="body2">
-            ${this.props.donee.funded} funded of $
-            {this.props.donee.monthlyDonationLimit}
+            ${this.props.donee.funded}
+            funded of ${this.props.donee.monthlyDonationLimit}
           </Typography>
           <Button
             onClick={this.handleButtonClick}
