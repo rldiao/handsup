@@ -25,7 +25,6 @@ export default class DoneePage extends Component {
       .then(res => {
         this.setState({ donee: res.data });
         this.setState({ loading: false });
-        console.log(this.state.donee);
       })
       .catch(err => {
         console.log(err.message);

@@ -1,6 +1,6 @@
 /* ============= Main Section ============== */
 .doneeProfileContainer {
-  background-color: #f5fff9;
+  background-color: var(--main-highlight-color);
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-gap: 2rem;

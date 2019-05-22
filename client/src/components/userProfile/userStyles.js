@@ -14,7 +14,8 @@ export const userStyles = {
     fontSize: "12px",
     backgroundColor: "#FFFFFF",
     border: "0.5px solid #41521F",
-    color: "#41521F"
+    color: "#41521F",
+    width: "5rem"
   }
 
   // mainAvatar: {
