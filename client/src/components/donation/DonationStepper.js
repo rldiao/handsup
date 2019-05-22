@@ -23,7 +23,7 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ["Select campaign settings", "Create an ad group", "Create an ad"];
+  return ["Enter donation amount", "Confirm donation"];
 }
 
 function getStepInstructions(step) {
@@ -32,49 +32,39 @@ function getStepInstructions(step) {
       return "Enter an amount for your donation";
     case 1:
       return "Confirm your donation";
-    case 2:
-      return "hullo";
-    default:
-      return "Unknown step";
-  }
-}
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return "Enter an amount for your donation.";
-    case 1:
-      return "Confirm your donation";
-    case 2:
-      return "hullo";
-    default:
-      return "Unknown step";
   }
 }
 
 class DonationStepper extends Component {
   state = {
     activeStep: 0,
-    amount: 0
+    amount: 1,
+    confirm: false
   };
 
   handleNext = () => {
-    const { activeStep } = this.state;
+    // const { activeStep } = this.state;
+    if (this.state.amount > 0) {
+      this.setState({
+        activeStep: this.state.activeStep + 1
+      });
+    }
+    if (this.state.activeStep === 1) {
+      this.handleConfirm();
+    }
+  };
+
+  handleConfirm = () => {
     this.setState({
-      activeStep: activeStep + 1
+      confirm: true
     });
+    this.props.handleDonation(this.state.amount);
   };
 
   handleBack = () => {
     this.setState(state => ({
       activeStep: state.activeStep - 1
     }));
-  };
-
-  handleReset = () => {
-    this.setState({
-      activeStep: 0
-    });
   };
 
   handleTextField = amount => event =>
@@ -88,23 +78,42 @@ class DonationStepper extends Component {
     const { activeStep } = this.state;
     let stepperContent;
     if (activeStep == 0) {
-      stepperContent = (
-        <TextField
-          autoFocus
-          margin="dense"
-          label="AUD$"
-          type="number"
-          defaultValue={this.state.amount}
-          onChange={this.handleTextField("amount")}
-          // fullWidth
-        />
-      );
+      if (this.state.amount < 1) {
+        stepperContent = (
+          <TextField
+            error
+            autoFocus
+            margin="dense"
+            label="AUD$"
+            type="number"
+            defaultValue={this.state.amount}
+            onChange={this.handleTextField("amount")}
+            required
+            // fullWidth
+          />
+        );
+      } else {
+        stepperContent = (
+          <TextField
+            autoFocus
+            margin="dense"
+            label="AUD$"
+            type="number"
+            defaultValue={this.state.amount}
+            onChange={this.handleTextField("amount")}
+            required
+            // fullWidth
+          />
+        );
+      }
     } else if (activeStep == 1) {
       stepperContent = (
         <Typography>
           AUD${this.state.amount} will be donated to this donee.
         </Typography>
       );
+    } else if (activeStep == 2) {
+      stepperContent = <Typography>Thank you for your donation!</Typography>;
     }
 
     return (
@@ -127,7 +136,7 @@ class DonationStepper extends Component {
                 Thank you for your donation!
               </Typography>
               <Button
-                // onClick={this.handleReset}
+                onClick={this.props.handleClose}
                 className={classes.button}
               >
                 Finish
@@ -151,7 +160,7 @@ class DonationStepper extends Component {
                   onClick={this.handleNext}
                   className={classes.button}
                 >
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                  {activeStep === 1 ? "Confirm" : "Next"}
                 </Button>
               </div>
             </div>

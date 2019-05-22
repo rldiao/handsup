@@ -31,28 +31,11 @@ class DonationDialog extends Component {
         >
           <DialogTitle id="form-dialog-title">Make a donation!</DialogTitle>
           <DialogContent>
-            <DonationStepper />
-            {/* <DialogContentText>
-              To subscribe to this website, please enter your email address
-              here. We will send updates occasionally.
-            </DialogContentText> */}
-            {/* <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
-            /> */}
+            <DonationStepper
+              handleClose={this.props.handleDonate}
+              handleDonation={this.props.handleDonation}
+            />
           </DialogContent>
-          {/* <DialogActions>
-            <Button onClick={this.props.handleDonate} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.props.handleDonate} color="primary">
-              Subscribe
-            </Button>
-          </DialogActions> */}
         </Dialog>
       </div>
     );

@@ -40,10 +40,34 @@ export default class DoneePage extends Component {
     });
   };
 
+  handleDonation = donationAmount => {
+    // Axios
+    let donee = this.state.donee;
+    let original_funded = donee.funded;
+    // let new_funded = original_funded + donationAmount;
+    let new_funded = parseInt(original_funded) + parseInt(donationAmount);
+    donee.funded = new_funded;
+    this.setState({
+      donee
+    });
+    Axios.put("/donee/update/" + this.state.donee._id, donee)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log("Donate Error: " + err);
+      });
+  };
+
   render() {
     let donationDialog;
     if (this.state.donationDialogOpen) {
-      donationDialog = <DonationDialog handleDonate={this.handleDonate} />;
+      donationDialog = (
+        <DonationDialog
+          handleDonate={this.handleDonate}
+          handleDonation={this.handleDonation}
+        />
+      );
     }
 
     if (!this.state.loading) {
@@ -55,6 +79,7 @@ export default class DoneePage extends Component {
               donee={this.state.donee}
               userType={userTypeConstants.DONER}
               handleDonate={this.handleDonate}
+              handleDonation={this.handleDonation}
             />
           </div>
           {/* {this.state.editProfile ? editDoneeProfile : doneeAbout} */}
