@@ -52,6 +52,7 @@ class UserProfilePage extends Component {
 
     if (userType === userTypeConstants.DONOR) {
       content = <SavedDonees />;
+
       mainInfo = (
         <div>
           <div className={styles.editProfileButton}>

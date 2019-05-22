@@ -63,27 +63,48 @@ class SavedDonees extends Component {
   };
 
   render() {
-    const cardContent = this.state.donees.map(donee => {
-      const progressWidth = (donee.funded / donee.monthlyDonationLimit) * 100;
-      return (
-        <DoneeCard
-          key={donee._id}
-          id={donee._id}
-          donee={donee}
-          handleDoneeClick={this.handleDoneeClick}
-          handleButtonClick={this.handleRemoveClick}
-          btnText="Remove"
-          progressWidth={progressWidth}
-        />
+    let cardContent = (
+      <div className={styles.cardContainer}>
+        {this.state.donees.map(donee => {
+          const progressWidth =
+            (donee.funded / donee.monthlyDonationLimit) * 100;
+          return (
+            <DoneeCard
+              key={donee._id}
+              id={donee._id}
+              donee={donee}
+              handleDoneeClick={this.handleDoneeClick}
+              handleButtonClick={this.handleRemoveClick}
+              btnText="Remove"
+              progressWidth={progressWidth}
+            />
+          );
+        })}
+      </div>
+    );
+
+    if (this.state.donees.length === 0) {
+      cardContent = (
+        <div className={styles.noSavedDonees}>
+          <h3>
+            Oops! You don't have any saved donee. Browse in discover and find
+            your donees!
+          </h3>
+          <img
+            className={styles.noDoneeImg}
+            alt="No saved donees"
+            src={require("../../assets/img/savedDonee/undraw_empty_xct9.svg")}
+          />
+        </div>
       );
-    });
+    }
 
     return (
       <Fragment>
         <div>
           <p className={styles.savedDoneesHeader}>Saved Donees</p>
         </div>
-        <div className={styles.cardContainer}>{cardContent}</div>
+        {cardContent}
       </Fragment>
     );
   }
