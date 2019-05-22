@@ -6,6 +6,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import DonationStepper from "./DonationStepper";
 
 class DonationDialog extends Component {
   state = {
@@ -23,41 +24,35 @@ class DonationDialog extends Component {
   render() {
     return (
       <div>
-        {/* <Button
-          variant="outlined"
-          color="primary"
-          onClick={this.handleClickOpen}
-        >
-          Open form dialog
-        </Button> */}
         <Dialog
-          open={this.props.isOpen}
-          onClose={this.handleClose}
+          open={this.props.handleDonate}
+          onClose={this.props.handleDonate}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogTitle id="form-dialog-title">Make a donation!</DialogTitle>
           <DialogContent>
-            <DialogContentText>
+            <DonationStepper />
+            {/* <DialogContentText>
               To subscribe to this website, please enter your email address
               here. We will send updates occasionally.
-            </DialogContentText>
-            <TextField
+            </DialogContentText> */}
+            {/* <TextField
               autoFocus
               margin="dense"
               id="name"
               label="Email Address"
               type="email"
               fullWidth
-            />
+            /> */}
           </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+          {/* <DialogActions>
+            <Button onClick={this.props.handleDonate} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.props.handleDonate} color="primary">
               Subscribe
             </Button>
-          </DialogActions>
+          </DialogActions> */}
         </Dialog>
       </div>
     );

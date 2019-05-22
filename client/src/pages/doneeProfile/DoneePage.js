@@ -43,9 +43,7 @@ export default class DoneePage extends Component {
   render() {
     let donationDialog;
     if (this.state.donationDialogOpen) {
-      donationDialog = (
-        <DonationDialog isOpen={this.state.donationDialogOpen} />
-      );
+      donationDialog = <DonationDialog handleDonate={this.handleDonate} />;
     }
 
     if (!this.state.loading) {

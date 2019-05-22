@@ -6,6 +6,7 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 
 const styles = theme => ({
   root: {
@@ -17,42 +18,50 @@ const styles = theme => ({
   instructions: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit
-  }
+  },
+  content: {}
 });
 
 function getSteps() {
   return ["Select campaign settings", "Create an ad group", "Create an ad"];
 }
 
-function getStepContent(step) {
+function getStepInstructions(step) {
   switch (step) {
     case 0:
-      return "Select campaign settings...";
+      return "Enter an amount for your donation";
     case 1:
-      return "What is an ad group anyways?";
+      return "Confirm your donation";
     case 2:
-      return "This is the bit I really care about!";
+      return "hullo";
     default:
       return "Unknown step";
   }
 }
 
-class HorizontalLinearStepper extends Component {
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return "Enter an amount for your donation.";
+    case 1:
+      return "Confirm your donation";
+    case 2:
+      return "hullo";
+    default:
+      return "Unknown step";
+  }
+}
+
+class DonationStepper extends Component {
   state = {
     activeStep: 0,
-    skipped: new Set()
+    amount: 0
   };
 
   handleNext = () => {
     const { activeStep } = this.state;
-    let { skipped } = this.state;
-    if (this.isStepSkipped(activeStep)) {
-      skipped = new Set(skipped.values());
-      skipped.delete(activeStep);
-    }
     this.setState({
-      activeStep: activeStep + 1,
-      skipped
+      activeStep: activeStep + 1
     });
   };
 
@@ -62,38 +71,41 @@ class HorizontalLinearStepper extends Component {
     }));
   };
 
-  handleSkip = () => {
-    const { activeStep } = this.state;
-    if (!this.isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    this.setState(state => {
-      const skipped = new Set(state.skipped.values());
-      skipped.add(activeStep);
-      return {
-        activeStep: state.activeStep + 1,
-        skipped
-      };
-    });
-  };
-
   handleReset = () => {
     this.setState({
       activeStep: 0
     });
   };
 
-  isStepSkipped(step) {
-    return this.state.skipped.has(step);
-  }
+  handleTextField = amount => event =>
+    this.setState({
+      [amount]: event.target.value
+    });
 
   render() {
     const { classes } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
+    let stepperContent;
+    if (activeStep == 0) {
+      stepperContent = (
+        <TextField
+          autoFocus
+          margin="dense"
+          label="AUD$"
+          type="number"
+          defaultValue={this.state.amount}
+          onChange={this.handleTextField("amount")}
+          // fullWidth
+        />
+      );
+    } else if (activeStep == 1) {
+      stepperContent = (
+        <Typography>
+          AUD${this.state.amount} will be donated to this donee.
+        </Typography>
+      );
+    }
 
     return (
       <div className={classes.root}>
@@ -124,8 +136,9 @@ class HorizontalLinearStepper extends Component {
           ) : (
             <div>
               <Typography className={classes.instructions}>
-                {getStepContent(activeStep)}
+                {getStepInstructions(activeStep)}
               </Typography>
+              <form>{stepperContent}</form>
               <div>
                 {activeStep === 1 && (
                   <Button onClick={this.handleBack} className={classes.button}>
@@ -149,8 +162,8 @@ class HorizontalLinearStepper extends Component {
   }
 }
 
-HorizontalLinearStepper.propTypes = {
+DonationStepper.propTypes = {
   classes: PropTypes.object
 };
 
-export default withStyles(styles)(HorizontalLinearStepper);
+export default withStyles(styles)(DonationStepper);
