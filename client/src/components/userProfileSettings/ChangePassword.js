@@ -72,6 +72,7 @@ export default class ChangePassword extends Component {
           label="New Password"
           name="newPw"
           type="password"
+          fullWidth
           value={this.state.newPw}
           onChange={this.handleChange}
         />
@@ -87,7 +88,6 @@ export default class ChangePassword extends Component {
           onClick={this.handlePasswordClick}
           color="primary"
           variant="contained"
-          size="small"
         >
           Change Password
         </Button>

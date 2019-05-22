@@ -60,7 +60,7 @@
 }
 
 .sideDrawer a,
-.sideDrawer div {
+.sideDrawer li {
   color: #521751;
   text-decoration: none;
   font-size: 1.2rem;
@@ -69,8 +69,8 @@
 
 .sideDrawer a:hover,
 .sideDrawer a:active,
-.sideDrawer div:hover,
-.sideDrawer div:active {
+.sideDrawer li:hover,
+.sideDrawer li:active {
   color: #fa923f;
 }
 
