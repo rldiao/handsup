@@ -4,8 +4,8 @@ Team name: DaWebBois
 Web Info Tech  
 
 ## Submission 4
-Kindly use these credentials to test as Donee and Doner.
-* Doner account:
+Kindly use these credentials to test as Donee and Donor.
+* Donor account:
   * Username: donor1@test.com
   * Password: 123456
 * Donee account:
@@ -15,14 +15,14 @@ Kindly use these credentials to test as Donee and Doner.
 
 Functionalities:
 
-1. Users (Doners and Donees)
+1. Users (Donors and Donees)
     * Files associated with all sub-functionalities below
       * backend\controllers\donee.controller.js
       * backend\controllers\user.controller.js
       * backend\models\user.model.js
       * backend\routes\donee.routes.js
       * backend\routes\user.routes.js
-    * Common functionalities for both users (Doners and Donees)
+    * Common functionalities for both users (Donors and Donees)
         * Signup and login (**Refer to functionality 3 below for password authentication functionality)
           * URL
             * /login
@@ -34,8 +34,8 @@ Functionalities:
           * Associated files
             * client\src\pages\userProfile
             * client\src\pages\userProfileSettings
-    * Doner-specific functionalities
-        * Removing and saving donee profiles to allow doners to 'follow' certain donees and make future donations easier
+    * Donor-specific functionalities
+        * Removing and saving donee profiles to allow donors to 'follow' certain donees and make future donations easier
           * URL
             * /discover
             * /userProfile
@@ -82,11 +82,11 @@ Functionalities:
       * client\src\components\doneeProfile\DoneePost.js
       * client\src\pages\home\HomePage.js
 
-3. User Authentication (Doners and Donees)
+3. User Authentication (Donors and Donees)
     * Allow users to create accounts to login to our service. Password is stored securely with bcrypt (Encryption library) within our database. Passport and jwt is used to handle the sessions associated with logged in users.
     * Connected files:
         * component/auth/LoginForm.js
-        * component/doner/DonerSignupForm.js
+        * component/donor/DonorSignupForm.js
         * component/donee/DoneeSignupForm.js
         * user.controller.js
         * user.routes.js

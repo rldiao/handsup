@@ -93,7 +93,6 @@ const logoutDonee = (req, res) => {
     }
   });
 };
-/* ---- */
 
 const getDonees = function(req, res) {
   Donee.find({ userType: userTypeConstants.donee }, (err, donee) => {
@@ -152,8 +151,8 @@ const deleteOneDonee = function(req, res) {
 };
 
 const addPostID = function(req, res) {
-  Donee.findOneAndUpdate(
-    { _id: req.params._id },
+  Donee.findByIdAndUpdate(
+    req.params._id,
     { $push: { postIDs: req.body.postID } },
     { new: true },
     (err, postID) => {
@@ -161,6 +160,21 @@ const addPostID = function(req, res) {
         res.sendStatus(404);
       } else {
         res.sendStatus(200);
+      }
+    }
+  );
+};
+
+const removePostID = function(req, res) {
+  Donee.findByIdAndUpdate(
+    req.params._id,
+    { $pullAll: { postIDs: [req.body.deletePostID] } },
+    { new: true },
+    (err, user) => {
+      if (err) {
+        res.sendStatus(400);
+      } else {
+        res.status(200).json(user);
       }
     }
   );
@@ -174,5 +188,6 @@ module.exports = {
   getOneDonee,
   updateOneDonee,
   deleteOneDonee,
-  addPostID
+  addPostID,
+  removePostID
 };

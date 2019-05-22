@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import styles from "./signup.module.css";
 import DoneeSignupForm from "../../components/donee/DoneeSignupForm";
-import DonerSignupForm from "../../components/doner/DonerSignupForm";
+import DonorSignupForm from "../../components/donor/DonorSignupForm";
 
 export default class SignUpPage extends Component {
   state = {
@@ -25,7 +25,7 @@ export default class SignUpPage extends Component {
 
     switch (form) {
       case 1:
-        formComponent = <DonerSignupForm switchForm={this.handleSwitch} />;
+        formComponent = <DonorSignupForm switchForm={this.handleSwitch} />;
         break;
       case 2:
         formComponent = <DoneeSignupForm switchForm={this.handleSwitch} />;

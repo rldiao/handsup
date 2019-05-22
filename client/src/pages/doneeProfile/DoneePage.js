@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
 import MainInfo from "../../components/doneeProfile/MainInfo";
-// import EditDoneeProfile from "../../components/doneeProfile/EditDoneeProfile";
-// import DoneeAbout from "../../components/doneeProfile/DoneeAbout";
 import Axios from "axios";
 import DoneeNavTab from "../../components/doneeProfile/DoneeNavTab";
 import { userTypeConstants } from "../../constants";
@@ -77,7 +75,7 @@ export default class DoneePage extends Component {
           <div>
             <MainInfo
               donee={this.state.donee}
-              userType={userTypeConstants.DONER}
+              userType={userTypeConstants.DONOR}
               handleDonate={this.handleDonate}
               handleDonation={this.handleDonation}
             />
@@ -85,7 +83,7 @@ export default class DoneePage extends Component {
           {/* {this.state.editProfile ? editDoneeProfile : doneeAbout} */}
           <DoneeNavTab
             donee={this.state.donee}
-            userType={userTypeConstants.DONER}
+            userType={userTypeConstants.DONOR}
           />
         </Fragment>
       );

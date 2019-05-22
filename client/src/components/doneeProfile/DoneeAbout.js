@@ -12,8 +12,6 @@ export default class DoneeAbout extends Component {
   render() {
     const userType = this.props.userType;
     let editButton;
-    console.log(this.props);
-    console.log(userType);
     if (userType === userTypeConstants.DONEE) {
       editButton = (
         <Button

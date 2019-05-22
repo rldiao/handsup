@@ -17,7 +17,12 @@ export const login = (email, password) => dispatch => {
       history.push("/");
     })
     .catch(err => {
-      console.log(err.message);
+      dispatch({
+        type: userConstants.USER_UNVERIFIED,
+        payload: {
+          state: stateConstants.AUTH_ERR
+        }
+      });
     });
 };
 

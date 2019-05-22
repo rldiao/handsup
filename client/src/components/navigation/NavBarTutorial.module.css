@@ -13,9 +13,9 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 0 var(--main-navbar-height);
+  padding-right: 1.5rem;
   border-bottom: 0.5px solid #17171770;
-  background: #fefefe;
+  background-color: white;
 }
 
 .logo {

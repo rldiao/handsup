@@ -1,4 +1,4 @@
 module.exports = {
-  doner: "doner",
+  donor: "donor",
   donee: "donee"
 };
