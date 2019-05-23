@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./doneeProfile.module.css";
 import { userTypeConstants } from "../../constants";
-// import Axios from "axios";
+import Axios from "axios";
 import { BorderLinearProgress } from "../userProfile/BorderLinearProgress";
 import { Button, Typography } from "@material-ui/core";
 import { profileStyles } from "../../pages/userProfile/profileStyles";
@@ -14,7 +14,7 @@ export default class MainInfo extends Component {
       donateButton = (
         <Button
           variant="outlined"
-          // onClick={}
+          onClick={this.props.handleDonate}
           style={profileStyles.saveButton}
         >
           Donate Now
