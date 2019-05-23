@@ -133,6 +133,15 @@ ol {
   display: unset;
 }
 
+.postCell {
+  margin-left: 0.5rem;
+}
+
+.postAvatar {
+  margin: 5px;
+  display: inline-block;
+}
+
 .postTitleContainer {
   display: flex;
 }
@@ -150,10 +159,6 @@ ol {
 
 .postContent {
   font-size: 1rem;
-}
-
-.postWrittenBy {
-  font-size: 0.75rem;
 }
 
 /* ============== New Posts ============= */
