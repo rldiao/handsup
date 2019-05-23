@@ -54,8 +54,8 @@ export default class DoneeCard extends Component {
             value={this.props.progressWidth}
           />
           <Typography variant="body2">
-            ${this.props.donee.funded}
-            funded of ${this.props.donee.monthlyDonationLimit}
+            ${this.props.donee.funded} funded of $
+            {this.props.donee.monthlyDonationLimit}
           </Typography>
           <Button
             onClick={this.handleButtonClick}
