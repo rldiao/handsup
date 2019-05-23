@@ -1,13 +1,12 @@
 /* ======== User Profile Settings =======*/
 
 .settingsContainer {
-  margin-top: 3%;
-  padding: 0% 10% 0% 12.5%;
+  margin: 3% 10% 0% 12.5%;
   display: flex;
   justify-content: center;
 }
 
-.content {
+.settingsContent {
   width: 70%;
 }
 
@@ -25,12 +24,15 @@
 
 .formContainer {
   display: grid;
+  width: 100%;
+  padding: 0 20%;
   grid-row-gap: 2rem;
 }
 
-.input {
-  padding: 1% 10rem 1% 1%;
-  text-align: left;
+.formBorder {
+  margin: 1.5rem 0;
+  border: 1px solid grey;
+  border-radius: 10px;
 }
 
 /* .form {

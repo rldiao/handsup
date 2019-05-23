@@ -64,7 +64,6 @@ export default class ChangePassword extends Component {
           type="password"
           fullWidth
           value={this.state.oldPw}
-          className={styles.input}
           onChange={this.handleChange}
           error={this.state.errors.oldPw}
           helperText={this.state.errors.oldPw}
@@ -75,7 +74,6 @@ export default class ChangePassword extends Component {
           type="password"
           fullWidth
           value={this.state.newPw}
-          className={styles.input}
           onChange={this.handleChange}
         />
         <TextField
@@ -84,14 +82,12 @@ export default class ChangePassword extends Component {
           type="password"
           fullWidth
           value={this.state.confirmPw}
-          className={styles.input}
           onChange={this.handleChange}
         />
         <Button
           onClick={this.handlePasswordClick}
           color="primary"
           variant="contained"
-          size="small"
         >
           Change Password
         </Button>

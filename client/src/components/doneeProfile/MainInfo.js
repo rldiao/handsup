@@ -25,6 +25,9 @@ export default class MainInfo extends Component {
     const progressWidth =
       (this.props.donee.funded / this.props.donee.monthlyDonationLimit) * 100;
 
+    let name = this.props.donee.name;
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+
     return (
       <div className={styles.doneeProfileContainer}>
         <div className={styles.pictureContainer}>
@@ -35,7 +38,7 @@ export default class MainInfo extends Component {
           />
         </div>
         <div className={styles.doneeDetailsContainer}>
-          <p className={styles.doneeName}>{this.props.donee.name}</p>
+          <p className={styles.doneeName}>{name}</p>
           <BorderLinearProgress variant="determinate" value={progressWidth} />
           <div className={styles.amountFunded}>${this.props.donee.funded}</div>
           <Typography variant="subtitle1">

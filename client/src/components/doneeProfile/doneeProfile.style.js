@@ -33,5 +33,17 @@ export const styles = {
   tabLabel: {
     fontSize: "medium",
     textTransform: "initial"
+  },
+
+  postPaper: {
+    padding: "1rem",
+    border: "1px solid grey",
+    backgroundColor: "#fffaf4"
+  },
+
+  postWrittenBy: {
+    fontSize: "1rem",
+    fontWeight: 900,
+    margin: "1rem 0 0 0.5rem"
   }
 };
