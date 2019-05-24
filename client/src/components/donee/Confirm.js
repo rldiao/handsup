@@ -16,11 +16,10 @@ export class Confirm extends Component {
   next = e => {
     let submit = window.confirm("Are all details correct?");
     if (submit && this.props.validForm) {
-      // TODO: improve error handling
       this.props.handleSignup(e);
       this.props.next();
     } else {
-      alert("Missing Fields");
+      alert("Required fields are missing!");
     }
   };
 
@@ -34,23 +33,23 @@ export class Confirm extends Component {
           <h4>Account Details</h4>
           <ListItemText
             className={classnames(classes.root, className)}
-            primary="Email"
+            primary="Email*"
             secondary={values.email || "Not Provided"}
           />
           <h4>Personal Details</h4>
           <ListItemText
             className={classnames(classes.root, className)}
-            primary="Full Name"
+            primary="Full Name*"
             secondary={values.name || "Not Provided"}
           />
           <ListItemText
             className={classnames(classes.root, className)}
-            primary="Gender"
+            primary="Gender*"
             secondary={values.gender || "Not Provided"}
           />
           <ListItemText
             className={classnames(classes.root, className)}
-            primary="Date of Birth"
+            primary="Date of Birth*"
             secondary={values.dob || "Not Provided"}
           />
           <ListItemText
@@ -60,7 +59,7 @@ export class Confirm extends Component {
           />
           <ListItemText
             className={classnames(classes.root, className)}
-            primary="Location"
+            primary="Location*"
             secondary={values.location || "Not Provided"}
           />
           <ListItemText

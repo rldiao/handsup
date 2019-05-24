@@ -153,6 +153,7 @@ export default class DonorSignupForm extends Component {
           type="text"
           name="name"
           helperText={nameError}
+          required
         />
         <TextField
           variant="outlined"
@@ -162,6 +163,7 @@ export default class DonorSignupForm extends Component {
           type="email"
           name="email"
           helperText={emailError}
+          required
         />
         <TextField
           variant="outlined"
@@ -171,6 +173,7 @@ export default class DonorSignupForm extends Component {
           type="password"
           name="password"
           helperText={passwordError}
+          required
         />
         <TextField
           variant="outlined"
@@ -180,6 +183,7 @@ export default class DonorSignupForm extends Component {
           type="password"
           name="confirmPassword"
           helperText={confirmError}
+          required
         />
         <label className={styles.formFieldCheckBoxLabel}>
           <div>
