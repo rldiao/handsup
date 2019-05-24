@@ -16,6 +16,7 @@ export class FormUserDetails extends Component {
           value={values.email}
           onChange={handleChange("email")}
           helperText={values.formErrors.email}
+          required
         />
         <TextField
           label="Password"
@@ -23,6 +24,7 @@ export class FormUserDetails extends Component {
           value={values.password}
           onChange={handleChange("password")}
           helperText={values.formErrors.password}
+          required
         />
         <TextField
           label="Confirm Password"
@@ -30,6 +32,7 @@ export class FormUserDetails extends Component {
           value={values.confirmPassword}
           onChange={handleChange("confirmPassword")}
           helperText={values.formErrors.confirmPassword}
+          required
         />
         <div className={styles.gridItemSplit}>
           <Button onClick={this.props.switchForm}>I'm donating</Button>

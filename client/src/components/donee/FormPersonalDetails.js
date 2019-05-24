@@ -14,6 +14,7 @@ export class FormPersonalDetails extends Component {
           label="Full Name"
           value={values.name}
           onChange={handleChange("name")}
+          required
         />
         <div className={styles.gridItemSplit}>
           <TextField
@@ -21,6 +22,7 @@ export class FormPersonalDetails extends Component {
             value={values.gender}
             onChange={handleChange("gender")}
             select
+            required
           >
             {genders.map(gender => (
               <MenuItem key={gender} value={gender}>
@@ -33,12 +35,14 @@ export class FormPersonalDetails extends Component {
             value={values.dob}
             onChange={handleChange("dob")}
             helperText="dd/mm/yyyy"
+            required
           />
         </div>
         <TextField
           label="Location"
           value={values.location}
           onChange={handleChange("location")}
+          required
         />
         <TextField
           label="Phone Number"

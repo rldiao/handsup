@@ -5,6 +5,7 @@ import styles from "./donee.module.css";
 import FormPersonalDetails from "./FormPersonalDetails";
 import PaymentForm from "./PaymentForm";
 import Confirm from "./Confirm";
+import Success from "./Success";
 import AuthService from "../../services/AuthService";
 import { history } from "../../helper/history";
 
@@ -219,7 +220,7 @@ export class DoneeSignupForm extends Component {
         );
         break;
       case 5:
-        form = <h1>Success</h1>;
+        form = <Success />;
         break;
       default:
         form = null;
