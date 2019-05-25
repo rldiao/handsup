@@ -113,4 +113,5 @@ In info30005 folder
 
 ### Resources used
 
-https://hptechblogs.com/using-json-web-token-react/
+* https://hptechblogs.com/using-json-web-token-react/
+* https://www.robinwieruch.de/react-express-stripe-payment/?fbclid=IwAR3OsERVGgf2YJC8NKXhZuqD_TQbl2-mR2a6TAscYQYcfcvoN7fJH3Eiz9k

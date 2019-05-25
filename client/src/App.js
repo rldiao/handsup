@@ -17,6 +17,8 @@ import DoneePage from "./pages/doneeProfile/DoneePage";
 import ContactPage from "./pages/contact/ContactPage";
 import AboutPage from "./pages/about/AboutPage";
 
+import Test from "./pages/test";
+
 // Private Routing
 const checkAuth = () => {
   const token = localStorage.getItem("id_token");
@@ -94,6 +96,7 @@ class App extends Component {
           <Route path="/signup" exact component={SignUpPage} />
           <Route path="/about" exact component={AboutPage} />
           <Route path="/contact" exact component={ContactPage} />
+          <Route path="/test" component={Test} />
           <Route component={ErrorPage} />
         </Switch>
       </div>

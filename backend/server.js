@@ -6,10 +6,27 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const path = require("path");
+const cors = require("cors");
+const configureRoutes = require("./routes");
 
 require("dotenv").config();
 
-//Configure mongoose's promise to global promise
+// CORS configuration
+const CORS_WHITELIST = require("./constants/frontend");
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // TODO: Remove this
+    console.log(origin);
+    return CORS_WHITELIST.indexOf(origin) !== -1
+      ? callback(null, true)
+      : callback(new Error("Not allowed by CORS"));
+  }
+};
+
+app.use(cors(corsOptions));
+
+// Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
 
 // APP CONFIG
@@ -40,6 +57,9 @@ app.use("/post", postRoute);
 
 require("./database");
 require("./config/passport");
+
+// Stripe
+configureRoutes(app);
 
 app.get("/express_backend", (req, res) => {
   res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
