@@ -24,7 +24,7 @@ const corsOptions = {
   }
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
