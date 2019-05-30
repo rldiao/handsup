@@ -2,7 +2,6 @@ const express = require("express");
 const doneeController = require("../controllers/donee.controller");
 const auth = require("../middleware/auth");
 const router = express.Router();
-const env = require("dotenv").config().parsed.NODE_ENV;
 
 router.post("/signup", doneeController.createDonee);
 
