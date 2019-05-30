@@ -1,13 +1,10 @@
 const jwt = require("jsonwebtoken");
-const envParsed = require("dotenv").config().parsed;
-const env = envParsed.NODE_ENV;
-const secret = envParsed.TOKEN_STR;
 
 const withAuth = function(req, res, next) {
   // Cookie is still here prabably due to passport
   const token = req.cookies.token;
 
-  if (env === "development") {
+  if (!process.env.NODE_ENV) {
     return next();
   }
   if (!token) {
