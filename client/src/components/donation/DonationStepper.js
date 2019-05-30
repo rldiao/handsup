@@ -7,6 +7,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import Checkout from "./Checkout";
 
 const styles = theme => ({
   root: {
@@ -26,14 +27,14 @@ function getSteps() {
   return ["Enter donation amount", "Confirm donation"];
 }
 
-function getStepInstructions(step) {
-  switch (step) {
-    case 0:
-      return "Enter an amount for your donation";
-    case 1:
-      return "Confirm your donation";
-  }
-}
+// function getStepInstructions(step) {
+//   switch (step) {
+//     case 0:
+//       return "Enter an amount for your donation";
+//     case 1:
+//       return "Confirm your donation";
+//   }
+// }
 
 class DonationStepper extends Component {
   state = {
@@ -61,6 +62,10 @@ class DonationStepper extends Component {
     this.props.handleDonation(this.state.amount);
   };
 
+  handleCheckout = () => {
+    console.log("handle checkout is called");
+  };
+
   handleBack = () => {
     this.setState(state => ({
       activeStep: state.activeStep - 1
@@ -76,6 +81,30 @@ class DonationStepper extends Component {
     const { classes } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
+
+    let proceedButton;
+    if (activeStep == 0) {
+      proceedButton = (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={this.handleNext}
+          className={classes.button}
+        >
+          Next
+        </Button>
+      );
+    } else if (activeStep == 1) {
+      proceedButton = (
+        <Checkout
+          handleCheckout={this.handleCheckout}
+          name={"Finalize donation"}
+          description={"Enter payment details"}
+          amount={this.state.amount}
+        />
+      );
+    }
+
     let stepperContent;
     if (activeStep == 0) {
       if (this.state.amount < 1) {
@@ -109,7 +138,8 @@ class DonationStepper extends Component {
     } else if (activeStep == 1) {
       stepperContent = (
         <Typography>
-          AUD${this.state.amount} will be donated to this donee.
+          AUD${this.state.amount} will be donated to this donee. Click Donate to
+          enter payment details.
         </Typography>
       );
     } else if (activeStep == 2) {
@@ -144,9 +174,9 @@ class DonationStepper extends Component {
             </div>
           ) : (
             <div>
-              <Typography className={classes.instructions}>
+              {/* <Typography className={classes.instructions}>
                 {getStepInstructions(activeStep)}
-              </Typography>
+              </Typography> */}
               <form>{stepperContent}</form>
               <div>
                 {activeStep === 1 && (
@@ -154,14 +184,7 @@ class DonationStepper extends Component {
                     Back
                   </Button>
                 )}
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                  className={classes.button}
-                >
-                  {activeStep === 1 ? "Confirm" : "Next"}
-                </Button>
+                {proceedButton}
               </div>
             </div>
           )}

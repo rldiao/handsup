@@ -28,14 +28,17 @@ const onToken = (amount, description) => token =>
     .then(successPayment)
     .catch(errorPayment);
 
-const Checkout = ({ name, description, amount }) => (
+const Checkout = ({ handleCheckout, name, description, amount }) => (
   <StripeCheckout
+    onClick={handleCheckout}
+    label="Donate"
     name={name}
     description={description}
     amount={fromAudToCent(amount)}
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
+    allowRememberMe={false}
   />
 );
 
