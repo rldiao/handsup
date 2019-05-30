@@ -1,10 +1,11 @@
 const jwt = require("jsonwebtoken");
+const secret = process.env.TOKEN_STR;
 
 const withAuth = function(req, res, next) {
   // Cookie is still here prabably due to passport
   const token = req.cookies.token;
 
-  if (process.env.NODE_ENV !== "production") {
+  if (!process.env.NODE_ENV) {
     return next();
   }
   if (!token) {

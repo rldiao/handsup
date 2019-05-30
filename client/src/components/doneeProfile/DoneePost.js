@@ -132,14 +132,16 @@ class DoneePost extends Component {
         </Fragment>
       );
     } else if (userType === userTypeConstants.DONOR) {
-      writtenBy = (
-        <div style={{ display: "flex" }}>
-          <Avatar src={this.state.profilePic} className={styles.postAvatar} />
-          <Typography style={custom.postWrittenBy} color="primary">
-            {" " + this.state.author}
-          </Typography>
-        </div>
-      );
+      if (this.state.profilePic) {
+        writtenBy = (
+          <div style={{ display: "flex" }}>
+            <Avatar src={this.state.profilePic} className={styles.postAvatar} />
+            <Typography style={custom.postWrittenBy} color="primary">
+              {" " + this.state.author}
+            </Typography>
+          </div>
+        );
+      }
     }
 
     let titleComponent, contentComponent;
