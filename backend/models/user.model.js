@@ -24,10 +24,6 @@ const userSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  socialSecurityNumber: {
-    type: String,
-    unique: true
-  },
   savedDoneesID: [String],
   postIDs: [String],
   phoneNumber: String,
@@ -46,7 +42,6 @@ const userSchema = mongoose.Schema({
 
 // hash the password
 userSchema.methods.setPassword = function(password) {
-  // TODO: move this into a service
   this.password = crypt.hashSync(password, crypt.genSaltSync(8));
 };
 

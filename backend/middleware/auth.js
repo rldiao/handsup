@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const secret = process.env.TOKEN_STR;
 
 const withAuth = function(req, res, next) {
   // Cookie is still here prabably due to passport
