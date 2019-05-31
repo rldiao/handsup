@@ -1,6 +1,6 @@
 {
-  "name": "Hands Up",
-  "short_name": "Handsup",
+  "name": "HandsUp",
+  "short_name": "HandsUp",
   "display": "browser",
   "Scope": "/",
   "start_url": "/",
