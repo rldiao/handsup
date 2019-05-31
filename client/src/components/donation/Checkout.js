@@ -30,7 +30,7 @@ const onToken = (amount, description) => token =>
 
 const Checkout = ({ handleCheckout, name, description, amount }) => (
   <StripeCheckout
-    onClick={handleCheckout}
+    triggerEvent
     label="Donate"
     name={name}
     description={description}

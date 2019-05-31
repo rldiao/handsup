@@ -27,15 +27,6 @@ function getSteps() {
   return ["Enter donation amount", "Confirm donation"];
 }
 
-// function getStepInstructions(step) {
-//   switch (step) {
-//     case 0:
-//       return "Enter an amount for your donation";
-//     case 1:
-//       return "Confirm your donation";
-//   }
-// }
-
 class DonationStepper extends Component {
   state = {
     activeStep: 0,
@@ -174,9 +165,6 @@ class DonationStepper extends Component {
             </div>
           ) : (
             <div>
-              {/* <Typography className={classes.instructions}>
-                {getStepInstructions(activeStep)}
-              </Typography> */}
               <form>{stepperContent}</form>
               <div>
                 {activeStep === 1 && (
