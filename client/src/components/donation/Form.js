@@ -10,6 +10,16 @@ import styles from "./form.module.css";
 import Axios from "axios";
 import AuthService from "../../services/AuthService";
 import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
+import { styles as custom } from "./form.style";
+
+// const styles = theme => ({
+//   container: {
+//     display: "grid",
+//     gridTemplateColumns: "repeat(12, 1fr)",
+//     gridGap: "5px"
+//   }
+// });
 
 const monthNames = [
   "January",
@@ -30,18 +40,8 @@ class Form extends Component {
     super(props);
     this.state = {
       amount: ""
-      // donor: ""
     };
   }
-
-  // getDonor = () => {
-  //   const email = AuthService.getProfile().email;
-
-  //   Axios.get("/user/" + email).then(res => {
-  //     this.setState({ donor: res.data });
-  //     console.log("donor email = " + this.state.donor.email);
-  //   });
-  // };
 
   handleTextField = name => event => {
     this.setState({
@@ -86,6 +86,11 @@ class Form extends Component {
         donor: AuthService.getProfile().id,
         "transaction-date": date
       });
+
+      // Add donation to donee's backend
+      this.props.handleDonation(this.state.amount);
+
+      this.props.handleDonationMade();
       //redirect, clear inputs, thank alert
     } catch (e) {
       throw e;
@@ -93,37 +98,47 @@ class Form extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <div className={styles.container}>
-        <Grid container spacing={3}>
+        <div className={styles.gridItem}>
           <Grid item xs={12}>
             <TextField
               id="outlined-name"
               label="Amount"
               type="number"
-              // className={this.classes.textField}
+              className={styles.textField}
               // value={values.name}
               onChange={e => this.setState({ amount: e.target.value })}
               margin="normal"
               variant="outlined"
-            />{" "}
+            />
           </Grid>
+        </div>
+        <div className={styles.gridItem}>
           <Grid item xs={12}>
-            <CardElement style={{ base: { fontSize: "18px" } }} />{" "}
+            <CardElement style={{ base: { fontSize: "18px" } }} />
           </Grid>
-          <Grid item xs={6}>
+        </div>
+        <div className={styles.gridItem}>
+          <Grid item xs={3}>
             <Button
+              style={custom.confirmBtn}
               variant="outlined"
               onClick={e => this.handleConfirm()}
-              // style={profileStyles.saveButton}
             >
               Confirm
-            </Button>{" "}
+            </Button>
           </Grid>
-        </Grid>
+        </div>
       </div>
     );
   }
 }
 
+Form.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
 export default injectStripe(Form);
+// export default withStyles(styles)(Form);

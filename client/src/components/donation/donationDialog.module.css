@@ -1,0 +1,11 @@
+.thankYouText {
+  align-self: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.container {
+  margin: 3rem;
+  align-self: center;
+  width: 90%;
+}
