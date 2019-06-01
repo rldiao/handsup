@@ -42,7 +42,7 @@ class DonationDialog extends Component {
           </DialogContent> */}
           <StripeProvider apiKey={STRIPE_PUBLISHABLE}>
             <Elements>
-              <Form />
+              <Form donee={this.props.donee} />
             </Elements>
           </StripeProvider>
         </Dialog>

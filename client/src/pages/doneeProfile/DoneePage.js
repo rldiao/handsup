@@ -63,6 +63,7 @@ export default class DoneePage extends Component {
         <DonationDialog
           handleDonate={this.handleDonate}
           handleDonation={this.handleDonation}
+          donee={this.state.donee}
         />
       );
     }

@@ -7,6 +7,11 @@ router.get("/", [auth.withAuth, donationController.getDonation]);
 
 router.get("/:_id", [auth.withAuth, donationController.getOneDonation]);
 
+router.post("/newstripe", [
+  auth.withAuth,
+  donationController.createStripeDonation
+]);
+
 router.post("/new", [auth.withAuth, donationController.createDonation]);
 
 // We assume the donations info can't be deleted or altered(updated)
