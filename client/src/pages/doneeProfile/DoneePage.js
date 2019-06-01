@@ -41,7 +41,6 @@ export default class DoneePage extends Component {
     // Axios
     let donee = this.state.donee;
     let original_funded = donee.funded;
-    // let new_funded = original_funded + donationAmount;
     let new_funded = parseInt(original_funded) + parseInt(donationAmount);
     donee.funded = new_funded;
     this.setState({

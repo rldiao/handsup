@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import {
-  CardElement,
-  injectStripe,
-  ReactStripeElements
-} from "react-stripe-elements";
+import { CardElement, injectStripe } from "react-stripe-elements";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styles from "./form.module.css";
@@ -12,14 +8,6 @@ import AuthService from "../../services/AuthService";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import { styles as custom } from "./form.style";
-
-// const styles = theme => ({
-//   container: {
-//     display: "grid",
-//     gridTemplateColumns: "repeat(12, 1fr)",
-//     gridGap: "5px"
-//   }
-// });
 
 const monthNames = [
   "January",
@@ -98,7 +86,6 @@ class Form extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     return (
       <div className={styles.container}>
         <div className={styles.gridItem}>
@@ -108,7 +95,6 @@ class Form extends Component {
               label="Amount"
               type="number"
               className={styles.textField}
-              // value={values.name}
               onChange={e => this.setState({ amount: e.target.value })}
               margin="normal"
               variant="outlined"
@@ -136,9 +122,4 @@ class Form extends Component {
   }
 }
 
-Form.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
 export default injectStripe(Form);
-// export default withStyles(styles)(Form);
