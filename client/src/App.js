@@ -92,18 +92,10 @@ class App extends Component {
           <PrivateRoute path="/userProfile" exact component={UserProfilePage} />
           <PrivateRoute path="/settings" exact component={UserSettingsPage} />
           <PrivateRoute path="/user/:handle" component={DoneePage} />
-<<<<<<< HEAD
-          <Route path="/login" exact component={LoginPage} />
-          <Route path="/signup" exact component={SignUpPage} />
-          <Route path="/about" exact component={AboutPage} />
-          <Route path="/contact" exact component={ContactPage} />
-          <Route path="/test" component={Test} />
-=======
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUpPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
->>>>>>> master
           <Route component={ErrorPage} />
         </Switch>
       </div>
